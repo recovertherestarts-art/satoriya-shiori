@@ -43,13 +43,18 @@ def parse_dict_file(filepath):
                 blocks.append(current_block)
             elif line.startswith('＃'):
                 # Comment line outside of blocks is ignored.
-                # Inside blocks, it might be handled by the interpreter.
                 if current_block:
                     current_block.lines.append(line)
             else:
                 if current_block:
+                    if current_block.type_mark == '＠' and current_block.lines:
+                        # For word groups, if previous line has unbalanced parens,
+                        # or ends with φ, join with current line instead of adding as new entry.
+                        prev_line = current_block.lines[-1]
+                        if prev_line.count('（') > prev_line.count('）') or prev_line.endswith('φ'):
+                             current_block.lines[-1] = prev_line + "\n" + line
+                             continue
                     current_block.lines.append(line)
                 else:
-                    # Content before any block is ignored or treated as comments
                     pass
     return blocks

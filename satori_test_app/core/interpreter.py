@@ -46,7 +46,7 @@ class SatoriInterpreter:
         if not condition:
             return True
 
-        expanded = self.expand_string(condition)
+        expanded = self.expand_string(condition).strip().replace('\n', '').replace('\r', '')
 
         # Satori operators: ==, !=, >=, <=, >, <, =, etc.
         # Also full-width versions.
@@ -104,15 +104,21 @@ class SatoriInterpreter:
             except ValueError:
                 return True # Non-empty string is True
 
-    def expand_string(self, s):
+    def handle_escape(self, s):
         if s is None: return ""
-
-        # Handle φ escape first
         res = []
         i = 0
         while i < len(s):
             if s[i] == 'φ':
                 if i + 1 < len(s):
+                    if s[i+1] == '\n':
+                        i += 2
+                        continue
+                    if s[i+1] == '\r':
+                        if i + 2 < len(s) and s[i+2] == '\n': i += 3
+                        else: i += 2
+                        continue
+                    # Mark as escaped
                     res.append("\ufffd" + s[i+1])
                     i += 2
                 else:
@@ -120,7 +126,11 @@ class SatoriInterpreter:
             else:
                 res.append(s[i])
                 i += 1
-        s = "".join(res)
+        return "".join(res)
+
+    def expand_string(self, s):
+        if s is None: return ""
+        s = self.handle_escape(s)
 
         # Process from left to right to avoid infinite loops on unresolvable identifiers
         pos = 0
@@ -149,20 +159,67 @@ class SatoriInterpreter:
                 continue
 
             inner = s[start+1:end]
-            args = re.split(r'[,、]', inner)
+            # Peek at function name for special expansion
+            # Must use same smart split logic to avoid splitting on nested delimiters
+            args = []
+            current = []
+            d_depth = 0
+            for char in inner:
+                if char == '（': d_depth += 1
+                elif char == '）': d_depth -= 1
+                elif d_depth == 0 and char in [',', '、']:
+                    args.append("".join(current))
+                    current = []
+                    continue # only use the first delimiter found for splitting function name?
+                    # Satori is complex here. Let's just split all.
+                current.append(char)
+            args.append("".join(current))
+
             func_name = args[0]
 
             if func_name in ['when', 'whenlist', 'iflist', 'switch', 'nswitch', 'times', 'for', 'while']:
-                expanded_content = self.call_function(func_name, args[1:])
+                # Pass the raw arguments (inner after func name)
+                # We need to find where the first arg starts
+                first_delim_pos = -1
+                d_depth = 0
+                for idx, char in enumerate(inner):
+                    if char == '（': d_depth += 1
+                    elif char == '）': d_depth -= 1
+                    elif d_depth == 0 and char in [',', '、']:
+                        first_delim_pos = idx
+                        break
+
+                raw_args = []
+                if first_delim_pos != -1:
+                    # Split the rest by the SAME delimiter
+                    delim = inner[first_delim_pos]
+                    rest = inner[first_delim_pos+1:]
+                    # Smart split rest by delim
+                    curr = []
+                    dd = 0
+                    for c in rest:
+                        if c == '（': dd += 1
+                        elif c == '）': dd -= 1
+                        elif dd == 0 and c == delim:
+                            raw_args.append("".join(curr))
+                            curr = []
+                            continue
+                        curr.append(c)
+                    raw_args.append("".join(curr))
+
+                expanded_content = self.call_function(func_name, raw_args)
             else:
                 expanded_inner = self.expand_string(inner)
                 expanded_content = self.process_parenthesis(expanded_inner)
+
+            # Re-handle escape in the newly expanded content
+            expanded_content = self.handle_escape(expanded_content)
 
             # If expansion didn't change anything, move past it to avoid infinite loop
             if expanded_content == "（" + inner + "）":
                 pos = start + len(expanded_content)
             else:
-                # Re-evaluate the new content
+                # Keep same pos to re-check the new content
                 pass
 
             s = s[:start] + expanded_content + s[end+1:]
@@ -172,16 +229,34 @@ class SatoriInterpreter:
     def process_parenthesis(self, content):
         # Check for function call with potential delimiters
         # Delimiters can be \x01, \x02, \x03, , 、
+        # We must only split by delimiters at the top level of nesting
         delimiters = ['\x01', '\x02', '\x03', ',', '、']
 
         chosen_delim = None
         for d in delimiters:
-            if d in content:
-                chosen_delim = d
-                break
+            depth = 0
+            for char in content:
+                if char == '（': depth += 1
+                elif char == '）': depth -= 1
+                elif depth == 0 and char == d:
+                    chosen_delim = d
+                    break
+            if chosen_delim: break
 
         if chosen_delim:
-            args = content.split(chosen_delim)
+            args = []
+            current = []
+            depth = 0
+            for char in content:
+                if char == '（': depth += 1
+                elif char == '）': depth -= 1
+                elif depth == 0 and char == chosen_delim:
+                    args.append("".join(current))
+                    current = []
+                    continue
+                current.append(char)
+            args.append("".join(current))
+
             func_name = args[0]
             return self.call_function(func_name, args[1:])
         else:
@@ -212,6 +287,18 @@ class SatoriInterpreter:
                 except:
                     pass
 
+        if name == 'Ｓの数':
+            count = 0
+            while f'Ｓ{count}' in self.variables:
+                count += 1
+            return str(count)
+
+        if name == 'Ｒの数':
+            count = 0
+            while f'Ｒ{count}' in self.variables:
+                count += 1
+            return str(count)
+
         # 1. Variable
         norm_name = self.normalize_name(name)
         # Check for exact match first
@@ -232,7 +319,8 @@ class SatoriInterpreter:
             if eligible_blocks:
                 block = random.choice(eligible_blocks)
                 if block.lines:
-                    return random.choice(block.lines)
+                    # Execute as a block to handle multiple lines joined by φ
+                    return self.execute_block(block)
             return ""
 
         # 3. Sentence *
@@ -295,20 +383,20 @@ class SatoriInterpreter:
             return ""
 
         if name == 'calc' or name == 'calc_float':
-            expr = self.expand_string(args[0])
-            expr = expr.translate(str.maketrans('０１２３４５６７８９＋－×÷＝', '0123456789+-*/='))
+            raw_expr = self.expand_string(args[0])
+            expr = raw_expr.translate(str.maketrans('０１２３４５６７８９＋－×÷＝', '0123456789+-*/='))
             expr = expr.replace('÷', '/')
             expr = expr.replace('×', '*')
             try:
                 # Basic sanitization for eval
-                if not re.match(r'^[0-9. +\-*/()%]*$', expr):
-                    return "Error"
+                if not re.match(r'^[0-9. +\-*/()%]*$', expr.strip()):
+                    return raw_expr # Return raw if not a formula
                 result = eval(expr, {"__builtins__": None}, {})
                 if name == 'calc':
                     return str(int(result))
                 return str(result)
             except:
-                return "0"
+                return raw_expr # Return raw on failure
 
         if name == 'loop':
             target = args[0]
@@ -333,13 +421,16 @@ class SatoriInterpreter:
 
         if name == 'for':
             # (for, start, end, step, body)
-            start = int(self.expand_string(args[0]))
-            end = int(self.expand_string(args[1]))
-            step = 1
-            body_idx = 2
-            if len(args) > 3:
-                step = int(self.expand_string(args[2]))
-                body_idx = 3
+            try:
+                start = int(self.call_function('calc', [args[0]]))
+                end = int(self.call_function('calc', [args[1]]))
+                step = 1
+                body_idx = 2
+                if len(args) > 3:
+                    step = int(self.call_function('calc', [args[2]]))
+                    body_idx = 3
+            except:
+                return ""
 
             body = args[body_idx]
             results = []
@@ -356,7 +447,10 @@ class SatoriInterpreter:
             return "".join(results)
 
         if name == 'times':
-            count = int(self.expand_string(args[0]))
+            try:
+                count = int(self.call_function('calc', [args[0]]))
+            except:
+                count = 0
             body = args[1]
             results = []
             orig_c0 = self.variables.get('Ｃ０')
@@ -375,6 +469,52 @@ class SatoriInterpreter:
         if name == 'nop':
             if args:
                 self.expand_string(args[0])
+            return ""
+
+        if name == 'at':
+            target = self.expand_string(args[0])
+            try:
+                pos = int(self.call_function('calc', [args[1]]))
+                if 0 <= pos < len(target):
+                    return target[pos]
+            except:
+                pass
+            return ""
+
+        if name == 'length':
+            return str(len(self.expand_string(args[0])))
+
+        if name == 'count':
+            target = self.expand_string(args[0])
+            sub = self.expand_string(args[1])
+            if not sub: return "0"
+            return str(target.count(sub))
+
+        if name == 'replace' or name == 'replace_first':
+            target = self.expand_string(args[0])
+            old = self.expand_string(args[1])
+            new = self.expand_string(args[2])
+            if name == 'replace':
+                return target.replace(old, new)
+            else:
+                return target.replace(old, new, 1)
+
+        if name == 'substr':
+            target = self.expand_string(args[0])
+            try:
+                start = int(self.call_function('calc', [args[1]]))
+                length = len(target)
+                if len(args) > 2:
+                    count = int(self.call_function('calc', [args[2]]))
+                    if count >= 0:
+                        return target[start:start+count]
+                    else:
+                        # Negative length in Satori means from start backwards?
+                        # "5, -3" from "あいうえおかきくけこ" (pos 5 is 'か') -> "うえお"
+                        return target[start+count:start]
+                return target[start:]
+            except:
+                pass
             return ""
 
         if name == 'call':
@@ -456,6 +596,12 @@ class SatoriInterpreter:
                 block_output.append("\n")
                 continue
 
+            # Remove inline comments
+            if '＃' in line:
+                line = line.split('＃', 1)[0]
+                if not line:
+                    continue
+
             if line.startswith('＃'):
                 continue
 
@@ -506,6 +652,34 @@ class SatoriInterpreter:
                         self.jump_target = actual_target
                         break
                     # If not exists, continue to next line
+            elif line.startswith('≧'):
+                # Tag jump
+                content = line[1:]
+                prefix = ""
+                tag = ""
+                if '「' in content:
+                    prefix, tag = content.split('「', 1)
+                else:
+                    prefix = content
+
+                tag = self.expand_string(tag).strip()
+                # Search sentences
+                candidates = []
+                norm_prefix = self.normalize_name(prefix)
+                for s_name in self.sentences:
+                    norm_s_name = self.normalize_name(s_name)
+                    if norm_s_name.startswith(norm_prefix + '「'):
+                        tags_part = s_name.split('「', 1)[1]
+                        # Use same normalization for tags too
+                        tags = [self.normalize_name(t) for t in re.split(r'[ 　\t]+', tags_part.strip())]
+                        if self.normalize_name(tag) in tags:
+                            candidates.append(s_name)
+
+                if candidates:
+                    # Satori picks one
+                    self.is_jumping = True
+                    self.jump_target = random.choice(candidates)
+                    break
             else:
                 # Normal talk line
                 block_output.append(self.expand_string(line))
