@@ -1,0 +1,5 @@
+＊LoopTest
+（loop,LoopBody,3）
+
+＊LoopBody
+＄HL（LoopBodyカウンタ）【タブ】（Ｒ（LoopBodyカウンタ））
