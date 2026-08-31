@@ -3,6 +3,7 @@
 #else
 #  include <stdlib.h>
 #  include <string.h>
+#  include "satori.h"
 #endif
 #include "SakuraDLLHost.h"
 #include <iostream>
@@ -26,6 +27,18 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD fdwReason,LPVOID lpvReserved)
 #endif
 
 #ifdef POSIX
+
+extern "C" int satori_load(char* i_data, long i_data_len) {
+//	GetSender().initialize();
+    string the_base_folder(i_data, i_data_len);
+    free(i_data);
+    GetSender().sender() << the_base_folder << std::endl;
+    int id = SakuraDLLHost::Create<Satori>();
+    SakuraDLLHost::Select(id);
+    SakuraDLLHost::I()->load(the_base_folder);
+    return id;
+}
+
 extern "C" int load(char* i_data, long i_data_len) {
 //	GetSender().initialize();
     string the_base_folder(i_data, i_data_len);
@@ -44,6 +57,14 @@ extern "C" __declspec(dllexport) BOOL __cdecl load(HGLOBAL i_data, long i_data_l
 #endif
 
 #ifdef POSIX
+extern "C" int satori_unload(int id)
+{
+    SakuraDLLHost::Select(id);
+	int ret = SakuraDLLHost::I()->unload();
+    SakuraDLLHost::Destroy(id);
+    return ret;
+}
+
 extern "C" int unload(void)
 #else
 extern "C" __declspec(dllexport) BOOL __cdecl unload(void)
@@ -53,6 +74,22 @@ extern "C" __declspec(dllexport) BOOL __cdecl unload(void)
 }
 
 #ifdef POSIX
+extern "C" char* satori_request(int id, char* i_data, long* io_data_len) {
+    // グローバルメモリを受けとる
+    string the_req_str(i_data, *io_data_len);
+    free(i_data);
+
+    SakuraDLLHost::Select(id);
+    // リクエスト実行
+    string the_resp_str = SakuraDLLHost::I()->request(the_req_str);
+
+    // グローバルメモリで返す
+    *io_data_len = the_resp_str.size();
+    char* the_return_data = static_cast<char*>(malloc(*io_data_len));
+    memcpy(the_return_data, the_resp_str.c_str(), *io_data_len);
+    return the_return_data;
+}
+
 extern "C" char* request(char* i_data, long* io_data_len) {
     // グローバルメモリを受けとる
     string the_req_str(i_data, *io_data_len);

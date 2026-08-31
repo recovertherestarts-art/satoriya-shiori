@@ -14,7 +14,7 @@ const char* gSatoriName = "Satori";
 const char* gSatoriNameW = "—¢X";
 const char* gSatoriCraftman = "Yagi Kushigahama/The Maintenance Shop";
 const char* gSatoriCraftmanW = "‹ùƒ–•l‚â‚¬/®”õ”Ç";
-const char* gSatoriVersion = "phase Mc171-4";
+const char* gSatoriVersion = "phase Mc172-3";
 const char* gShioriVersion = "3.0";
 const char* gSaoriVersion = "1.0";
 
@@ -47,7 +47,12 @@ const char* gSatoriLicense =
 //#ifdef SATORI_DLL
 	// Satori‚Ì—Bˆê‚ÌÀ‘Ì
 	Satori gSatori;
+#ifdef POSIX
+	int SakuraDLLHost::m_id = 0;
+    std::vector<SakuraDLLHost *> SakuraDLLHost::m_dll(1, &gSatori);
+#else
 	SakuraDLLHost* SakuraDLLHost::m_dll = &gSatori;
+#endif
 //#else
 //	SakuraDLLHost* SakuraDLLHost::m_dll = NULL;
 //#endif // SATORI_DLL

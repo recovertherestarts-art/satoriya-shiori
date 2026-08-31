@@ -5,7 +5,7 @@
 #include <algorithm>
 
 #include	"../_/Utilities.h"
-#include	"../_/Charset.h"
+#include	"../_/charset.h"
 #include	"satori_load_dict.h"
 
 #ifdef POSIX

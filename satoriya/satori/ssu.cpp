@@ -628,7 +628,7 @@ SRV _replace_first(std::deque<string>& iArguments, std::deque<string>& oValues) 
 SRV _erase(std::deque<string>& iArguments, std::deque<string>& oValues) {
 	if ( iArguments.size()!=2 )
 		return	SRV(400, "ˆø”‚ÌŒÂ”‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñB");
-	erase(iArguments[0], iArguments[1]);
+	erase_all(iArguments[0], iArguments[1]);
 	return	iArguments[0];
 }
 

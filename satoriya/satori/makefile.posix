@@ -20,18 +20,21 @@ LDFLAGS = -shared
 
 
 ################## これより下は弄らなくてもコンパイル出来ます ##################
-CXXFLAGS_ADD = -DPOSIX -DSATORI_DLL -I. -I../_
+CXXFLAGS_ADD = -DPOSIX -DSATORI_DLL -I. -I../_ -fPIC
 LIBSATORI_OBJ = \
 	../_/Sender.o \
 	../_/Utilities.o \
 	../_/calc.o \
+	../_/calc_float.o \
 	../_/stltool.o \
 	../_/mt19937ar.o \
+	../_/random.o \
 	SakuraCS.o \
 	SakuraClient.o \
 	SakuraDLLClient.o \
 	SakuraDLLHost.o \
 	SaoriClient.o \
+	SaoriHost.o \
 	satori.o \
 	satoriTranslate.o \
 	satori_AnalyzeRequest.o \
@@ -43,6 +46,7 @@ LIBSATORI_OBJ = \
 	satori_sentence.o \
 	satori_tool.o \
 	shiori_plugin.o \
+	ssu.o \
 	$(NULL)
 LIBSSU_OBJ = \
 	../_/Sender.o \

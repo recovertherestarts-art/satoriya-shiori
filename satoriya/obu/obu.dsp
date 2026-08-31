@@ -92,6 +92,10 @@ LINK32=link.exe
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
+SOURCE=..\_\charset.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\dll_interface.cpp
 # End Source File
 # Begin Source File

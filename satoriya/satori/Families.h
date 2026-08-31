@@ -189,7 +189,7 @@ public:
 			st = m_elements.find(i_name);
 			if (st == m_elements.end())
 			{
-				GetSender().sender() << "'" << i_name << "' ‚Í‘¶Ý‚µ‚Ü‚¹‚ñB" << endl;
+				GetSender().sender() << "'" << i_name << "' ‚Í‘¶Ý‚µ‚Ü‚¹‚ñB" << std::endl;
 				return false;
 			}
 			Family<T>& family = st->second;

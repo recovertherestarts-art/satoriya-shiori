@@ -409,8 +409,8 @@ static bool	getHTTP(const string& iURL, string& oResult) {
 		oResult = convertSomethingToSJIS(oResult.c_str());
 
 	// 改行コードを消去
-	erase(oResult, "\r");
-	erase(oResult, "\n");
+	erase_all(oResult, "\r");
+	erase_all(oResult, "\n");
 
 	// タグの処理
 	if ( opt.find("translate_tag") != opt.end() )

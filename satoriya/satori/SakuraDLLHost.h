@@ -8,10 +8,37 @@
 // これを継承したクラスを定義し、m_dllに唯一の実体を代入する。
 class SakuraDLLHost : public SakuraCS
 {
+#ifdef POSIX
+private:
+	static int m_id;
+protected:
+	static std::vector<SakuraDLLHost *> m_dll;
+public:
+    template<typename T>
+    static int Create() {
+        m_dll.emplace_back(new T());
+        return m_dll.size() - 1;
+    }
+    static void Select(int id) {
+        if (id <= 0 || id >= m_dll.size()) {
+            return;
+        }
+        m_id = id;
+    }
+    static void Destroy(int id) {
+        if (id <= 0 || id >= m_dll.size()) {
+            return;
+        }
+        delete m_dll[id];
+        m_dll.erase(m_dll.begin() + id);
+    }
+	static SakuraDLLHost* I() { return m_dll[m_id]; }
+#else
 protected:
 	static SakuraDLLHost* m_dll;
 public:
 	static SakuraDLLHost* I() { return m_dll; }
+#endif // POSIX
 
 	SakuraDLLHost() : SakuraCS() {}
 	virtual ~SakuraDLLHost() {}

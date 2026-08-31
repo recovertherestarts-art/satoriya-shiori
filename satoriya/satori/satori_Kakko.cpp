@@ -2,7 +2,28 @@
 #include	"../_/Utilities.h"
 #include "posix_utils.h"
 #include	<time.h>
+#ifndef POSIX
 #include	<tlhelp32.h>
+#else
+#include <climits>
+#include <cstdint>
+#include <cstring>
+#include <fcntl.h>
+#include <semaphore.h>
+#include <sys/mman.h>
+#include <sys/socket.h>
+#include <sys/stat.h>
+#include <sys/un.h>
+#include <unistd.h>
+
+struct shm_t {
+	uint32_t size;
+	sem_t sem;
+	char buf[PATH_MAX];
+};
+
+const int BUFFER_SIZE = 1024;
+#endif // !POSIX
 #include	<sstream>
 
 #include "random.h"
@@ -58,9 +79,128 @@ static	SYSTEMTIME	DwordToSystemTime(DWORD dw) {
 #endif*/
 
 //get_property関数用のハンドラと結果格納
-#ifndef POSIX
+#ifdef POSIX
+
+static std::string SendDataUsingUnixSocket(const std::string &path, std::string request, bool has_header) {
+	sockaddr_un addr = {};
+	if (path.length() >= sizeof(addr.sun_path)) {
+		return "";
+	}
+	int soc = socket(AF_UNIX, SOCK_STREAM, 0);
+	if (soc == -1) {
+		return "";
+	}
+	addr.sun_family = AF_UNIX;
+	// null-terminatedも書き込ませる
+	strncpy(addr.sun_path, path.c_str(), path.length() + 1);
+	if (connect(soc, reinterpret_cast<const sockaddr *>(&addr), sizeof(addr)) == -1) {
+		return "";
+	}
+	if (send(soc, request.data(), request.size(), 0) != request.size()) {
+		close(soc);
+		return "";
+	}
+	shutdown(soc, SHUT_WR);
+	char buffer[BUFFER_SIZE] = {};
+	std::string data;
+	uint32_t remain = 0;
+	if (has_header) {
+		if (read(soc, buffer, sizeof(uint32_t)) != sizeof(uint32_t)) {
+			close(soc);
+			return "";
+		}
+		remain = *reinterpret_cast<uint32_t *>(buffer);
+		data.reserve(remain);
+	}
+	while (true) {
+		int ret = read(soc, buffer, BUFFER_SIZE);
+		if (ret == -1) {
+			close(soc);
+			return "";
+		}
+		if (ret == 0) {
+			close(soc);
+			break;
+		}
+		if (!has_header || remain > ret) {
+			data.append(buffer, ret);
+		}
+		else {
+			data.append(buffer, remain);
+		}
+		remain -= ret;
+	}
+	return data;
+}
+
+static bool SendDirectSSTP(const void* targetHWnd, const std::string &sendText, std::string &result)
+{
+    result = "";
+    shm_t *shm;
+    int fd = shm_open("/ninix", O_RDWR, 0);
+    if (fd == -1) {
+        return false;
+    }
+    shm = static_cast<shm_t *>(mmap(NULL, sizeof(shm_t), PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0));
+    close(fd);
+    if (shm == MAP_FAILED) {
+        return false;
+    }
+    if (sem_wait(&shm->sem) == -1) {
+        return false;
+    }
+    std::string path(shm->buf, shm->size);
+    if (sem_post(&shm->sem) == -1) {
+        return false;
+    }
+    std::string data = SendDataUsingUnixSocket(path + "ninix", "GetFMO\r\n", true);
+    if (data.empty()) {
+        return false;
+    }
+    int target = reinterpret_cast<long>(targetHWnd);
+    std::istringstream iss(data);
+    std::string uuid;
+    while (true) {
+        if (!iss) {
+            return false;
+        }
+        std::string tmp;
+        int hwnd;
+        std::getline(iss, tmp);
+        std::istringstream line(tmp);
+        std::getline(iss, uuid, '.');
+        std::getline(iss, tmp, '\x01');
+        if (tmp != "hwnd") {
+            continue;
+        }
+        std::getline(iss, tmp);
+        if (target == atoi(tmp.c_str())) {
+            break;
+        }
+    }
+    std::string request;
+	request = request + "EXECUTE SSTP/1.1\r\n" + sendText + "Sender: Satori\r\nCharset: Shift_JIS\r\n\r\n";
+    data = SendDataUsingUnixSocket(path + uuid, request, false);
+    std::string header = cut_token(data, CRLF);
+    cut_token(header, " ");
+    if (header == "200 OK")
+    {
+        //1行文読み捨て
+        cut_token(data, CRLF);
+        result = cut_token(data, CRLF);
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+#else
+
 std::string execute_result;
-LRESULT CALLBACK GetPropertyHandler(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam)
+bool execute_succeeded;
+
+static LRESULT CALLBACK GetPropertyHandler(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam)
 {
 	if (message == WM_COPYDATA)
 	{
@@ -74,9 +214,54 @@ LRESULT CALLBACK GetPropertyHandler(HWND hwnd, UINT message, WPARAM wparam, LPAR
 			//1行文読み捨て
 			cut_token(recv_str, CRLF);
 			execute_result = cut_token(recv_str, CRLF);
+			execute_succeeded = true;
 		}
 	}
 	return CallWindowProc(DefWindowProc, hwnd, message, wparam, lparam);
+}
+
+static bool SendDirectSSTP(const void* targetHWnd, std::string sendText, std::string &result)
+{
+	execute_result = "";
+	execute_succeeded = false;
+
+	//結果受信用ウインドウ作成: リソースの仕様を局所化してみたけどオーバーヘッドがでかい場合はSHIORIの初期化周辺に絡めるといいのかも
+	const char* windowname = "satori_get_property";
+	
+	WNDCLASSEX windowClass;
+	ZeroMemory(&windowClass,sizeof(windowClass));
+
+	windowClass.cbSize = sizeof(windowClass);
+	windowClass.hInstance = GetModuleHandle(NULL);
+	windowClass.lpszClassName = windowname;
+	windowClass.lpfnWndProc = ::GetPropertyHandler;
+	
+	::RegisterClassEx(&windowClass);
+
+	HWND propertyWindow = ::CreateWindow(windowname, windowname, 0, 0, 0, 100, 100, NULL, NULL, windowClass.hInstance, NULL);
+
+	std::ostringstream ost;
+	ost << "EXECUTE SSTP/1.1\r\n" << sendText << "Sender: Satori\r\nCharset: Shift_JIS\r\n\r\n";
+
+	std::string sendData = ost.str();
+
+	//メッセージ転送
+	COPYDATASTRUCT cds;
+	cds.dwData = 9801;
+	cds.cbData = sendData.size();
+	cds.lpData = malloc(cds.cbData);
+	memcpy(cds.lpData, sendData.c_str(), cds.cbData);
+
+	/*LRESULT res =*/ ::SendMessage((HWND)targetHWnd, WM_COPYDATA, (WPARAM)propertyWindow, (LPARAM)&cds);
+	
+	//リソースの開放
+	free(cds.lpData);
+	
+	::DestroyWindow(propertyWindow);
+	::UnregisterClass(windowClass.lpszClassName, windowClass.hInstance);
+
+	result = execute_result;
+	return execute_succeeded;
 }
 #endif
 
@@ -244,53 +429,34 @@ string	Satori::inc_call(
 	{
 		if (iArgv.size() >= 1)
 		{
-			//里々からベースウェアにDirectSSTPを飛ばしてプロパティシステムにアクセスする。元のSHIORI呼出を返さずにプロパティを取れる。
-#ifndef POSIX
-			//リザルトのリセット
-			execute_result = "";
-
-			//結果受信用ウインドウ作成: リソースの仕様を局所化してみたけどオーバーヘッドがでかい場合はSHIORIの初期化周辺に絡めるといいのかも
-			const char* windowname = "satori_get_property";
-			
-			WNDCLASSEX windowClass;
-			ZeroMemory(&windowClass,sizeof(windowClass));
-
-			windowClass.cbSize = sizeof(windowClass);
-			windowClass.hInstance = GetModuleHandle(NULL);
-			windowClass.lpszClassName = windowname;
-			windowClass.lpfnWndProc = ::GetPropertyHandler;
-			
-			::RegisterClassEx(&windowClass);
-
-			HWND propertyWindow = ::CreateWindow(windowname, windowname, 0, 0, 0, 100, 100, NULL, NULL, windowClass.hInstance, NULL);
-
-			//リクエスト作成
-			const HWND targetHWnd = characters_hwnd[0];
+			const void* targetHWnd = characters_hwnd[0];
 			std::ostringstream ost;
-			ost << "EXECUTE SSTP/1.1\r\nCommand: GetProperty[" << iArgv[0] << "]\r\nSender: Satori\r\nCharset: Shift_JIS\r\n\r\n";
+			ost << "Command: GetProperty\r\nReference0: " << iArgv[0] << "\r\n";
 			std::string sendData = ost.str();
 
-			//メッセージ転送
-			COPYDATASTRUCT cds;
-			cds.dwData = 9801;
-			cds.cbData = sendData.size();
-			cds.lpData = malloc(cds.cbData);
-			memcpy(cds.lpData, sendData.c_str(), cds.cbData);
-
-			/*LRESULT res =*/ ::SendMessage(targetHWnd, WM_COPYDATA, (WPARAM)propertyWindow, (LPARAM)&cds);
-			
-			//リソースの開放
-			free(cds.lpData);
-			
-			::DestroyWindow(propertyWindow);
-			::UnregisterClass(windowClass.lpszClassName, windowClass.hInstance);
-
-			return execute_result;
-#else
-			return "";
-#endif
+			std::string result;
+			if (SendDirectSSTP(targetHWnd, sendData, result)) {
+				return result;
+			}
+			return (iArgv.size() >= 2) ? iArgv[1] : "";
 		}
 	}
+
+	if (iCallName == "set_property")
+	{
+		if (iArgv.size() >= 2)
+		{
+			const void* targetHWnd = characters_hwnd[0];
+			std::ostringstream ost;
+			ost << "Command: SetProperty\r\nReference0: " << iArgv[0] << "\r\nReference1: " << iArgv[1] << "\r\n";
+			std::string sendData = ost.str();
+
+			std::string result;
+			SendDirectSSTP(targetHWnd, sendData, result);
+			return result;
+		}
+	}
+
 
 	if (iCallName == "load_saori")
 	{
@@ -562,6 +728,7 @@ bool	Satori::CallReal(const string& iName, string& oResult, bool for_calc, bool 
 				// 本当はstd::map<name, function>だなー　むー
 				inner_commands.insert("set");
 				inner_commands.insert("get_property");
+				inner_commands.insert("set_property");
 				inner_commands.insert("nop");
 				inner_commands.insert("sync");
 				inner_commands.insert("loop");
@@ -968,15 +1135,18 @@ bool	Satori::CallReal(const string& iName, string& oResult, bool for_calc, bool 
 		oResult=itos(last_talk_exiting_surface[ zen2int(iName.c_str()+20) ]);
 	}
 
-#ifndef POSIX
 	else if ( compare_head(iName, "ウィンドウハンドル") && iName.length() > 18 ) {
 		int character = zen2int(iName.c_str()+18);
-		std::map<int,HWND>::const_iterator found = characters_hwnd.find(character);
+		std::map<int,void*>::const_iterator found = characters_hwnd.find(character);
 		if ( found != characters_hwnd.end() ) {
+            // NOTE: sizeof(void *) == sizeof(long)
+#ifdef POSIX
+			oResult = uitos((unsigned long)found->second);
+#else
 			oResult = uitos((unsigned int)found->second);
+#endif // POSIX
 		}
 	}
-#endif
 
 	else if ( iName == "隣で起動しているゴースト" ) { 
 		oResult = ( otherghostname.size()>=1 ) ? *otherghostname.begin() : ""; //自分自身はotherghostnameには含まない

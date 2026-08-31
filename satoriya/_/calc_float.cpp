@@ -183,9 +183,9 @@ bool calc_float(const char* iExpression, VALUE_TYPE* oResult) {
 
 
 bool calc_float(string& ioString) {
-	erase(ioString, "Å@");
-	erase(ioString, " ");
-	erase(ioString, "\t");
+	erase_all(ioString, "Å@");
+	erase_all(ioString, " ");
+	erase_all(ioString, "\t");
 	replace(ioString, "Å{", "+");
 	replace(ioString, "Å|", "-");
 	replace(ioString, "Åñ", "*");

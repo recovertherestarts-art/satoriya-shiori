@@ -118,7 +118,7 @@ public:
 			{
 				std::list<const T*> selectable;
 				getSelectables(i_evalcator, selectable);
-				for (std::list<const T*>::const_iterator j = selectable.begin(); j != selectable.end(); ++j)
+				for (typename std::list<const T*>::const_iterator j = selectable.begin(); j != selectable.end(); ++j)
 				{
 					o_c.push_back((*j));
 				}

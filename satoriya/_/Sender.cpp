@@ -165,8 +165,9 @@ bool Sender::send(int mode,const char* iString)
 bool Sender::send_to_window(const int mode,const char* theBuf)
 {
 #ifdef POSIX
-	fprintf(stderr, theBuf);
+	fprintf(stderr, "%s", theBuf);
 	fprintf(stderr, "\n");
+	return true;
 #else
 	if ( !auto_init() ) { return false; }
 	
@@ -251,7 +252,7 @@ void error_buf::set_log_mode(bool is_log)
 	if ( is_log == false ) {
 		for (std::vector<string>::iterator i=log_data.begin() ; i!=log_data.end() ; ++i) {
 #ifdef POSIX
-		   cerr << "error - SATORI : " << *i << endl;
+			std::cerr << "error - SATORI : " << *i << std::endl;
 #else
 			::MessageBox(NULL, i->c_str(), "error - SATORI", MB_OK|MB_SYSTEMMODAL);
 #endif
@@ -291,7 +292,7 @@ void error_buf::flush(void)
 		log_tmp_buffer.clear();
 
 #ifdef POSIX
-        cerr << "error - SATORI : " << out << endl;
+        std::cerr << "error - SATORI : " << out << std::endl;
 #else
         ::MessageBox(NULL, out.c_str(), "error - SATORI", MB_OK|MB_SYSTEMMODAL);
 #endif
@@ -391,6 +392,7 @@ void Sender::flush_latest_event()
 
 void Sender::flush()
 {
+#ifndef POSIX
 	if (auto_init())
 	{
 		for (std::list< std::list<std::string> >::iterator it = delay_send_list.begin(); it != delay_send_list.end(); it++)
@@ -401,6 +403,7 @@ void Sender::flush()
 			}
 		}
 	}
+#endif // not(POSIX)
 
 	//1つだけ残してパージ
 	if ( ! delay_send_list.empty() ) {

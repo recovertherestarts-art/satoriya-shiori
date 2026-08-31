@@ -75,7 +75,7 @@ public:
 	//選択可能なものを返す
 	virtual void get_selectable(const std::list<T>& i_candidates, std::list<T>& out_list)
 	{
-		for (std::list<T>::const_iterator it = i_candidates.begin(); it != i_candidates.end(); ++it)
+		for (typename std::list<T>::const_iterator it = i_candidates.begin(); it != i_candidates.end(); ++it)
 		{
 			out_list.push_back(*it);
 		}
@@ -131,7 +131,7 @@ public:
 	//選択可能なものを返す
 	virtual void get_selectable(const std::list<T>&, std::list<T>& out_list)
 	{
-		for (std::set<T>::const_iterator it = m_unused.begin(); it != m_unused.end(); ++it)
+		for (typename std::set<T>::const_iterator it = m_unused.begin(); it != m_unused.end(); ++it)
 		{
 			out_list.push_back(*it);
 		}
@@ -152,7 +152,7 @@ public:
 			}
 			*/
 
-			std::set<T>::iterator it = m_unused.find(t);
+			typename std::set<T>::iterator it = m_unused.find(t);
 			if (it != m_unused.end())
 			{
 				m_unused.erase(t);
@@ -246,7 +246,7 @@ public:
 		}
 		else
 		{
-			for (std::list<T>::const_iterator it = i_candidates.begin(); it != i_candidates.end(); ++it)
+			for (typename std::list<T>::const_iterator it = i_candidates.begin(); it != i_candidates.end(); ++it)
 			{
 				if (m_last != *it)
 				{
@@ -260,7 +260,7 @@ public:
 	//外部から選択したことにして重複回避を動かす
 	virtual void apply_selected(const std::list<T>& i_candidates, T t)
 	{
-		for (std::list<T>::const_iterator it = i_candidates.begin(); it != i_candidates.end(); ++it)
+		for (typename std::list<T>::const_iterator it = i_candidates.begin(); it != i_candidates.end(); ++it)
 		{
 			if (*it == t)
 			{
@@ -358,7 +358,7 @@ public:
 	//外部から選択したことにして重複回避を動かす
 	virtual void apply_selected(const std::list<T>& i_candidates, T t)
 	{
-		for (std::list<T>::const_iterator it = i_candidates.begin(); it != i_candidates.end(); ++it)
+		for (typename std::list<T>::const_iterator it = i_candidates.begin(); it != i_candidates.end(); ++it)
 		{
 			if (*it == t)
 			{
@@ -482,7 +482,7 @@ public:
 	//外部から選択したことにして重複回避を動かす
 	virtual void apply_selected(const std::list<T>& i_candidates, T t)
 	{
-		for (std::list<T>::const_iterator it = i_candidates.begin(); it != i_candidates.end(); ++it)
+		for (typename std::list<T>::const_iterator it = i_candidates.begin(); it != i_candidates.end(); ++it)
 		{
 			if (*it == t)
 			{

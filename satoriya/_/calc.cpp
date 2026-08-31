@@ -258,7 +258,7 @@ static bool	calc_polish(simple_stack<calc_element>& polish, string& oResult,bool
 			if ( aredigits(lhs) && aredigits(rhs) ) {
 				stack.push(itos( stoi_internal(lhs)-stoi_internal(rhs) )); 
 			} else if ( ! isStrict ) {
-				erase(lhs, rhs);
+				erase_all(lhs, rhs);
 				stack.push(lhs);
 			} else {
 				return false;
@@ -319,9 +319,9 @@ bool calc(string& ioString,bool isStrict)
 {
 	string iString = ioString;
 
-	erase(iString, "　");
-	erase(iString, " ");
-	erase(iString, "\t");
+	erase_all(iString, "　");
+	erase_all(iString, " ");
+	erase_all(iString, "\t");
 
 	// ﾆｮﾛは単体で演算子にはしたくないー
 	replace(iString, "＝～", "=~");

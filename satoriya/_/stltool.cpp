@@ -9,7 +9,6 @@
 #endif
 #include	"charset.h"
 
-
 //////////DEBUG/////////////////////////
 #include "warning.h"
 #ifdef _WINDOWS
@@ -184,7 +183,7 @@ bool	erase_first(string& str, const string& before) {
 	str.erase(pos, before.size());
 	return	true;
 }
-int	erase(string& str, const string& before) {
+int	erase_all(string& str, const string& before) {
 	if ( str=="" || before=="" ) return 0;
 
 	// •¶š—ñ’·‚ÌŒvZ—p
@@ -514,7 +513,7 @@ const char*	strstri_hz(const char* target, const char* find) {
 	int	len=strlen(find);
 	const char* p=target;
 	while ( *p!='\0' ) {
-		if ( _strnicmp(p, find, len)==0 )
+		if ( strnicmp(p, find, len)==0 )
 			return	p;
 		if ( _ismbblead(*p) )
 			p+=2; 
@@ -849,10 +848,12 @@ string	zen2han(const char *s)
 {
 	string str(s);
 
-	static const char	before[] = "‚O‚P‚Q‚R‚S‚T‚U‚V‚W‚X‚`‚a‚b‚c‚d‚e‚f‚g‚h‚i‚j‚k‚l‚m‚n‚o‚p‚q‚r‚s‚t‚u‚v‚w‚x‚y‚‚‚‚ƒ‚„‚…‚†‚‡‚ˆ‚‰‚Š‚‹‚Œ‚‚‚‚‚‘‚’‚“‚”‚•‚–‚—‚˜‚™‚š|{";
-	static const char	after[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-+";
+	// POSIX‚¾‚Æsizeof(char [])‚ªnull-terminated‚Ü‚ÅŠÜ‚ñ‚¾ƒTƒCƒY‚ğ•Ô‚µ‚Ä
+    // —]•ª‚Éƒ‹[ƒv‚ğ‰ñ‚µ‚Ä‚µ‚Ü‚Á‚ÄSEGV‚É‚È‚é‚Ì‚Åstring‚ğg‚¤
+	static const string	before = "‚O‚P‚Q‚R‚S‚T‚U‚V‚W‚X‚`‚a‚b‚c‚d‚e‚f‚g‚h‚i‚j‚k‚l‚m‚n‚o‚p‚q‚r‚s‚t‚u‚v‚w‚x‚y‚‚‚‚ƒ‚„‚…‚†‚‡‚ˆ‚‰‚Š‚‹‚Œ‚‚‚‚‚‘‚’‚“‚”‚•‚–‚—‚˜‚™‚š|{";
+	static const string after = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-+";
 	char	buf1[3]="\0\0", buf2[2]="\0";
-	for (int n=0 ; n<sizeof(after) ; ++n) {
+	for (int n=0 ; n<after.length() ; ++n) {
 		buf1[0]=before[n*2];
 		buf1[1]=before[n*2+1];
 		buf2[0]=after[n];
