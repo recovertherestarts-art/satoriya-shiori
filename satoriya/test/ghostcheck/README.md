@@ -15,34 +15,63 @@ make -C satoriya/satori -f makefile.linux -j"$(nproc)"      # satoriya/satori/li
 ## 使い方
 
 ```
-python3 satoriya/test/ghostcheck/satori_check.py satoriya/satori/libsatori.so <辞書のフォルダ> [--runs 30] [--expect 期待ファイル] [--strict]
+python3 satoriya/test/ghostcheck/satori_check.py satoriya/satori/libsatori.so <ghost/master のフォルダ> [--expect 期待ファイル] [--runs 30] [--all] [--strict] [--engine-log]
 ```
 
-フォルダ内の `dic*.txt` から `＊イベント名` を全部拾い、1 イベントを `--runs` 回（既定 30 回）発火します。
-里々は候補をランダムに選ぶので、複数回発火して候補を踏みます。次のとき失敗（終了コード 1）です。
+フォルダ内の `*.txt`（`dic*.txt` のほか `satori_conf.txt`、`replace.txt` など）を一時フォルダにコピーして読み込みます。元のフォルダにセーブデータは書きません。
 
-- `ErrorLevel` / `ErrorDescription` が付く（辞書の構文エラー。**そのエラー以降の定義は読み込まれません**）
-- `204 No Content`（辞書にあるイベントなのに応答が空。構文エラー以降の定義は多くがこうなります）
-- `200 OK` 以外 / `request` が NULL
+`dic*.txt` の `＊イベント名` のうち、**`On` で始まるもの**を `--runs` 回（既定 30 回）発火します。里々は候補をランダムに選ぶので、複数回発火して候補を踏みます。
+`＊検索１` のような内部ラベルは、`＞` からのジャンプ先で単体で呼ぶ前提ではないので、既定では発火しません（`--all` で全部発火）。
 
-`Value` に全角の `（` `）` が残っているときは警告です。未定義の関数・変数はエラーにならず、括弧ごとそのまま出力されるためです。`--strict` で失敗扱いになります。
+| 結果 | 内容 |
+|------|------|
+| 失敗（NG、終了コード 1） | `ErrorLevel` / `ErrorDescription` が付く（辞書の構文エラー。**そのエラー以降の定義は読み込まれません**）／ 200・204 以外の応答／ `request` が NULL／期待ファイルのゴールを満たさない |
+| 警告（WARN） | `Value` に全角の `（` `）` が残っている（未定義の関数・変数はエラーにならず、括弧ごと出力されるため）／発火した全部が 204（条件付きのイベントなら正常） |
 
-## 期待ファイル（複雑な辞書でゴールを書く）
+`--strict` を付けると警告も失敗になります。里々が標準出力に出すデバッグ出力は結果と混ざらないよう別に取っておき、`--engine-log` のときだけ表示します。
+
+## 期待ファイル（ゴールを書く）
 
 ```
-# イベント名<TAB>応答に含まれるべき語（!で始めると含まれてはいけない語）
+# イベント名<TAB>応答に含まれるべき文字列（!で始めると含まれてはいけない文字列）
 OnBoot	こんにちは。
 OnBoot	!（
+
+# Reference を付けて発火する（入力ボックスやクリックの再現）。値に | と改行は使えない
+@runs 1
+OnTeach[R0=茴香]	「茴香」を覚えたよ。
+OnRecall	さっき教わったのは茴香だね。
 ```
 
-「含まれるべき語」は発火のうち 1 回でも出れば OK です。Value はさくらスクリプトのままなので、セリフの文面で書きます。
+- 「含まれるべき」は発火のうち 1 回でも出れば OK です。Value はさくらスクリプトのままなので、セリフの文面で書きます。
+- 期待ファイルに書いたものは、書いた順に、自動の発火より先に実行します。同じイベント＋Reference が続く行は 1 回にまとめて発火します。
+- `@runs N` は以降の発火回数です（`@runs default` で戻す）。セーブデータ（`＄` の変数）は同じ実行の中で引き継がれるので、状態を使うシナリオは `@runs 1` にして順番に書きます。
+- 期待ファイルに書いたイベントが 204 だけだと失敗です。
 
 ## 例
 
-`examples/good`（通る）、`examples/bad`（構文エラーで失敗）、`examples/warn`（警告のみ）。
+| フォルダ | 内容 |
+|----------|------|
+| `examples/good` | 通る |
+| `examples/bad` | 構文エラー（括弧の閉じ忘れ）で失敗 |
+| `examples/warn` | 警告のみ（未定義の変数） |
+| `examples/input` | 入力ボックス＋セーブデータの引き継ぎ（`@runs 1` と Reference） |
+| `ghosts/KakkonKarokon` | 実際のゴーストの辞書と、入力ボックスの流れを確かめる `expect.txt` |
+| `ghosts/Ariadnes_wool` | 実際のゴーストの辞書（`On*` を自動で発火。警告は条件付きのイベントと未設定の変数） |
+
+## Jules などで定期実行する
+
+```
+git submodule update --init --depth 1 satoriya/uka_regexp
+make -C satoriya/satori -f makefile.linux -j"$(nproc)"
+python3 satoriya/test/ghostcheck/satori_check.py satoriya/satori/libsatori.so satoriya/test/ghostcheck/ghosts/KakkonKarokon/ghost/master --expect satoriya/test/ghostcheck/ghosts/KakkonKarokon/expect.txt
+```
+
+終了コードが 0 なら成功、1 なら失敗です。
 
 ## 分かっていること / 分かっていないこと
 
 - 構文エラーの `ErrorDescription` には行番号が出ません（括弧の不整合などの種別とファイル名だけ）。
-- 辞書が読み込まれなかったかどうかは、エラーヘッダと 204 の両方で見ています。
-- 条件付きイベント（`Reference` 依存など）や、SAORI を呼ぶ辞書はまだ見ていません。
+- 構文エラーがあると、そのエラー以降の定義は読み込まれず 204 になります。204 の警告が並んでいるときは、先に `里々のエラー` が出ていないかを見てください。
+- 時刻や `Reference` に依存する条件付きイベントは、既定の発火では 204 になることがあります。確かめたいときは期待ファイルで Reference を付けて書きます。
+- SAORI を呼ぶ辞書、`replace.txt` を使う辞書での動作は確認していません（`*.txt` はコピーしますが、Linux では SAORI の DLL は動きません）。

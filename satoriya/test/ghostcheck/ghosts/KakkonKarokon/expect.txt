@@ -1,0 +1,6 @@
+# KakkonKarokon の入力ボックス（OnTeach → 検索 → 選択肢 → On検索ジャンプ）の流れを確かめる。
+# 使い方: python3 satori_check.py <libsatori.so> ghosts/KakkonKarokon/ghost/master --expect ghosts/KakkonKarokon/expect.txt
+@runs 1
+OnTeach[R0=茴香]	茴香
+OnTeach[R0=存在しない薬]	思いつかない
+On検索ジャンプ[R0=茴香]	フェンネルシード
