@@ -10,6 +10,10 @@
     --all            On で始まらない ＊名前 も全部発火する（内部ラベルを含むので 204 の警告が増える）
     --strict         警告（全角括弧の残り・204）も失敗扱いにする
     --engine-log     里々が標準出力/標準エラーに出したデバッグ出力を表示する
+    --events FILE    SHIORI イベント一覧の JSON（events/shiori_events.json）。On で始まる標準イベントを
+                     全部、仕様どおりの個数の Reference を付けて発火し、辞書が反応するかを数える
+    --ref-value V    --events で Reference に入れるダミー値（既定 0）
+    --coverage       --events のとき、反応した/しなかったイベント名の一覧も表示する
 
 やること:
   1. フォルダ内の *.txt（dic*.txt、satori_conf.txt、replace.txt など）を一時フォルダにコピーして load する。
@@ -20,6 +24,10 @@
        - ErrorLevel / ErrorDescription ヘッダが付く（辞書の構文エラー。以降の定義は読み込まれない）
        - SHIORI/3.0 200 OK / 204 以外が返る / request が NULL を返す
        - 期待ファイルに書いたゴールを満たさない
+  3b. --events を付けると、標準イベント（JSON の On*）を 1 つずつ発火して、構文エラー・異常応答がないことと、
+     辞書が反応した（200）か無反応（204）かを数える。標準イベントの 204 は「その辞書がそのイベントを
+     持っていない」だけなので、警告にも失敗にもしない。ダミー値の Reference では出力の正しさまでは
+     判定できないので、中身を確かめたいイベントは期待ファイルに書く。
   4. 次は警告（--strict で失敗）。
        - Value に全角の （ ） が残っている（未定義の関数・変数はエラーにならず、括弧ごと出力されるため）
        - 発火した全部が 204 No Content（条件付きのイベントなら正常。期待ファイルに書いた場合は失敗）
@@ -88,8 +96,10 @@ class Shiori:
         ctypes.memmove(p, data + b"\0", len(data) + 1)
         return p
 
-    def get(self, event_id, refs=()):
-        if refs:
+    def get(self, event_id, refs=(), bare=False):
+        if bare:
+            ref_lines = ""
+        elif refs:
             ref_lines = "".join("Reference%d: %s\r\n" % (n, v) for n, v in refs)
         else:
             ref_lines = "Reference0: master\r\n"
@@ -180,10 +190,42 @@ def read_expect(path):
     return scenarios
 
 
-def fire(sh, event, refs, runs, engine_errors):
+def read_events_json(path, ref_value):
+    """SHIORI イベント一覧の JSON から On で始まる標準イベントを読む。[(名前, 説明, refs)] を返す。
+
+    平らな形（名前 → {Compatibility, Description, References}）も、カテゴリ → 平らな形 の入れ子も読める。
+    On で始まらない項目は、イベントではなく仕様書の項目名（installedballoonname など）なので無視する。
+    Reference は ReferenceN（N は数字）だけを数え、Reference* や Reference3～ のような書き方は無視する。
+    """
+    import json
+
+    with open(path, encoding="utf-8") as fh:
+        data = json.load(fh)
+    flat = {}
+    for k, v in data.items():
+        if isinstance(v, dict) and "References" in v:
+            flat[k] = v
+        elif isinstance(v, dict):
+            for k2, v2 in v.items():
+                if isinstance(v2, dict) and "References" in v2:
+                    flat.setdefault(k2, v2)
+    events = []
+    for name, info in flat.items():
+        if not name.startswith("On"):
+            continue
+        nums = sorted(
+            int(m.group(1)) for m in (re.fullmatch(r"Reference(\d+)", r) for r in info.get("References", {})) if m
+        )
+        # 0 から最大の番号まで連続して付ける（途中が抜けていると里々側で番号がずれるため）
+        refs = tuple((n, ref_value) for n in range(nums[-1] + 1)) if nums else ()
+        events.append((name, info.get("Description", ""), refs))
+    return events
+
+
+def fire(sh, event, refs, runs, engine_errors, bare=False):
     values, n204, bad = [], 0, None
     for _ in range(runs):
-        text = sh.get(event, refs)
+        text = sh.get(event, refs, bare)
         if text is None:
             bad = "request が NULL を返した"
             break
@@ -211,6 +253,9 @@ def main():
     ap.add_argument("--all", action="store_true", help="On で始まらない ＊名前 も発火する")
     ap.add_argument("--strict", action="store_true", help="警告（全角括弧・204）も失敗扱いにする")
     ap.add_argument("--engine-log", action="store_true", help="里々のデバッグ出力を表示する")
+    ap.add_argument("--events", help="SHIORI イベント一覧の JSON")
+    ap.add_argument("--ref-value", default="0", help="--events で Reference に入れるダミー値")
+    ap.add_argument("--coverage", action="store_true", help="--events の反応した/しなかった一覧を表示する")
     args = ap.parse_args()
 
     dic_files = sorted(glob.glob(os.path.join(args.dicdir, "dic*.txt")))
@@ -218,15 +263,19 @@ def main():
         sys.exit("dic*.txt が見つかりません: " + args.dicdir)
     events = find_events(dic_files)
     scenarios = read_expect(args.expect) if args.expect else []
-    if not events and not scenarios:
+    std_all = read_events_json(args.events, args.ref_value) if args.events else []
+    if not events and not scenarios and not std_all:
         sys.exit("＊イベントが 1 つも見つかりません")
 
-    # 期待ファイルに書いたイベントは、書いたとおりに発火するので自動の対象から外す
+    # 期待ファイルに書いたイベントは、書いたとおりに発火するので自動・標準の対象から外す。
+    # 標準イベントは仕様どおりの Reference を付けて発火するので、辞書から拾った自動の対象からも外す。
     in_expect = {s["event"] for s in scenarios}
+    std = [e for e in std_all if e[0] not in in_expect]
+    std_names = {e[0] for e in std_all}
     if args.all:
-        auto = [e for e in events if e not in in_expect]
+        auto = [e for e in events if e not in in_expect and e not in std_names]
     else:
-        auto = [e for e in events if e.startswith("On") and e not in in_expect]
+        auto = [e for e in events if e.startswith("On") and e not in in_expect and e not in std_names]
 
     # セーブデータ等で元のフォルダを汚さないよう、一時フォルダにコピーして動かす
     work = tempfile.mkdtemp(prefix="satori_check_")
@@ -252,17 +301,19 @@ def main():
         # （構文エラーがあると、どのリクエストの応答にも ErrorLevel が付く）
         fire(sh, "ghostcheck_probe", (), 1, engine_errors)
 
-        def check(event, refs, runs, wants):
-            label = label_of(event, refs)
-            values, n204, bad = fire(sh, event, refs, runs, engine_errors)
+        def check(event, refs, runs, wants, standard=False):
+            """"handled"（反応した）/ "silent"（全部 204）/ "failed" を返す。"""
+            label = event if standard else label_of(event, refs)
+            values, n204, bad = fire(sh, event, refs, runs, engine_errors, bare=standard and not refs)
             if bad:
                 failures.append("%s: %s" % (label, bad))
-                return
+                return "failed"
             has_positive = any(not w.startswith("!") for w in wants)
             if not values:
-                msg = "%s: %d 回とも 204 No Content（応答が空。条件付きのイベントなら正常）" % (label, n204)
-                (failures if args.strict or has_positive else warnings).append(msg)
-                return
+                if not standard:
+                    msg = "%s: %d 回とも 204 No Content（応答が空。条件付きのイベントなら正常）" % (label, n204)
+                    (failures if args.strict or has_positive else warnings).append(msg)
+                return "silent"
             note = "" if not n204 else "（%d/%d 回は 204）" % (n204, runs)
             lines.append("OK  %-24s 異なる応答 %d 通り%s" % (label, len(set(values)), note))
             for v in sorted(set(values)):
@@ -276,11 +327,15 @@ def main():
                         failures.append("%s: 含まれてはいけない文字列が出た: %s" % (label, want[1:]))
                 elif not any(want in v for v in values):
                     failures.append("%s: %d 回発火しても期待する文字列が出なかった: %s" % (label, len(values), want))
+            return "handled"
 
         for s in scenarios:
             check(s["event"], s["refs"], s["runs"] if s["runs"] is not None else args.runs, s["wants"])
         for ev in auto:
             check(ev, (), args.runs, [])
+        std_result = {"handled": [], "silent": [], "failed": []}
+        for name, _desc, refs in std:
+            std_result[check(name, refs, args.runs, [], standard=True)].append(name)
         sh.close()
     finally:
         ctypes.CDLL(None).fflush(None)
@@ -313,8 +368,14 @@ def main():
             print("--- ここまで ---")
         else:
             print("INFO 里々のデバッグ出力が %d 行ありました（--engine-log で表示）" % len(engine_log.splitlines()))
-    print("--- 発火 %d 個（期待ファイル %d / 自動 %d） / 失敗 %d / 警告 %d" % (
-        len(scenarios) + len(auto), len(scenarios), len(auto), len(failures), len(warnings)))
+    if args.events:
+        print("--- 標準イベント %d 個: 反応あり %d / 無反応（204）%d / 失敗 %d" % (
+            len(std), len(std_result["handled"]), len(std_result["silent"]), len(std_result["failed"])))
+        if args.coverage:
+            print("反応あり: " + ", ".join(std_result["handled"]))
+            print("無反応: " + ", ".join(std_result["silent"]))
+    print("--- 発火 %d 個（期待ファイル %d / 自動 %d / 標準 %d） / 失敗 %d / 警告 %d" % (
+        len(scenarios) + len(auto) + len(std), len(scenarios), len(auto), len(std), len(failures), len(warnings)))
     return 1 if failures else 0
 
 

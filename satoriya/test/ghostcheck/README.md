@@ -15,7 +15,7 @@ make -C satoriya/satori -f makefile.linux -j"$(nproc)"      # satoriya/satori/li
 ## 使い方
 
 ```
-python3 satoriya/test/ghostcheck/satori_check.py satoriya/satori/libsatori.so <ghost/master のフォルダ> [--expect 期待ファイル] [--runs 30] [--all] [--strict] [--engine-log]
+python3 satoriya/test/ghostcheck/satori_check.py satoriya/satori/libsatori.so <ghost/master のフォルダ> [--expect 期待ファイル] [--events events/shiori_events.json] [--coverage] [--runs 30] [--all] [--strict] [--engine-log]
 ```
 
 フォルダ内の `*.txt`（`dic*.txt` のほか `satori_conf.txt`、`replace.txt` など）を一時フォルダにコピーして読み込みます。元のフォルダにセーブデータは書きません。
@@ -29,6 +29,21 @@ python3 satoriya/test/ghostcheck/satori_check.py satoriya/satori/libsatori.so <g
 | 警告（WARN） | `Value` に全角の `（` `）` が残っている（未定義の関数・変数はエラーにならず、括弧ごと出力されるため）／発火した全部が 204（条件付きのイベントなら正常） |
 
 `--strict` を付けると警告も失敗になります。里々が標準出力に出すデバッグ出力は結果と混ざらないよう別に取っておき、`--engine-log` のときだけ表示します。
+
+## 標準イベントを全部発火する（`--events`）
+
+`events/shiori_events.json` は SHIORI イベントの一覧です（名前・対応環境・説明・Reference の意味。ukadoc の内容を整理したもの）。
+`--events` を付けると、このうち **`On` で始まる標準イベント 253 個**を、仕様に書かれた個数の Reference を付けて 1 つずつ発火します。
+`installedballoonname` や `First` のような、イベントではなく仕様書の項目名にあたるものは無視します。
+
+```
+python3 satoriya/test/ghostcheck/satori_check.py satoriya/satori/libsatori.so <ghost/master> --events satoriya/test/ghostcheck/events/shiori_events.json [--coverage]
+```
+
+- 見ているのは「構文エラーや異常応答が出ないこと」と「辞書が反応するか」です。ダミー値の Reference（既定 `0`、`--ref-value` で変更）では出力の正しさまでは判定できないので、中身を確かめたいイベントは期待ファイルに書きます。
+- 標準イベントの 204 は「その辞書がそのイベントを持っていない」だけなので、警告にも失敗にもしません。最後に `標準イベント 253 個: 反応あり 37 / 無反応 216 / 失敗 0` のように数えて出します。`--coverage` で名前の一覧も出ます。
+- 辞書にある標準イベントは、辞書から拾った自動の発火ではなく、こちらの Reference つきで発火します。`On` で始まるが標準にないイベントは、これまでどおり自動で発火します。
+- `events/` には、カテゴリ分けした形の JSON を渡しても読めます（同じ 253 個になります）。
 
 ## 期待ファイル（ゴールを書く）
 
@@ -64,7 +79,7 @@ OnRecall	さっき教わったのは茴香だね。
 ```
 git submodule update --init --depth 1 satoriya/uka_regexp
 make -C satoriya/satori -f makefile.linux -j"$(nproc)"
-python3 satoriya/test/ghostcheck/satori_check.py satoriya/satori/libsatori.so satoriya/test/ghostcheck/ghosts/KakkonKarokon/ghost/master --expect satoriya/test/ghostcheck/ghosts/KakkonKarokon/expect.txt
+python3 satoriya/test/ghostcheck/satori_check.py satoriya/satori/libsatori.so satoriya/test/ghostcheck/ghosts/KakkonKarokon/ghost/master --expect satoriya/test/ghostcheck/ghosts/KakkonKarokon/expect.txt --events satoriya/test/ghostcheck/events/shiori_events.json
 ```
 
 終了コードが 0 なら成功、1 なら失敗です。
@@ -73,5 +88,6 @@ python3 satoriya/test/ghostcheck/satori_check.py satoriya/satori/libsatori.so sa
 
 - 構文エラーの `ErrorDescription` には行番号が出ません（括弧の不整合などの種別とファイル名だけ）。
 - 構文エラーがあると、そのエラー以降の定義は読み込まれず 204 になります。204 の警告が並んでいるときは、先に `里々のエラー` が出ていないかを見てください。
+- `--events` のダミー値の Reference で、辞書側が値を計算に使うと、里々のエラーや想定外の分岐になることがあります（その場合は失敗として出ます）。
 - 時刻や `Reference` に依存する条件付きイベントは、既定の発火では 204 になることがあります。確かめたいときは期待ファイルで Reference を付けて書きます。
 - SAORI を呼ぶ辞書、`replace.txt` を使う辞書での動作は確認していません（`*.txt` はコピーしますが、Linux では SAORI の DLL は動きません）。

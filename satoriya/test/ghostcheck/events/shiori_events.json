@@ -1,0 +1,3044 @@
+{
+    "OnVanishSelecting":  {
+                              "Compatibility":  "MateriaSSPCROWNinix",
+                              "Description":  "消滅が指示された際に発生。",
+                              "References":  {
+
+                                             }
+                          },
+    "OnSchedulepostBegin":  {
+                                "Compatibility":  "SSP",
+                                "Description":  "スケジュールセンサが投稿モードで接続開始する際に発生。",
+                                "References":  {
+                                                   "Reference0":  "スケジュールセンサの名前"
+                                               }
+                            },
+    "installedballoonname":  {
+                                 "Compatibility":  "SSPCROWNinix",
+                                 "Description":  "インストールされているバルーンを通知。[NOTIFY]",
+                                 "References":  {
+                                                    "Reference*":  "インストールされているバルーン名。"
+                                                }
+                             },
+    "OnCPULoadHigh":  {
+                          "Compatibility":  "",
+                          "Description":  "CPU負荷が高い時に発生する。(今のところおおよそ80％ぐらいが少し続いたら発動)",
+                          "References":  {
+                                             "Reference0":  "現在の負荷率％\nSSP 2.5.56"
+                                         }
+                      },
+    "OnUpdateOther.OnMD5CompareComplete":  {
+                                               "Compatibility":  "SSP",
+                                               "Description":  "ゴースト以外のMD5が一致した際に発生。",
+                                               "References":  {
+                                                                  "Reference3":  "※更新対象種別",
+                                                                  "Reference2":  "落としたファイルのMD5値。",
+                                                                  "Reference4":  "SSP 2.3：※更新実行理由。",
+                                                                  "Reference1":  "正しいMD5値。"
+                                                              }
+                                           },
+    "First":  {
+                  "Compatibility":  "",
+                  "Description":  "1ページ目\nFirst and Last\n1ページ目で次がない",
+                  "References":  {
+
+                                 }
+              },
+    "book":  {
+                 "Compatibility":  "",
+                 "Description":  "書籍発売日",
+                 "References":  {
+
+                                }
+             },
+    "OnFileDrop2":  {
+                        "Compatibility":  "MateriaSSPCROWNinix",
+                        "Description":  "ファイルがDnDされた際に発生。",
+                        "References":  {
+                                           "Reference0":  "ドロップされたファイルパスを（複数あればbyte値1で区切って）返す。",
+                                           "Reference1":  "ドロップされたキャラクターのスコープ番号。本体側0、相方1、3人目以降は2以降。"
+                                       }
+                    },
+    "OnXUkagakaLinkOpen":  {
+                               "Compatibility":  "SSP",
+                               "Description":  "下記形式のWeb関連づけを開いた、またはドロップした場合に、指定したゴーストに通知される。\nx-ukagaka-link:type=event\u0026ghost=(descript.txtの\"name\"か\"sakura.name\")\u0026info=(Reference0に入る文字列)\n文字コードはUTF-8固定＋URLエンコード済\nサンプル：x-ukagaka-link:type=event\u0026ghost=Emily\u0026info=sweet-potato-feeding\nSecurityLevelは必ずexternalになる。",
+                               "References":  {
+                                                  "Reference0":  "info=以降に指定した文字列(URLデコード済)"
+                                              }
+                           },
+    "OnRSSFailure":  {
+                         "Compatibility":  "SSP",
+                         "Description":  "RSSセンスに失敗した際に発生。本イベントに反応しない場合は、OnHeadlineSenseFailureが呼び出される。",
+                         "References":  {
+                                            "Reference0":  "※終了理由"
+                                        }
+                     },
+    "RB":  {
+               "Compatibility":  "",
+               "Description":  "右バンパー（R1相当）",
+               "References":  {
+
+                              }
+           },
+    "OnInstallReroute":  {
+                             "Compatibility":  "",
+                             "Description":  "インストールするファイルが他のゴーストを指名していた際、かつ、指名対象ゴーストが一緒に起動していた時に発生。以降のインストールイベントは指名対象ゴースト側に発生する。",
+                             "References":  {
+                                                "Reference0":  "指定されたゴーストの本体側名（install.txtのaccept指定、つまり本来渡すべき相手）。",
+                                                "Reference2":  "インストールした物の名前。\nSSP 2.4 / Ref1以降は2.4.85\nインストールの識別子",
+                                                "Reference1":  "インストールした物の※識別子。"
+                                            }
+                         },
+    "changed":  {
+                    "Compatibility":  "",
+                    "Description":  "更新された。\nネットワーク失敗理由",
+                    "References":  {
+
+                                   }
+                },
+    "configuredbiffname":  {
+                               "Compatibility":  "",
+                               "Description":  "設定済みメールチェックアカウントのリストを通知する。\\![biff,アカウント名]で利用できる。[NOTIFY]",
+                               "References":  {
+                                                  "Reference*":  "メールアカウント名\nSSP 2.5"
+                                              }
+                           },
+    "OnFullScreenAppRestore":  {
+                                   "Compatibility":  "SSP",
+                                   "Description":  "全画面表示のアプリ終了に対するSSP最小化復帰の際に発生。\n通常の最小化復帰時に発生するOnWindowStateRestoreに上書きされる。",
+                                   "References":  {
+                                                      "Reference0":  "（SSPのみ）最小化された理由。常に fullscreen になる。"
+                                                  }
+                               },
+    "stream":  {
+                   "Compatibility":  "",
+                   "Description":  "ストリームエラー\nunknown method\n不明な圧縮方式\npassword required\nパスワードが必要\npassword mismatch\nパスワードが一致しない\nclose failed\nファイルのクローズに失敗\nNotifyイベント",
+                   "References":  {
+
+                                  }
+               },
+    "OnMouseEnter":  {
+                         "Compatibility":  "SSPNinix",
+                         "Description":  "マウスが当たり判定に入った際に発生。",
+                         "References":  {
+                                            "Reference2":  "常に0。",
+                                            "Reference1":  "マウスカーソルの y 座標（ローカル座標）",
+                                            "Reference4":  "当たり判定の識別子。",
+                                            "Reference6":  "windows7以降、マルチタッチ対応環境のタッチパネル（※タッチパッド不可）からの入力でtouch、マウスなどからの入力でmouse",
+                                            "Reference5":  "常に0。",
+                                            "Reference0":  "マウスカーソルの x 座標（ローカル座標）",
+                                            "Reference3":  "本体の場合は0、相方の場合は1。SSP/CROWでは2以降もある。"
+                                        }
+                     },
+    "OnOverlap":  {
+                      "Compatibility":  "SSPNinix",
+                      "Description":  "キャラクター（サーフェス）のウインドウが重なった時に発生。\n重なり状態が変わった際に逐次通知されるので、「重ならなくなった」も工夫すれば検出できる。",
+                      "References":  {
+                                         "Reference0":  "ID-ID [\\1] ID-ID [\\1] ID-ID ...\n[\\1] はバイト値1\n例：0-1 [\\1] 0-2 で、0番ウインドウと1番ウインドウ、0番ウインドウと2番ウインドウが重なっていることを示す。",
+                                         "Reference0と同じフォーマットで、状態が変わる前（＝1回前のイベント発生時の0）が通知される。":  "",
+                                         "Reference1":  ""
+                                     }
+                  },
+    "OnBIFFFailure":  {
+                          "Compatibility":  "MateriaSSPCROW",
+                          "Description":  "メールチェックに失敗した際に発生。",
+                          "References":  {
+                                             "Reference0":  "※失敗理由",
+                                             "Reference2":  "チェックするメールサーバ名、SSP、CROWはアカウント名。"
+                                         }
+                      },
+    "OnScreenSaverStart":  {
+                               "Compatibility":  "SSP",
+                               "Description":  "スクリーンセーバーが起動した際に発生。[NOTIFY]",
+                               "References":  {
+                                                  "Reference0":  "スクリーンセーバ名",
+                                                  "Reference2":  "スクリーンセーバ実行までの待ち時間(秒)",
+                                                  "Reference1":  "スクリーンセーバ実行ファイルのパス"
+                                              }
+                           },
+    "rss":  {
+                "Compatibility":  "",
+                "Description":  "",
+                "References":  {
+
+                               }
+            },
+    "OnShellScaling":  {
+                           "Compatibility":  "SSP",
+                           "Description":  "シェル倍率が変更された際に発生。",
+                           "References":  {
+                                              "Reference0":  "横方向の変更された後の倍率。（パーセント）",
+                                              "Reference2":  "縦方向の変更された後の倍率。（パーセント）",
+                                              "Reference3":  "縦方向の変更される前の倍率。（パーセント）",
+                                              "Reference1":  "横方向の変更される前の倍率。（パーセント）"
+                                          }
+                       },
+    "OnSoundError":  {
+                         "Compatibility":  "SSP",
+                         "Description":  "サウンド処理に失敗した際に発生。",
+                         "References":  {
+                                            "Reference0":  "エラーを起こした再生コマンド。現在のところplay固定。",
+                                            "Reference2":  "再生ファイル名。",
+                                            "Reference3":  "サウンド再生エンジンから出力されたエラーメッセージ。",
+                                            "Reference1":  "サウンド再生エンジン内部のエラーコード(数値)。"
+                                        }
+                     },
+    "OnMouseDoubleClickEx":  {
+                                 "Compatibility":  "SSPNinix",
+                                 "Description":  "左・右ボタン以外でダブルクリックされた際に発生。",
+                                 "References":  {
+                                                    "Reference2":  "常に0。",
+                                                    "Reference1":  "マウスカーソルの y 座標（ローカル座標）",
+                                                    "Reference4":  "当たり判定の識別子。",
+                                                    "Reference6":  "windows7以降、マルチタッチ対応環境のタッチパネル（※タッチパッド不可）からの入力でtouch、マウスなどからの入力でmouse",
+                                                    "Reference5":  "ホイールクリック(または3ボタンマウスの中ボタン)はmiddle、拡張ボタン1(通常「戻る」に割当)はxbutton1、拡張ボタン2(通常「進む」に割当)はxbutton2。",
+                                                    "Reference0":  "マウスカーソルの x 座標（ローカル座標）",
+                                                    "Reference3":  "本体の場合は0、相方の場合は1。SSP/CROWでは2以降もある。"
+                                                }
+                             },
+    "OnGamepadButtonDown":  {
+                                "Compatibility":  "",
+                                "Description":  "ゲームパッドのボタンが押された瞬間に発生。\nボタンを押し続けている間は発生しない（押した瞬間のみ）。\n複数のボタンが同時に変化した場合、ボタンごとに個別のイベントが発生する。\nイベントは起動中の全ゴーストに同時にブロードキャストされる。",
+                                "References":  {
+                                                   "Reference0":  "パッドインデックス。",
+                                                   "Reference1":  "ボタン名。\nSSP 2.7.54"
+                                               }
+                            },
+    "OnMouseLeave":  {
+                         "Compatibility":  "SSPNinix",
+                         "Description":  "マウスが当たり判定から出た際に発生。",
+                         "References":  {
+                                            "Reference2":  "常に0。",
+                                            "Reference1":  "マウスカーソルの y 座標（ローカル座標）",
+                                            "Reference4":  "当たり判定の識別子。",
+                                            "Reference6":  "windows7以降、マルチタッチ対応環境のタッチパネル（※タッチパッド不可）からの入力でtouch、マウスなどからの入力でmouse",
+                                            "Reference5":  "常に0。",
+                                            "Reference0":  "マウスカーソルの x 座標（ローカル座標）",
+                                            "Reference3":  "本体の場合は0、相方の場合は1。SSP/CROWでは2以降もある。"
+                                        }
+                     },
+    "video":  {
+                  "Compatibility":  "",
+                  "Description":  "映像メディアの発売日",
+                  "References":  {
+
+                                 }
+              },
+    "crc":  {
+                "Compatibility":  "",
+                "Description":  "CRCエラー（データの整合性エラー）",
+                "References":  {
+
+                               }
+            },
+    "balloon":  {
+                    "Compatibility":  "",
+                    "Description":  "",
+                    "References":  {
+
+                                   }
+                },
+    "Y":  {
+              "Compatibility":  "",
+              "Description":  "フェイスボタン上",
+              "References":  {
+
+                             }
+          },
+    "OnLanguageChange":  {
+                             "Compatibility":  "",
+                             "Description":  "言語設定が変更された際と、起動直後に通知される。\n起動直後に通知される場合は必ずNOTIFYとなり、イベントに応答してしゃべることはできない。",
+                             "References":  {
+                                                "Reference0":  "言語名(name)",
+                                                "Reference2":  "言語設定ファイル群を格納したフォルダのフルパス",
+                                                "Reference3":  "ヘルプが記載されているURL\nSSP 2.5",
+                                                "Reference1":  "言語ID(langid)"
+                                            }
+                         },
+    "OnUpdateResult":  {
+                           "Compatibility":  "SSP",
+                           "Description":  "ネットワーク更新を実行した際に発生し、バルーン・シェル一括更新機能も含めてすべての更新結果を一括で通知する。",
+                           "References":  {
+                                              "Reference*":  "更新を実行した順に、更新結果が以下のフォーマットで入っている（\\1はバイト値1）\n(※1)[\\1](※2)[\\1](※3)[\\1](※4)\nまたは\n(※1)[\\1](※2)[\\1](※3)\n※1……ネットワーク更新対象の種別\n※2……成功時「OK」　失敗時「NG」\n※3……成功した場合は更新ファイル数(更新ファイルなし=noneの場合0)、失敗した場合は失敗理由。\n※4……失敗して、かつ失敗原因のファイルがわかる場合、そのファイル名。"
+                                          }
+                       },
+    "OnFileDropEx":  {
+                         "Compatibility":  "SSP",
+                         "Description":  "ファイルがDnDされた際に発生。",
+                         "References":  {
+                                            "Reference0":  "ドロップされたファイルパスを（複数あればbyte値1で区切って）返す。",
+                                            "Reference1":  "ドロップされたキャラクターのスコープ番号。本体側0、相方1、3人目以降は2以降。"
+                                        }
+                     },
+    "OnUpdateCheckResult":  {
+                                "Compatibility":  "SSP",
+                                "Description":  "更新チェックのみオプションをつけた時に最後に発生。OnUpdateResultのエクスプローラ版。",
+                                "References":  {
+                                                   "Reference*":  "OnUpdateResultと同じ"
+                                               }
+                            },
+    "X":  {
+              "Compatibility":  "",
+              "Description":  "フェイスボタン左",
+              "References":  {
+
+                             }
+          },
+    "LeftTrigger":  {
+                        "Compatibility":  "",
+                        "Description":  "左トリガー（引くほど大きい）。正規化値の範囲は0.0～1.0。",
+                        "References":  {
+
+                                       }
+                    },
+    "OnMouseHover":  {
+                         "Compatibility":  "SSP",
+                         "Description":  "マウスが静止している際に発生。",
+                         "References":  {
+                                            "Reference2":  "常に0。",
+                                            "Reference1":  "マウスカーソルの y 座標（ローカル座標）",
+                                            "Reference4":  "当たり判定の識別子。",
+                                            "Reference6":  "windows7以降、マルチタッチ対応環境のタッチパネル（※タッチパッド不可）からの入力でtouch、マウスなどからの入力でmouse",
+                                            "Reference5":  "常に0。",
+                                            "Reference0":  "マウスカーソルの x 座標（ローカル座標）",
+                                            "Reference3":  "本体の場合は0、相方の場合は1。SSP/CROWでは2以降もある。"
+                                        }
+                     },
+    "none":  {
+                 "Compatibility":  "",
+                 "Description":  "エラーなし（正常）\ninvalid parameter\n無効なパラメータ\nfile not found\nファイルが見つからない\ndirectory not found\nディレクトリが見つからない\ncreate directory failed\nディレクトリの作成に失敗\nopen failed\nファイルを開くのに失敗\ngetfileinfo failed\nファイル情報の取得に失敗\ngoto failed\nファイル位置の移動に失敗",
+                 "References":  {
+
+                                }
+             },
+    "OnBatteryLow":  {
+                         "Compatibility":  "SSP",
+                         "Description":  "バッテリー残量が少なめ(OnBatteryNotify Reference3がlow以下)になった際に発生する。\n外部アプリ「きのこ」が通知するイベントに同名の物があるので注意。\n「きのこ」との互換用イベントとして実装されている。",
+                         "References":  {
+                                            "Reference0～":  "OnBatteryNotifyと同じ。Reference3がlow以下になった場合、OnBatteryNotifyが発生後に本イベントも発生するので、OnBatteryNotifyに適切な処理を実装している場合こちらの対応は不要。"
+                                        }
+                     },
+    "install":  {
+                    "Compatibility":  "",
+                    "Description":  "インストールされている時。",
+                    "References":  {
+
+                                   }
+                },
+    "OnTeachInputCancel":  {
+                               "Compatibility":  "SSPNinix",
+                               "Description":  "TeachBoxが閉じられた際に発生。",
+                               "References":  {
+                                                  "Reference0":  "(空文字列。OnUserInputCancelとReferenceの番号をあわせるための空席。)",
+                                                  "Reference1":  "閉じられた場合、cancel。"
+                                              }
+                           },
+    "ownerghostname":  {
+                           "Compatibility":  "MateriaSSPCROW",
+                           "Description":  "現在のゴースト名を通知。[NOTIFY]",
+                           "References":  {
+                                              "Reference0":  "現在のゴースト名。"
+                                          }
+                       },
+    "OnPingProgress":  {
+                           "Compatibility":  "SSP",
+                           "Description":  "\\![execute,ping]でping実行中に発生。",
+                           "References":  {
+                                              "Reference0":  "--eventで指定した文字列そのもの",
+                                              "Reference2":  "「OK」またはエラー情報 [\\1] 返答元アドレス [\\1] RTT(往復にかかった時間ms) [\\1]はバイト値1",
+                                              "Reference2以降、送信済みのPingの1回ごとの情報が記録される。Progressの場合は不完全。":  "エラー情報はICMP_ECHO_REPLY Structure の Statusヘッダを参照。",
+                                              "Reference1":  "送信元アドレス [\\1] 全送信回数 [\\1] 成功回数 [\\1] 失敗回数 [\\1]はバイト値1"
+                                          }
+                       },
+    "OnHeadlinesense.OnFind":  {
+                                   "Compatibility":  "MateriaSSP",
+                                   "Description":  "読み上げるべきヘッドラインセンスがあった際に発生。",
+                                   "References":  {
+                                                      "Reference0":  "ヘッドラインセンスするサイト名。",
+                                                      "Reference2":  "※OnFind フェーズ",
+                                                      "Reference3":  "ヘッドラインの内容。内容はベースウェア側でサニタイズ済み。\nベースウェア側で制御用のSakuraScriptが追加されている場合がある。",
+                                                      "Reference1":  "ヘッドラインセンスするURL。"
+                                                  }
+                               },
+    "OnMouseUpEx":  {
+                        "Compatibility":  "SSPNinix",
+                        "Description":  "左・右以外のマウスボタンが放された際に発生。",
+                        "References":  {
+                                           "Reference2":  "常に0。",
+                                           "Reference1":  "マウスカーソルの y 座標（ローカル座標）",
+                                           "Reference4":  "当たり判定の識別子。",
+                                           "Reference6":  "windows7以降、マルチタッチ対応環境のタッチパネル（※タッチパッド不可）からの入力でtouch、マウスなどからの入力でmouse",
+                                           "Reference5":  "ホイールクリック(または3ボタンマウスの中ボタン)はmiddle、拡張ボタン1(通常「戻る」に割当)はxbutton1、拡張ボタン2(通常「進む」に割当)はxbutton2。",
+                                           "Reference0":  "マウスカーソルの x 座標（ローカル座標）",
+                                           "Reference3":  "本体の場合は0、相方の場合は1。SSP/CROWでは2以降もある。"
+                                       }
+                    },
+    "ghost":  {
+                  "Compatibility":  "",
+                  "Description":  "",
+                  "References":  {
+
+                                 }
+              },
+    "OnSNTPFailure":  {
+                          "Compatibility":  "MateriaSSPCROW",
+                          "Description":  "時計合わせに失敗した際に発生。",
+                          "References":  {
+                                             "Reference0":  "接続先サーバ名。"
+                                         }
+                      },
+    "hwnd":  {
+                 "Compatibility":  "MateriaSSP",
+                 "Description":  "hwndを通知。[NOTIFY]",
+                 "References":  {
+                                    "Reference0":  "ゴーストのhwnd。バイト値１区切りで各スコープ。",
+                                    "Reference1":  "バルーンのhwnd。バイト値１区切りで各スコープ。"
+                                }
+             },
+    "calendarskinpathlist":  {
+                                 "Compatibility":  "SSP",
+                                 "Description":  "カレンダースキン格納フォルダのパスを通知。[NOTIFY]",
+                                 "References":  {
+                                                    "Reference*":  "カレンダースキン格納フォルダの絶対パス"
+                                                }
+                             },
+    "rateofusegraph":  {
+                           "Compatibility":  "",
+                           "Description":  "使ってるぞグラフの情報を通知。[NOTIFY]",
+                           "References":  {
+                                              "Reference*":  "バイト値1区切りにされたゴースト名、sakura名、kero名、起動回数、起動時間(分)、起動時間％、(boot install vanish)。"
+                                          }
+                       },
+    "OnMouseEnterAll":  {
+                            "Compatibility":  "SSPNinix",
+                            "Description":  "マウスがキャラクターウインドウに入った際に発生。",
+                            "References":  {
+                                               "Reference2":  "常に0。",
+                                               "Reference1":  "マウスカーソルの y 座標（ローカル座標）",
+                                               "Reference4":  "当たり判定の識別子。",
+                                               "Reference6":  "windows7以降、マルチタッチ対応環境のタッチパネル（※タッチパッド不可）からの入力でtouch、マウスなどからの入力でmouse",
+                                               "Reference5":  "常に0。",
+                                               "Reference0":  "マウスカーソルの x 座標（ローカル座標）",
+                                               "Reference3":  "本体の場合は0、相方の場合は1。SSP/CROWでは2以降もある。"
+                                           }
+                        },
+    "OnSelectModeComplete":  {
+                                 "Compatibility":  "SSP",
+                                 "Description":  "\\![leave,selectrect]を実行後に矩形選択モードが解除された際に発生。",
+                                 "References":  {
+                                                    "Reference0":  "本体の場合は0、相方の場合は1。SSP/CROWでは2以降もある。",
+                                                    "Reference2":  "選択結果（長方形枠）。カンマ区切りで、左,上,右,下の座標。",
+                                                    "Reference1":  "選択モード。今のところ \"rect\" のみ。"
+                                                }
+                             },
+    "OnDestroy":  {
+                      "Compatibility":  "SSPNinix",
+                      "Description":  "終了が指示された際に発生。[NOTIFY]",
+                      "References":  {
+                                         "Reference0":  "リロード時にreload、それ以外は無し（空文字列またはReference0自体が来ない）"
+                                     }
+                  },
+    "OnMouseClickEx":  {
+                           "Compatibility":  "SSPNinix",
+                           "Description":  "左・右ボタン以外でマウスクリックされた時(マウスボタンを1回押して放された瞬間)に、OnMouseUpExに反応しない場合に発生。",
+                           "References":  {
+                                              "Reference2":  "常に0。",
+                                              "Reference1":  "マウスカーソルの y 座標（ローカル座標）",
+                                              "Reference4":  "当たり判定の識別子。",
+                                              "Reference6":  "windows7以降、マルチタッチ対応環境のタッチパネル（※タッチパッド不可）からの入力でtouch、マウスなどからの入力でmouse",
+                                              "Reference5":  "ホイールクリック(または3ボタンマウスの中ボタン)はmiddle、拡張ボタン1(通常「戻る」に割当)はxbutton1、拡張ボタン2(通常「進む」に割当)はxbutton2。",
+                                              "Reference0":  "マウスカーソルの x 座標（ローカル座標）",
+                                              "Reference3":  "本体の場合は0、相方の場合は1。SSP/CROWでは2以降もある。"
+                                          }
+                       },
+    "OnInstallComplete":  {
+                              "Compatibility":  "MateriaSSPCROWNinix",
+                              "Description":  "インストールが正常終了した際に発生。",
+                              "References":  {
+                                                 "Reference0":  "インストールした物の※識別子。",
+                                                 "Reference2":  "インストールした物の名前2（ghost with balloonなどの場合のballoon側の名前）。",
+                                                 "Reference1":  "インストールした物の名前（install.txtのname指定）。"
+                                             }
+                          },
+    "OnGamepadConnected":  {
+                               "Compatibility":  "",
+                               "Description":  "ゲームパッドが接続された際に発生。SSP起動時に既に接続されていた場合も発生する。\nイベントは起動中の全ゴーストに同時にブロードキャストされる。",
+                               "References":  {
+                                                  "Reference0":  "パッドインデックス。\nSSP 2.7.54"
+                                              }
+                           },
+    "LeftStickY":  {
+                       "Compatibility":  "",
+                       "Description":  "左スティック垂直（上が正、下が負）。正規化値の範囲は-1.0～1.0。",
+                       "References":  {
+
+                                      }
+                   },
+    "OnWindowStateMinimize":  {
+                                  "Compatibility":  "MateriaSSPCROWNinix",
+                                  "Description":  "最小化が指示された際に発生。\n※SSPのみ設定で喋らせることが可能。",
+                                  "References":  {
+                                                     "Reference0":  "（SSPのみ）最小化された理由。\nsystem : OSからの強制的な最小化操作（タスクバーから最小化された場合を含む）\nscript : SakuraScriptから\nsakuraapi : Sakura APIから\nuser : メニュー操作"
+                                                 }
+                              },
+    "OnUpdateOtherComplete":  {
+                                  "Compatibility":  "SSP",
+                                  "Description":  "ゴースト以外のネットワーク更新が成功し完了した際に発生。",
+                                  "References":  {
+                                                     "Reference0":  "※成功理由",
+                                                     "Reference3":  "※更新対象種別",
+                                                     "Reference4":  "SSP 2.3：※更新実行理由。",
+                                                     "Reference1":  "カンマでセパレートされた更新されたファイル名のリスト。"
+                                                 }
+                              },
+    "manual":  {
+                   "Compatibility":  "",
+                   "Description":  "オーナードローメニューからの選択などによる手動実行。",
+                   "References":  {
+
+                                  }
+               },
+    "basewareversion":  {
+                            "Compatibility":  "SSPCROWNinix",
+                            "Description":  "ベースウェアの情報を通知。[NOTIFY]",
+                            "References":  {
+                                               "Reference0":  "バージョン番号。",
+                                               "Reference2":  "※SSPのみ　バージョン情報の詳細な数値。",
+                                               "Reference1":  "本体の識別。"
+                                           }
+                        },
+    "RSB":  {
+                "Compatibility":  "",
+                "Description":  "右スティック押込み（R3相当）",
+                "References":  {
+
+                               }
+            },
+    "release":  {
+                    "Compatibility":  "",
+                    "Description":  "その他発売日\nSSTPイベント",
+                    "References":  {
+
+                                   }
+                },
+    "OnURLQuery":  {
+                       "Compatibility":  "",
+                       "Description":  "URLがキャラクターウィンドウにドラッグ＆ドロップされた際に通知される。\nこれに対してスクリプトを返すと、通常のダウンロード処理がキャンセルされる。\nゴースト側でURLを独自に処理したい場合のみスクリプトを返すこと。",
+                       "References":  {
+                                          "Reference0":  "URLパス。",
+                                          "Reference2":  "ドロップされたURLのMIMEタイプ",
+                                          "Reference3":  "反応しなかった場合にSSPがこの後実行予定の処理。\nfeed・nar・homeurl・unknownのいずれか。\nunknownの場合は本体が処理に対応できないURLであり、本体側ではこれ以上の処理ができないことを示す。\nそれ以外はそのまま \\![execute,install,url] に渡すと処理の続きが行われる。\nSSP Ref3は2.6.35",
+                                          "Reference1":  "本体の場合は0、相方の場合は1。SSP/CROWでは2以降もある。"
+                                      }
+                   },
+    "OnUpdateOtherReady":  {
+                               "Compatibility":  "SSP",
+                               "Description":  "ゴースト以外の更新ファイルが確認された際に発生。",
+                               "References":  {
+                                                  "Reference0":  "更新を行うファイルの総数から1引かれたもの（0から始まる連番）。",
+                                                  "Reference3":  "※更新対象種別",
+                                                  "Reference4":  "SSP 2.3：※更新実行理由。",
+                                                  "Reference1":  "カンマでセパレートされた更新されたファイル名のリスト。"
+                                              }
+                           },
+    "OnRaisePluginFailure":  {
+                                 "Compatibility":  "SSP",
+                                 "Description":  "\\![raiseplugin]が失敗した際に発生。",
+                                 "References":  {
+                                                    "Reference0":  "見つからなかった場合、notfound。\n無効設定だった場合、disabled。\n他、204など実行結果。",
+                                                    "Reference3～":  "実行しようとしたイベントのReference。",
+                                                    "Reference2":  "実行しようとしたイベントID。",
+                                                    "Reference1":  "プラグインの名前またはID。"
+                                                }
+                             },
+    "OnBalloonTimeout":  {
+                             "Compatibility":  "SSPNinix",
+                             "Description":  "選択肢以外でバルーンがタイムアウトした際に発生。",
+                             "References":  {
+                                                "Reference0":  "タイムアウトした際に表示されていたスクリプト。",
+                                                "Reference1":  "残り時間。"
+                                            }
+                         },
+    "OnHeadlinesenseComplete":  {
+                                    "Compatibility":  "MateriaSSP",
+                                    "Description":  "ヘッドラインセンスが正常に終了した際に発生。\n現状ヘッドラインセンスの成功は読み上げの開始を意味するので、このイベントは取得に成功したが更新が無かった場合のみ通知。",
+                                    "References":  {
+                                                       "Reference0":  "※終了理由　現状「no update」固定。"
+                                                   }
+                                },
+    "DPadRight":  {
+                      "Compatibility":  "",
+                      "Description":  "十字キー右\n十字キーの斜め入力は、2つのボタンイベントとして個別に発生する（例：右上ならDPadUpとDPadRight）。\n軸名一覧",
+                      "References":  {
+
+                                     }
+                  },
+    "OnGhostCallComplete":  {
+                                "Compatibility":  "SSP",
+                                "Description":  "他のゴーストを呼び出し、そのゴーストが起動スクリプトを完了後発生。",
+                                "References":  {
+                                                   "Reference0":  "呼び出したゴーストの本体側の名前。",
+                                                   "Reference2":  "呼び出したゴーストの名前。",
+                                                   "Reference7":  "呼び出したゴーストのシェル名。",
+                                                   "Reference1":  "呼び出したゴーストの起動時のスクリプト。"
+                                               }
+                            },
+    "OnFileDrop":  {
+                       "Compatibility":  "SSPCROW",
+                       "Description":  "[旧仕様]ファイルがDnDされた際に発生。",
+                       "References":  {
+                                          "Reference0":  "ドロップされたファイルパス。",
+                                          "Reference1":  "ドロップされたキャラクターのスコープ番号。本体側0、相方1、3人目以降は2以降。"
+                                      }
+                   },
+    "OnSelectModeMouseDown":  {
+                                  "Compatibility":  "SSP",
+                                  "Description":  "矩形選択モード中にマウスボタンが押された際に発生。",
+                                  "References":  {
+                                                     "Reference0":  "本体の場合は0、相方の場合は1。SSP/CROWでは2以降もある。",
+                                                     "Reference2":  "マウスの位置。カンマ区切りで、X(横),Y(縦)座標。",
+                                                     "Reference1":  "選択モード。今のところ \"rect\" のみ。"
+                                                 }
+                              },
+    "unlha32":  {
+                    "Compatibility":  "",
+                    "Description":  "lzh形式ファイルを展開するdllのロードに失敗した",
+                    "References":  {
+
+                                   }
+                },
+    "OnUpdate.OnDownloadBegin":  {
+                                     "Compatibility":  "MateriaSSPCROWNinix",
+                                     "Description":  "ファイルダウンロード開始の際に発生。",
+                                     "References":  {
+                                                        "Reference2":  "（CROW以外）更新を行うファイルの総数から1引かれたもの（0から始まる連番）。",
+                                                        "Reference1":  "（CROW以外）ダウンロード中の更新ファイルの番号（0から始まる連番）。",
+                                                        "Reference4":  "SSP 2.3：※更新実行理由。",
+                                                        "Reference0":  "ダウンロードするファイル名。",
+                                                        "Reference3":  "（SSPのみ）※更新対象種別。"
+                                                    }
+                                 },
+    "OnBatteryChargingStart":  {
+                                   "Compatibility":  "SSP",
+                                   "Description":  "バッテリーの充電を開始した場合に発生する。\n「Androidの伺か」互換イベント。",
+                                   "References":  {
+                                                      "Reference0～":  "OnBatteryNotifyと同じ。"
+                                                  }
+                               },
+    "OnOtherObjectDropping":  {
+                                  "Compatibility":  "",
+                                  "Description":  "「ファイル」として扱えないもののカーソルがゴースト上に乗った際に発生。例：Windowsの「マイコンピュータ」など",
+                                  "References":  {
+                                                     "Reference0":  "ドロップされたキャラクターのスコープ番号。本体側0、相方1、3人目以降は2以降。",
+                                                     "Reference2":  "ドロップされたもののOSの言語設定に識別されないIDのようなもの。\n複数ある場合はバイト値1区切り。以下はWindows上の例。\nPC(マイコンピュータ) = ::{20D04FE0-3AEA-1069-A2D8-08002B30309D}\nゴミ箱 = ::{645FF040-5081-101B-9F08-00AA002F954E}\n(マイ)ネットワーク = ::{F02C1A0D-BE21-4350-88B0-7367FC96EF3C}\nSSP 2.6.41",
+                                                     "Reference1":  "ドロップされたものの名前(OSの言語設定に影響される)。\n複数ある場合はバイト値1区切り。"
+                                                 }
+                              },
+    "OnInstallCompleteAll":  {
+                                 "Compatibility":  "SSPNinix",
+                                 "Description":  "複数のnarをD\u0026Dした時などに、インストールがすべて正常終了した際に、OnInstallComplete/同Exの後に、最後に発生。",
+                                 "References":  {
+                                                    "Reference0":  "インストールした物の※識別子。複数の場合はバイト値1区切り。",
+                                                    "Reference2":  "インストールした場所。複数の場合はバイト値1区切り。",
+                                                    "Reference1":  "インストールした物の名前。複数の場合はバイト値1区切り。"
+                                                }
+                             },
+    "fileio":  {
+                   "Compatibility":  "",
+                   "Description":  "※SSPのみ。容量不足による更新対象への書き込み失敗。",
+                   "References":  {
+
+                                  }
+               },
+    "uniqueid":  {
+                     "Compatibility":  "MateriaSSP",
+                     "Description":  "unique IDを通知。[NOTIFY]",
+                     "References":  {
+                                        "Reference0":  "ゴーストのユニークID。特殊なSSTPを送信する際に使用する。"
+                                    }
+                 },
+    "OnSessionReconnect":  {
+                               "Compatibility":  "",
+                               "Description":  "簡易ユーザー切り替えで実行中のユーザーアカウントに戻ってきた時に発生する。\nWindows上ではOnSessionUnlockとセットで通知され、さらに強制最小化されたのが解除されるためOnWindowStateRestoreも発生する。\nこの挙動はWindows特有の制約であり、他のOS上で同様の動きになるとは限らない点に注意。\nSSP 2.5.53",
+                               "References":  {
+
+                                              }
+                           },
+    "OnSchedulesenseBegin":  {
+                                 "Compatibility":  "SSP",
+                                 "Description":  "スケジュールセンサが接続開始する際に発生。",
+                                 "References":  {
+                                                    "Reference0":  "スケジュールセンサの名前"
+                                                }
+                             },
+    "OnOtherOverlap":  {
+                           "Compatibility":  "SSPNinix",
+                           "Description":  "他も含めて全起動中のキャラクター（サーフェス）のウインドウが重なった時に発生。OnOverlapのグローバル版。\n重なり状態が変わった際に逐次通知されるので、「重ならなくなった」も工夫すれば検出できる。\n自分自身の情報も一緒に通知されるので注意。",
+                           "References":  {
+                                              "Reference0":  "Sakura名/ID-Sakura名/ID [\\1] Sakura名/ID-Sakura名/ID [\\1] Sakura名/ID-Sakura名/ID ...\n[\\1] はバイト値1\n例：Emily/0-マリ/1 [\\1] マリ/0-所長たん/1",
+                                              "Reference0と同じフォーマットで、状態が変わる前（＝1回前のイベント発生時の0）が通知される。":  "",
+                                              "Reference1":  ""
+                                          }
+                       },
+    "OnMemoryLoadLow":  {
+                            "Compatibility":  "",
+                            "Description":  "メモリ使用量が高い状態から低く戻った時に発動する。(今のところHigh発動後60％を下回った時)",
+                            "References":  {
+                                               "Reference0":  "現在の使用量％\nSSP 2.5.56"
+                                           }
+                        },
+    "OnSessionDisconnect":  {
+                                "Compatibility":  "",
+                                "Description":  "簡易ユーザー切り替えで他のユーザーアカウントへの切り替え操作を行った時に発生する。\nWindows上ではOnSessionLockとセットで通知され、さらに強制最小化されるためOnWindowStateMinimizeも発生する。\nこの挙動はWindows特有の制約であり、他のOS上で同様の動きになるとは限らない点に注意。\nSSP 2.5.53",
+                                "References":  {
+
+                                               }
+                            },
+    "OnMinuteChange":  {
+                           "Compatibility":  "MateriaSSPCROWNinix",
+                           "Description":  "1分ごとに発生。\nトーク再生不能な時は、Reference3が0になった上でNOTIFYでイベント通知される。返されたスクリプトは無視される。",
+                           "References":  {
+                                              "Reference2":  "重なり時に1、それ以外は0。",
+                                              "Reference1":  "見切れ時に1、それ以外は0。",
+                                              "Reference4":  "※SSPのみ　(OSレベルで)何も操作せず放置されている時間。秒単位。",
+                                              "Reference0":  "OSの連続起動時間（hour）",
+                                              "Reference3":  "トーク再生可能なときに1、それ以外は0。"
+                                          }
+                       },
+    "recording":  {
+                      "Compatibility":  "",
+                      "Description":  "録画予約",
+                      "References":  {
+
+                                     }
+                  },
+    "installedplugin":  {
+                            "Compatibility":  "SSP",
+                            "Description":  "インストールされているプラグインを通知。[NOTIFY]",
+                            "References":  {
+                                               "Reference*":  "バイト値1区切りで、インストールされているプラグイン名,プラグインID"
+                                           }
+                        },
+    "OnOtherOffscreen":  {
+                             "Compatibility":  "SSPNinix",
+                             "Description":  "他を含めてキャラクター（サーフェス）のウインドウがモニタ（作業領域）外にひっかかった、あるいは出た時に発生。見切れ。OnOffscreenのグローバル版。\n見切れ状態が変わった際に逐次通知されるので、「見切れなくなった」も工夫すれば検出できる。\n自分自身の情報も一緒に通知されるので注意。",
+                             "References":  {
+                                                "Reference0":  "Sakura名/ID [\\1] Sakura名/ID [\\1] Sakura名/ID ...\n[\\1] はバイト値1\n例：Emily/1 [\\1] 所長たん/0",
+                                                "Reference0と同じフォーマットで、状態が変わる前（＝1回前のイベント発生時の0）が通知される。":  "",
+                                                "Reference1":  ""
+                                            }
+                         },
+    "work":  {
+                 "Compatibility":  "",
+                 "Description":  "仕事",
+                 "References":  {
+
+                                }
+             },
+    "OnSoundStop":  {
+                        "Compatibility":  "SSP",
+                        "Description":  "サウンドが終了した際に発生。",
+                        "References":  {
+                                           "Reference0":  "再生ファイル名。",
+                                           "Reference1":  "終了理由 end＝再生終了 close＝再生ウインドウを閉じた [SSP 2.6.65]"
+                                       }
+                    },
+    "OnGamepadAxisMove":  {
+                              "Compatibility":  "",
+                              "Description":  "ゲームパッドのアナログスティックやトリガーの値が前回通知時から大きく変化した場合に発生。\n微小な揺れではイベントは発生しない。スティック中央付近やトリガーの遊び部分（デッドゾーン）の値は自動的に0に丸められる。\nスティックやトリガーが中央位置（ニュートラル）に戻った場合は、変化量に関わらず必ず発生する。\nイベントは起動中の全ゴーストに同時にブロードキャストされる。\n軸イベントはスティック操作中に高頻度で発生する可能性があるため、重い処理を行う場合はゴースト側で頻度制御を検討すること。",
+                              "References":  {
+                                                 "Reference0":  "パッドインデックス。",
+                                                 "Reference2":  "生値（整数）。範囲はベースウェアの実装に依存する。",
+                                                 "Reference3":  "正規化値（小数）。スティックは-1.0～1.0、トリガーは0.0～1.0の範囲。通常はこちらを使用する。\nSSP 2.7.54",
+                                                 "Reference1":  "軸名。"
+                                             }
+                          },
+    "source":  {
+                   "Compatibility":  "",
+                   "Description":  "再生アプリ情報 SSP2.5.75",
+                   "References":  {
+
+                                  }
+               },
+    "OnAnchorEnter":  {
+                          "Compatibility":  "SSP",
+                          "Description":  "\\_aジャンパ上にカーソルが乗った際と外れた際に発生。",
+                          "References":  {
+                                             "Reference0":  "ジャンパのテキスト。",
+                                             "Reference*":  "拡張情報(\\_aタグ内の2番目以降の引数)。",
+                                             "Reference1":  "ジャンパのID。"
+                                         }
+                      },
+    "OnSelectModeMouseUp":  {
+                                "Compatibility":  "SSP",
+                                "Description":  "矩形選択モード中にマウスボタンが離された際に発生。",
+                                "References":  {
+                                                   "Reference0":  "本体の場合は0、相方の場合は1。SSP/CROWでは2以降もある。",
+                                                   "Reference2":  "マウスの位置。カンマ区切りで、X(横),Y(縦)座標。",
+                                                   "Reference1":  "選択モード。今のところ \"rect\" のみ。"
+                                               }
+                            },
+    "OnSelectModeBegin":  {
+                              "Compatibility":  "SSP",
+                              "Description":  "\\![enter,selectrect]を実行後に矩形選択モードに入った際に発生。",
+                              "References":  {
+                                                 "Reference0":  "本体の場合は0、相方の場合は1。SSP/CROWでは2以降もある。",
+                                                 "Reference1":  "選択モード。今のところ \"rect\" のみ。"
+                                             }
+                          },
+    "DPadUp":  {
+                   "Compatibility":  "",
+                   "Description":  "十字キー上",
+                   "References":  {
+
+                                  }
+               },
+    "OnURLDropping":  {
+                          "Compatibility":  "",
+                          "Description":  "URLがドロップされた後で、ダウンロードを開始する時に発生。\nこのイベントはダウンロード処理前に発生する。他(homeurlインストールやfeed(RSS)インストール)では発生しない。",
+                          "References":  {
+                                             "Reference0":  "ドロップされたURL。",
+                                             "Reference1":  "ドロップされたキャラクターのスコープ番号。本体側0、相方1、3人目以降は2以降。\nMateriaSSP Ref1は2.6.36CROW"
+                                         }
+                      },
+    "OnDisplayChangeEx":  {
+                              "Compatibility":  "",
+                              "Description":  "スクリーンの解像度／色深度が変更された際に発生。マルチモニタ対応。[起動時NOTIFY/他GET]",
+                              "References":  {
+                                                 "Reference0":  "init (起動時通知) か update (起動後の更新)",
+                                                 "Reference1～":  "左,上,右,下,ビット深度,プライマリモニタかどうか(0/1),タスクバーの位置(left,top,right,bottom,unknown),タスクバーと作業領域の区切り座標\n例： 0,0,1600,900,32,1,bottom,1560\nSSP 2.4.09/タスクバーは2.6.35"
+                                             }
+                          },
+    "OnVanished":  {
+                       "Compatibility":  "MateriaSSPCROWNinix",
+                       "Description":  "直前のゴーストの消滅により自分に切り替わった際に発生。\nSSPでは、このイベントにスクリプトが返されなかった（204）場合、続けてOnBootが発生する。\nまたSSPでは同時起動中の他のゴーストが消滅した際に、OnOtherGhostVanishedへスクリプトが返却されなかった際にも発生するため注意。この場合OnBootへのフォールバックはない。",
+                       "References":  {
+                                          "Reference0":  "消滅したゴーストの本体側の名前。",
+                                          "Reference2":  "※SSPのみ　消滅したゴースト名。",
+                                          "Reference7":  "※SSPのみ　切り替わったゴーストのシェル名。",
+                                          "Reference1":  "※SSPのみ　消滅したゴーストのOnVanishSelectedイベントのスクリプト。"
+                                      }
+                   },
+    "OnExecuteHTTPFailure":  {
+                                 "Compatibility":  "SSPNinix",
+                                 "Description":  "execute-httpで取得エラーした際に発生。ReferenceはCompleteと同じ。",
+                                 "References":  {
+
+                                                }
+                             },
+    "installedghostname":  {
+                               "Compatibility":  "MateriaSSPCROWNinix",
+                               "Description":  "インストールされているゴーストを通知。[NOTIFY]",
+                               "References":  {
+                                                  "Reference*":  "インストールされているゴースト名。"
+                                              }
+                           },
+    "Start":  {
+                  "Compatibility":  "",
+                  "Description":  "スタートボタン",
+                  "References":  {
+
+                                 }
+              },
+    "installedkeroname":  {
+                              "Compatibility":  "",
+                              "Description":  "インストールされているゴーストのkero.nameを通知。[NOTIFY]\n必ずinstalledghostnameの前に通知される。\nまた、同じゴーストを示す、installedsakuraname/installedkeroname/installedghostnameのReferenceの番号は一致することが保証される。",
+                              "References":  {
+                                                 "Reference*":  "インストールされているゴーストのkero.name。\nSSP 2.6.47"
+                                             }
+                          },
+    "OnSNTPCorrect":  {
+                          "Compatibility":  "MateriaSSPCROW",
+                          "Description":  "\\6タグでローカル時刻をサーバ時刻に修正した際に発生。",
+                          "References":  {
+                                             "Reference2":  "カンマでセパレートされたローカル側の現時刻 : 年,月,日,時,分,秒",
+                                             "Reference1":  "カンマでセパレートされたサーバ側の現時刻 : 年,月,日,時,分,秒 (差が1秒未満はローカル時刻と同じ)",
+                                             "Reference4":  "※SSPのみ　サーバとローカルの時刻のずれ。ミリ秒単位の整数。",
+                                             "Reference0":  "接続先サーバ名。",
+                                             "Reference3":  "サーバとローカルの時刻のずれ。秒単位の整数。正の値がローカル時刻遅れ、負の値がローカル時刻進み状態。"
+                                         }
+                      },
+    "OnNotifyDressupInfo":  {
+                                "Compatibility":  "SSP",
+                                "Description":  "着せ替えの情報を通知。\n起動時のみ[NOTIFY]で、メニューから切替などユーザーによる操作なら[GET]で送られる。\nこのイベントの前に発生するOnDressupChangedも参照すること。",
+                                "References":  {
+                                                   "Reference*":  "バイト値1区切りにされた以下の情報：[キャラクターID、カテゴリー名、パーツ名、オプション、有効1/無効0、サムネイルパス]\nオプションはカンマ区切りでいくつも追加されている場合もある。\n着せ替え定義の数だけ繰り返される。\nゴースト側で前回の通知からの有効/無効の差分を処理すると、何が変わったかを把握できる。"
+                                               }
+                            },
+    "OnOSUpdateInfo":  {
+                           "Compatibility":  "",
+                           "Description":  "OSの更新確認日時・更新実行日時と、履歴情報の通知。\n起動直後にNOTIFY(喋れない)で通知され、更新が実行された時に少し遅れてGET(喋れる)で通知される。",
+                           "References":  {
+                                              "Reference0":  "確認日時 年,月,日,時,分,秒 半角カンマ区切り ローカル時刻",
+                                              "Reference2～":  "以下のフォーマットで更新履歴情報が後ろに続く。[\\1]はバイト値1。\n状態[\\1]エラーコード[\\1]更新時刻[\\1]更新内容(タイトル)\n状態：not_started(未実行)・in_progress(更新中)・success(成功)・success_with_errors(一応成功したがエラーあり)・fail(失敗)・abort(中断)・unknown(不明)のいずれか\nエラーコード：更新時にエラーがあれば非0、なければ0。Windowsの場合は16進8桁。\n更新時刻：年,月,日,時,分,秒 半角カンマ区切り ローカル時刻\nSSP 2.5.02",
+                                              "Reference1":  "実行日時 年,月,日,時,分,秒 半角カンマ区切り ローカル時刻"
+                                          }
+                       },
+    "virusdetect":  {
+                        "Compatibility":  "",
+                        "Description":  "※SSPのみ。データ内にウイルスを検出した可能性がある。 [2.5.15]",
+                        "References":  {
+
+                                       }
+                    },
+    "OnUserInputCancel":  {
+                              "Compatibility":  "SSPNinix",
+                              "Description":  "InputBoxが閉じられた際に発生。\nタイムアウトした場合、かつこのイベントに反応がない場合は、互換性確保のため、OnUserInput Reference1=timeout が送られる。",
+                              "References":  {
+                                                 "Reference0":  "入力のイベントID。",
+                                                 "Reference3～":  "--reference=で指定した追加情報",
+                                                 "Reference2":  "入力内容補足(sliderinputのみ、最小,最大。ほかは空欄)",
+                                                 "Reference1":  "タイムアウトした場合、timeout。閉じられた場合、close。"
+                                             }
+                          },
+    "OnTrayBalloonClick":  {
+                               "Compatibility":  "SSP",
+                               "Description":  "トレイアイコンのバルーンをクリックして消した際に発生。",
+                               "References":  {
+                                                  "Reference0":  "タイトル文字列。",
+                                                  "Reference1":  "表示テキスト。"
+                                              }
+                           },
+    "extraction":  {
+                       "Compatibility":  "",
+                       "Description":  "解凍失敗（ファイル破損）\ninvalid type\ninstall.txtに不備がある",
+                       "References":  {
+
+                                      }
+                   },
+    "OnBalloonClose":  {
+                           "Compatibility":  "SSPNinix",
+                           "Description":  "バルーンを閉じた際に発生。",
+                           "References":  {
+                                              "Reference0":  "閉じる際に表示されていたスクリプト。"
+                                          }
+                       },
+    "OnNotifyOSInfo":  {
+                           "Compatibility":  "SSP",
+                           "Description":  "OS情報を通知。[NOTIFY]",
+                           "References":  {
+                                              "Reference0":  "OSのシステム,バージョン,表示用の名前 [カンマ区切り]",
+                                              "Reference2":  "物理,仮想メモリ(KB) [カンマ区切り]",
+                                              "Reference3":  "システム起動からの経過分。",
+                                              "Reference1":  "CPUタイプ,クロックMHz,追加情報 [カンマ区切り]"
+                                          }
+                       },
+    "calendarpluginpathlist":  {
+                                   "Compatibility":  "SSP",
+                                   "Description":  "カレンダーのスケジュールセンサ格納フォルダのパスを通知。[NOTIFY]",
+                                   "References":  {
+                                                      "Reference*":  "カレンダーのスケジュールセンサ格納フォルダの絶対パス"
+                                                  }
+                               },
+    "OnMouseUp":  {
+                      "Compatibility":  "SSPNinix",
+                      "Description":  "左・右のマウスボタンが放された際に発生。",
+                      "References":  {
+                                         "Reference2":  "常に0。",
+                                         "Reference1":  "マウスカーソルの y 座標（ローカル座標）",
+                                         "Reference4":  "当たり判定の識別子。",
+                                         "Reference6":  "windows7以降、マルチタッチ対応環境のタッチパネル（※タッチパッド不可）からの入力でtouch、マウスなどからの入力でmouse",
+                                         "Reference5":  "左クリックは0、右クリックは1、中クリックは2(互換仕様：OnMouseClickExへの移行を推奨)。",
+                                         "Reference0":  "マウスカーソルの x 座標（ローカル座標）",
+                                         "Reference3":  "本体の場合は0、相方の場合は1。SSP/CROWでは2以降もある。"
+                                     }
+                  },
+    "OnSystemDialog":  {
+                           "Compatibility":  "SSP",
+                           "Description":  "ファイル関連のダイアログで保存/OKが押された際に発生。",
+                           "References":  {
+                                              "Reference0":  "open・save・folder・colorのいずれか。",
+                                              "Reference2":  "ファイルのパスまたはカンマ区切りのRGB値。",
+                                              "Reference1":  "イベントID。"
+                                          }
+                       },
+    "OnDisplayPowerStatus":  {
+                                 "Compatibility":  "",
+                                 "Description":  "モニタの電源がON/OFFされた時に発生する。単純にON/OFFされた時だけでなく、ノート型で蓋を閉じた時も対象となる。",
+                                 "References":  {
+                                                    "Reference0":  "1 = ON / 0 = OFF\nSSP 2.4以降"
+                                                }
+                             },
+    "OnTrayBalloonTimeout":  {
+                                 "Compatibility":  "SSP",
+                                 "Description":  "トレイアイコンのバルーンをタイムアウトや閉じるボタンで消した際に発生。",
+                                 "References":  {
+                                                    "Reference0":  "タイトル文字列。",
+                                                    "Reference1":  "表示テキスト。"
+                                                }
+                             },
+    "game":  {
+                 "Compatibility":  "",
+                 "Description":  "ゲーム発売日",
+                 "References":  {
+
+                                }
+             },
+    "OnNotifyInternationalInfo":  {
+                                      "Compatibility":  "",
+                                      "Description":  "タイムゾーン、ロケール(言語)名など、国際化関連の情報を通知する。[NOTIFY]",
+                                      "References":  {
+                                                         "Reference0":  "UTCからの時刻のずれ。単位は分。負の値＝早い　正の値＝遅い\nたとえば、日本標準時の場合、9時間早いので、-540になる。",
+                                                         "Reference2":  "ISO3166準拠の2文字国名。",
+                                                         "Reference3":  "ISO639準拠の2文字言語名。",
+                                                         "Reference1":  "夏時間が有効か否か。有効=1 無効=0"
+                                                     }
+                                  },
+    "party":  {
+                  "Compatibility":  "",
+                  "Description":  "パーティー・飲み会",
+                  "References":  {
+
+                                 }
+              },
+    "OnChoiceSelectEx":  {
+                             "Compatibility":  "SSP",
+                             "Description":  "選択肢が選択された際に発生。\nOnChoiceSelectよりも先に開始。",
+                             "References":  {
+                                                "Reference0":  "選択肢のテキスト（ラベル）。",
+                                                "Reference*":  "拡張情報(\\qタグ内の3番目以降の引数)。",
+                                                "Reference1":  "選択肢のID。"
+                                            }
+                         },
+    "OnAnchorSelectEx":  {
+                             "Compatibility":  "SSP",
+                             "Description":  "\\_aジャンパがクリックされた瞬間に発生。このイベントにSHIORIが何も返さなかった場合にのみ、続けてOnAnchorSelectが発生する。",
+                             "References":  {
+                                                "Reference0":  "選択されたジャンパのテキスト。",
+                                                "Reference*":  "拡張情報(\\_aタグ内の2番目以降の引数)。",
+                                                "Reference1":  "選択されたジャンパのID。"
+                                            }
+                         },
+    "rating":  {
+                   "Compatibility":  "",
+                   "Description":  "レート（マイレート） iSing4U",
+                   "References":  {
+
+                                  }
+               },
+    "balloonpathlist":  {
+                            "Compatibility":  "SSP",
+                            "Description":  "バルーン格納フォルダ（SSPの本体設定-\u003eフォルダ　のバルーンの設定）のパスを通知。[NOTIFY]",
+                            "References":  {
+                                               "Reference*":  "バルーン格納フォルダの絶対パス"
+                                           }
+                        },
+    "OnTextDrop":  {
+                       "Compatibility":  "SSP",
+                       "Description":  "テキストデータがDnDされた際に発生。",
+                       "References":  {
+                                          "Reference0":  "テキスト内容。(改行はバイト値1)",
+                                          "Reference1":  "DnDされたキャラクターのID。"
+                                      }
+                   },
+    "OnTranslate":  {
+                        "Compatibility":  "MateriaSSPCROWNinix",
+                        "Description":  "SHIORIがMAKOTOのトランスレート機能を兼任するためのイベント。\n主に、GETコマンドのSHIORI Eventに対してベースウェアへスクリプトが返却された場合に、それに応じて発行される。\nOnTranslateの元となったSHIORI Eventに対して、SHIORI内部での操作を経てベースウェアへ返却されたスクリプトが、ベースウェアによる環境変数の展開などの後に再びSHIORIに送られる。SHIORIはこのスクリプトに対して再度何らかの処理を行ってベースウェアに最終的なスクリプトとして返却できる。\nなおOnTranslate自身では再度発生しない。",
+                        "References":  {
+                                           "Reference0":  "元のスクリプト。",
+                                           "Reference2":  "※SSPのみ　このスクリプトが発生したイベントID 。イベントが原因ではない場合欠番。",
+                                           "Reference3":  "※SSPのみ　バイト値1区切りの上記イベントのReference 。イベントが原因ではない場合欠番。",
+                                           "Reference1":  "※SSPのみ　コミュニケートの場合、communicate。\nSSTP SENDの場合、sstp-send。\nOwned SSTPの場合、owned。\n非ローカルSSTPの場合、remote。\nトランスレートしない指定の場合、notranslate。\nプラグインからのスクリプトの場合、plugin-script\nプラグインからのイベント反応の場合、plugin-event\n該当するものがカンマ区切りで返る。※該当がない場合欠番となる。"
+                                       }
+                    },
+    "OnCacheSuspend":  {
+                           "Compatibility":  "SSP",
+                           "Description":  "ゴーストキャッシュに入った際に発生。",
+                           "References":  {
+
+                                          }
+                       },
+    "OnShellChanged":  {
+                           "Compatibility":  "MateriaSSPCROWNinix",
+                           "Description":  "他のシェルから切り替わった際に発生。",
+                           "References":  {
+                                              "Reference0":  "現在のシェル名。",
+                                              "Reference2":  "（SSPのみ）現在のシェルのパス。",
+                                              "Reference1":  "（CROWのみ）Reference0と同じ。（SSPのみ）現在のゴースト名。"
+                                          }
+                       },
+    "OnOffscreen":  {
+                        "Compatibility":  "SSPNinix",
+                        "Description":  "キャラクター（サーフェス）のウインドウがモニタ（作業領域）外にひっかかった、あるいは出た時に発生。見切れ。\n見切れ状態が変わった際に逐次通知されるので、「見切れなくなった」も工夫すれば検出できる。",
+                        "References":  {
+                                           "Reference0":  "ID [\\1] ID [\\1] ID ...\n[\\1] はバイト値1\n例：1 [\\1] 2 で、1番ウインドウと2番ウインドウが見切れていることを示す。",
+                                           "Reference0と同じフォーマットで、状態が変わる前（＝1回前のイベント発生時の0）が通知される。":  "",
+                                           "Reference1":  ""
+                                       }
+                    },
+    "OnVirtualDesktopChanged":  {
+                                    "Compatibility":  "SSP",
+                                    "Description":  "仮想デスクトップが切り替わった際に発生。\n現状Windows 10上でのみ有効。\n実験的機能のため今後仕様が変わる可能性がある。",
+                                    "References":  {
+                                                       "Reference0":  "current：現在の仮想デスクトップとゴースト表示中のデスクトップが同じ\nhidden：仮想デスクトップが切り替えられ、非表示状態\nminimize：ウインドウが最小化されておりどの仮想デスクトップに属するかわからない",
+                                                       "Reference1":  "現在の仮想デスクトップID。"
+                                                   }
+                                },
+    "OnTabletMode":  {
+                         "Compatibility":  "",
+                         "Description":  "OSがタブレット機の操作に最適化された状態に切り替えられた際に発生。\n起動直後にNOTIFY(喋れない)で通知され、切り替わった時にGET(喋れる)で通知される。",
+                         "References":  {
+                                            "Reference0":  "0/1：1がタブレットモード(OSがタブレット機の操作に最適化された状態)、0がモードOFF\nSSP 2.5.02"
+                                        }
+                     },
+    "OnOtherGhostTalk":  {
+                             "Compatibility":  "SSPNinix",
+                             "Description":  "他のゴーストが話した際に発生。\\![set,otherghosttalk,true]で有効に。",
+                             "References":  {
+                                                "Reference2":  "トークを中断した場合、break。\nコミュニケートの場合、communicate。\nSSTP SENDの場合、sstp-send。\nOwned SSTPの場合、owned。\n非ローカルSSTPの場合、remote。\nトランスレートしない指定の場合、notranslate\nプラグインからのスクリプトの場合、plugin-script\nプラグインからのイベント反応の場合、plugin-event\n該当するものがカンマ区切りで返る。",
+                                                "Reference1":  "ゴーストの本体側名。",
+                                                "Reference4":  "他ゴーストの話した内容のスクリプト。",
+                                                "Reference5":  "バイト値1区切りの他ゴーストに渡されたReference。",
+                                                "Reference0":  "ゴースト名。",
+                                                "Reference3":  "他ゴーストの話したイベントID。"
+                                            }
+                         },
+    "OnMusicPlayEx":  {
+                          "Compatibility":  "",
+                          "Description":  "Windows標準のメディアプレイヤーアプリなど、対応した音楽再生ソフトで再生中の曲情報をゴーストに通知する。\nこのイベントに反応しない場合はOnMusicPlayにフォールバックする。\nブラウザでの動画・音楽再生は全部OnVideoPlayEx扱いになるので注意。",
+                          "References":  {
+                                             "Reference0":  "曲タイトル",
+                                             "Reference2以降":  "拡張情報名[バイト値1]拡張情報の内容 OnMusicPlayExの拡張情報リスト\nSSP 2.7.55",
+                                             "Reference1":  "アーティスト名"
+                                         }
+                      },
+    "executing":  {
+                      "Compatibility":  "",
+                      "Description":  "※SSPのみ。すでに更新を実行中のため、二重起動を阻止した。 [2.5.26]",
+                      "References":  {
+
+                                     }
+                  },
+    "OnDirectoryDrop":  {
+                            "Compatibility":  "SSPCROW",
+                            "Description":  "ディレクトリがDnD された際に発生。",
+                            "References":  {
+                                               "Reference0":  "ドロップされたディレクトリのパス。",
+                                               "Reference1":  "ドロップされたキャラクターのスコープ番号。本体側0、相方1、3人目以降は2以降。"
+                                           }
+                        },
+    "OnInitialize":  {
+                         "Compatibility":  "SSP",
+                         "Description":  "起動した際に発生。[NOTIFY]",
+                         "References":  {
+                                            "Reference0":  "リロード時にreload、それ以外は無し（空文字列またはReference0自体が来ない）"
+                                        }
+                     },
+    "password":  {
+                     "Compatibility":  "",
+                     "Description":  "パスワードつきアーカイブでパスワード誤りがあった(SSP 2.5.09以降)\nファイルドロップイベント",
+                     "References":  {
+
+                                    }
+                 },
+    "OnChoiceEnter":  {
+                          "Compatibility":  "MateriaSSPCROWNinix",
+                          "Description":  "選択肢上にカーソルが乗った際と外れた際に発生。\n選択肢から外れた際のOnChoiceEnterはReferenceなしで発生する。",
+                          "References":  {
+                                             "Reference0":  "選択肢のテキスト（ラベル）。",
+                                             "Reference*":  "拡張情報(\\qタグ内の3番目以降の引数)。",
+                                             "Reference1":  "選択肢のID。"
+                                         }
+                      },
+    "installedheadlinename":  {
+                                  "Compatibility":  "SSP",
+                                  "Description":  "インストールされているRSS/ヘッドラインを通知。[NOTIFY]",
+                                  "References":  {
+                                                     "Reference*":  "インストールされているRSS/ヘッドライン名。"
+                                                 }
+                              },
+    "OnSysSuspend":  {
+                         "Compatibility":  "SSP",
+                         "Description":  "サスペンド（スリープ・休止状態（ハイバネーション）両方）開始の際に発生。[NOTIFY]",
+                         "References":  {
+
+                                        }
+                     },
+    "OnNotifyBalloonInfo":  {
+                                "Compatibility":  "SSP",
+                                "Description":  "現在使用中のバルーン情報を通知。[NOTIFY]",
+                                "References":  {
+                                                   "Reference0":  "選択しているバルーンの名前",
+                                                   "Reference2":  "サーフェス番号リスト [キャラID＋コロン＋カンマ区切り＋スペース] 例：0:0,1,2,3 1:0,1",
+                                                   "Reference1":  "選択しているバルーンのフルパス"
+                                               }
+                            },
+    "OnSpeechSynthesisStatus":  {
+                                    "Compatibility":  "",
+                                    "Description":  "起動時と音声合成機能がON/OFFされた時に発生。[NOTIFY/他GET]",
+                                    "References":  {
+                                                       "Reference0":  "0/1 (無効/有効)\nSSP 2.4.01"
+                                                   }
+                                },
+    "OnBasewareUpdating":  {
+                               "Compatibility":  "SSP",
+                               "Description":  "本体更新時、ダウンロードが終わりファイル更新を開始する前に発生。このイベントに反応がない場合はOnCloseAll、OnCloseの順に発生する。",
+                               "References":  {
+                                                  "Reference0":  "更新前のバージョン番号　例：2.3.58",
+                                                  "Reference1":  "更新前のWindowsエクスプローラで見られるプロパティと同じバージョン番号　例：2.3.58.3000"
+                                              }
+                           },
+    "OnMouseDownEx":  {
+                          "Compatibility":  "SSPNinix",
+                          "Description":  "左・右以外のマウスボタンが押された際に発生。",
+                          "References":  {
+                                             "Reference2":  "常に0。",
+                                             "Reference1":  "マウスカーソルの y 座標（ローカル座標）",
+                                             "Reference4":  "当たり判定の識別子。",
+                                             "Reference6":  "windows7以降、マルチタッチ対応環境のタッチパネル（※タッチパッド不可）からの入力でtouch、マウスなどからの入力でmouse",
+                                             "Reference5":  "ホイールクリック(または3ボタンマウスの中ボタン)はmiddle、拡張ボタン1(通常「戻る」に割当)はxbutton1、拡張ボタン2(通常「進む」に割当)はxbutton2。",
+                                             "Reference0":  "マウスカーソルの x 座標（ローカル座標）",
+                                             "Reference3":  "本体の場合は0、相方の場合は1。SSP/CROWでは2以降もある。"
+                                         }
+                      },
+    "artificial":  {
+                       "Compatibility":  "",
+                       "Description":  "ユーザ操作による更新中断。\n404 等\nそのステータスコードでの失敗。",
+                       "References":  {
+
+                                      }
+                   },
+    "OnAITalk":  {
+                     "Compatibility":  "SSP",
+                     "Description":  "\\aタグ実行などにより、ランダムトーク発話を求められた際に発生。",
+                     "References":  {
+
+                                    }
+                 },
+    "OnBIFF2Complete":  {
+                            "Compatibility":  "MateriaSSP",
+                            "Description":  "メールスプール数が増加した際に発生。\nSSPではOnBIFFCompleteにスクリプトを返さなかった場合にのみ発生。",
+                            "References":  {
+                                               "Reference0":  "スプールされているメールの通数、１オリジン表記。",
+                                               "Reference2":  "チェックするメールサーバ名、SSP、CROWはアカウント名。",
+                                               "Reference3":  "全メールのTopResult。",
+                                               "Reference1":  "スプールされているメールのバイト数。"
+                                           }
+                        },
+    "OnVideoPlayEx":  {
+                          "Compatibility":  "",
+                          "Description":  "Windows標準のメディアプレイヤーアプリなど、対応した音楽再生ソフトで再生中の動画情報をゴーストに通知する。",
+                          "References":  {
+                                             "Reference0～":  "OnMusicPlayExと同じ\nSSP 2.7.59"
+                                         }
+                      },
+    "OnMusicPlay":  {
+                        "Compatibility":  "",
+                        "Description":  "Windows標準のメディアプレイヤーアプリなど、対応した音楽再生ソフトで再生中の曲情報をゴーストに通知する。",
+                        "References":  {
+                                           "Reference0":  "曲タイトル",
+                                           "Reference1":  "アーティスト名\nSSP 2.7.55\nOnMusicPlayExの拡張情報リスト"
+                                       }
+                    },
+    "OnVoiceRecognitionStatus":  {
+                                     "Compatibility":  "",
+                                     "Description":  "起動時と音声認識機能がON/OFFされた時に発生。[NOTIFY/他GET]",
+                                     "References":  {
+                                                        "Reference0":  "0/1 (無効/有効)\nSSP 2.4.01"
+                                                    }
+                                 },
+    "OnNetworkHeavy":  {
+                           "Compatibility":  "MateriaSSPCROW",
+                           "Description":  "相手サーバが時間内に応答しなかった際に発生。",
+                           "References":  {
+                                              "Reference0":  "※SSPのみ　タイムアウトするまでの時間。(秒単位)",
+                                              "Reference1":  "※SSPのみ　今までの経過時間。(秒単位) [2.6.42～]"
+                                          }
+                       },
+    "plugin":  {
+                   "Compatibility":  "",
+                   "Description":  "",
+                   "References":  {
+
+                                  }
+               },
+    "OnUpdateResultEx":  {
+                             "Compatibility":  "SSP",
+                             "Description":  "ネットワーク更新を実行した際に発生し、バルーン・シェル一括更新機能も含めてすべての更新結果を一括で通知する。",
+                             "References":  {
+                                                "Reference*":  "更新を実行した順に、更新結果が以下のフォーマットで入っている（\\1はバイト値1）\n(※1)[\\1](※2)[\\1](※3)[\\1](※4)[\\1](※5)\nまたは\n(※1)[\\1](※2)[\\1](※3)[\\1](※4)\n※1……ネットワーク更新対象の名前\n※2……ネットワーク更新対象の種別\n※3……成功時「OK」　失敗時「NG」\n※4……成功した場合は更新ファイル数(更新ファイルなし=noneの場合0)、失敗した場合は失敗理由。\n※5……失敗して、かつ失敗原因のファイルがわかる場合、そのファイル名。"
+                                            }
+                         },
+    "OnUpdateCheckComplete":  {
+                                  "Compatibility":  "SSP",
+                                  "Description":  "ネットワーク更新のチェックに成功した際に発生。",
+                                  "References":  {
+                                                     "Reference0":  "※成功理由",
+                                                     "Reference3":  "※更新対象種別",
+                                                     "Reference4":  "SSP 2.3：更新実行理由。scriptのみ。",
+                                                     "Reference1":  "カンマでセパレートされた更新されたファイル名のリスト。"
+                                                 }
+                              },
+    "Last":  {
+                 "Compatibility":  "",
+                 "Description":  "最後のページ",
+                 "References":  {
+
+                                }
+             },
+    "go":  {
+               "Compatibility":  "",
+               "Description":  "お出かけ",
+               "References":  {
+
+                              }
+           },
+    "OnKeyPress":  {
+                       "Compatibility":  "MateriaSSPCROWNinix",
+                       "Description":  "本体がアクティブな状態でキーが入力された際に発生。",
+                       "References":  {
+                                          "Reference2":  "※SSPのみ　キーの押しっぱなしカウント。",
+                                          "Reference1":  "入力されたキー。(Win32仮想キーコード)",
+                                          "Reference4":  "※SSPのみ　修飾キーがカンマ区切りで列挙される。例：\"ctrl,alt\"",
+                                          "Reference0":  "入力されたキー。(キートップに書かれた文字)",
+                                          "Reference3":  "※SSPのみ　キーイベントが来たキャラクターウインドウID。"
+                                      }
+                   },
+    "OnCommunicateInputCancel":  {
+                                     "Compatibility":  "SSPNinix",
+                                     "Description":  "CommunicateBoxが閉じられた際に発生。",
+                                     "References":  {
+                                                        "Reference0":  "(空文字列。OnUserInputCancelとReferenceの番号をあわせるための空席。)",
+                                                        "Reference1":  "閉じられた場合、cancel。"
+                                                    }
+                                 },
+    "composer":  {
+                     "Compatibility":  "",
+                     "Description":  "作曲者名 iSing4U",
+                     "References":  {
+
+                                    }
+                 },
+    "installedshellname":  {
+                               "Compatibility":  "SSPCROWNinix",
+                               "Description":  "インストールされているシェルを通知。[NOTIFY]",
+                               "References":  {
+                                                  "Reference*":  "インストールされているシェル名。"
+                                              }
+                           },
+    "inputbox.autocomplete":  {
+                                  "Compatibility":  "SSP",
+                                  "Description":  "ボックス展開時に発生。このイベントにバイト値1区切りでテキストのリストを返すと、入力ボックスでオートコンプリート機能が動作。\n(WinMe/2000以降)",
+                                  "References":  {
+                                                     "Reference0":  "入力ボックスの種類。inputbox・teachbox・communicateboxのいずれか。",
+                                                     "Reference1":  "inputboxの場合のみ、入力完了時に起きるイベント名／識別子。"
+                                                 }
+                              },
+    "OnBoot":  {
+                   "Compatibility":  "MateriaSSPCROWNinix",
+                   "Description":  "起動した際に発生。\nSSPでは、OnGhostChanged、OnGhostCalled、OnFirstBoot、OnVanishedに対してスクリプトが返されなかった（204）場合、続けてこのイベントが発生する。",
+                   "References":  {
+                                      "Reference0":  "起動時のシェル名。",
+                                      "Reference6":  "※MATERIA、SSPのみ　前回の処理中で落ちた時にhalt。",
+                                      "Reference7":  "※MATERIA、SSPのみ　前回の処理中で落ちたゴースト名 。"
+                                  }
+               },
+    "OnUpdateResultExplorer":  {
+                                   "Compatibility":  "SSP",
+                                   "Description":  "ゴーストエクスプローラからネットワーク更新を実行した際に発生。OnUpdateResultのエクスプローラ版。",
+                                   "References":  {
+                                                      "Reference*":  "OnUpdateResultと同じ"
+                                                  }
+                               },
+    "OnDressupChanged":  {
+                             "Compatibility":  "SSPNinix",
+                             "Description":  "着せ替えが切替えられた際に発生する。\n複数回通知される場合があり、その場合は一番最後のOnDressupChangedが[GET]、それ以外が[NOTIFY]となる。\nこのイベントの後に発生するOnNotifyDressupInfoも参照すること。",
+                             "References":  {
+                                                "Reference2":  "有効になった時に1、無効になった時に0。",
+                                                "Reference1":  "パーツの名称。",
+                                                "Reference4":  "スクリプトから実行された時はscript、メニューから実行された時はuser [2.5.90～]",
+                                                "Reference0":  "着せ替え対象のキャラクターID。",
+                                                "Reference3":  "パーツのカテゴリ名。"
+                                            }
+                         },
+    "RightStickX":  {
+                        "Compatibility":  "",
+                        "Description":  "右スティック水平（右が正、左が負）。正規化値の範囲は-1.0～1.0。",
+                        "References":  {
+
+                                       }
+                    },
+    "OnNekodorifExist":  {
+                             "Compatibility":  "SSP",
+                             "Description":  "SSP起動時、先に猫どりふが起動されていた際に発生。",
+                             "References":  {
+
+                                            }
+                         },
+    "OnBasewareUpdated":  {
+                              "Compatibility":  "SSP",
+                              "Description":  "本体更新終了後、ゴーストが起動する時に発生。このイベントに反応がない場合はOnBootが発生する。",
+                              "References":  {
+                                                 "Reference0":  "更新後のバージョン番号　例：2.3.59",
+                                                 "Reference1":  "更新後のWindowsエクスプローラで見られるプロパティと同じバージョン番号　例：2.3.59.3000"
+                                             }
+                          },
+    "OnNotifySelfInfo":  {
+                             "Compatibility":  "SSPCROW",
+                             "Description":  "ゴースト自身の情報を通知。[NOTIFY]",
+                             "References":  {
+                                                "Reference2":  "相方側の名前。",
+                                                "Reference1":  "本体側の名前。",
+                                                "Reference4":  "現在のシェルへの絶対パス。",
+                                                "Reference6":  "現在のバルーンへの絶対パス。",
+                                                "Reference5":  "現在のバルーン名。",
+                                                "Reference0":  "ゴースト名。",
+                                                "Reference3":  "現在のシェル名。"
+                                            }
+                         },
+    "OnNotifyFontInfo":  {
+                             "Compatibility":  "SSP",
+                             "Description":  "システムにインストールされているフォントを通知。[NOTIFY]",
+                             "References":  {
+                                                "Reference*":  "フォント名。"
+                                            }
+                         },
+    "OnUpdateCheckResultEx":  {
+                                  "Compatibility":  "SSP",
+                                  "Description":  "更新チェックのみオプションをつけた時に最後に発生。OnUpdateResultExのエクスプローラ版。",
+                                  "References":  {
+                                                     "Reference*":  "OnUpdateResultExと同じ"
+                                                 }
+                              },
+    "OnNotifyShellInfo":  {
+                              "Compatibility":  "SSP",
+                              "Description":  "現在使用中のシェル情報を通知。[NOTIFY]",
+                              "References":  {
+                                                 "Reference0":  "選択しているシェルの名前",
+                                                 "Reference2":  "サーフェス番号リスト [カンマ区切り] 例：0,1,2,3,4,5,6,7,8,10,11",
+                                                 "Reference1":  "選択しているシェルのフルパス"
+                                             }
+                          },
+    "OnOtherGhostBooted":  {
+                               "Compatibility":  "SSPNinix",
+                               "Description":  "他のゴーストに呼び出された、他のゴーストが起動した際に発生。\n言い換えると、呼び出したゴーストにOnGhostCallCompleteが発生するタイミングで、無関係なゴーストに発生。",
+                               "References":  {
+                                                  "Reference0":  "起動したゴーストの本体側名。",
+                                                  "Reference2":  "起動したゴースト名。",
+                                                  "Reference7":  "起動したゴーストのシェル名。",
+                                                  "Reference1":  "起動したゴーストの起動時のスクリプト。"
+                                              }
+                           },
+    "OnRSSComplete":  {
+                          "Compatibility":  "",
+                          "Description":  "ヘッドラインセンスが正常に終了した際に発生。本イベントに反応しない場合は、表示に適切なスクリプトを生成しヘッドライン完了系イベントが呼び出される。",
+                          "References":  {
+                                             "Reference0":  "更新が無い時：no update　※終了理由\n更新が無い時はReference0のみでかつ\"no update\"という文字列のみ\n更新が有る時：RSS配信サイト名。",
+                                             "Reference2～":  "更新が有る時のみ：タイトル [\\1] URL [\\1] 更新日時（フォーマットはカンマ区切り：年,月,日,時,分,秒）[\\1] 作者名 [\\1] 内容または要約\n更新がある時はRSSの要素数分Reference0,1,2～と続く\n[\\1]はバイト値1\nSSP 作者名・内容 2.4.10～",
+                                             "Reference1":  "更新が有る時のみ：RSSの配信元URL(フィードそのものではなく配信サイトを指すもの)"
+                                         }
+                      },
+    "OnUpdateOther.OnMD5CompareFailure":  {
+                                              "Compatibility":  "SSP",
+                                              "Description":  "ゴースト以外のMD5が一致しなかった際に発生。",
+                                              "References":  {
+                                                                 "Reference3":  "※更新対象種別",
+                                                                 "Reference2":  "落としたファイルのMD5値。",
+                                                                 "Reference4":  "SSP 2.3：※更新実行理由。",
+                                                                 "Reference1":  "正しいMD5値。"
+                                                             }
+                                          },
+    "LeftStickX":  {
+                       "Compatibility":  "",
+                       "Description":  "左スティック水平（右が正、左が負）。正規化値の範囲は-1.0～1.0。",
+                       "References":  {
+
+                                      }
+                   },
+    "reservation":  {
+                        "Compatibility":  "",
+                        "Description":  "病院などの予約",
+                        "References":  {
+
+                                       }
+                    },
+    "OnSSTPBlacklisting":  {
+                               "Compatibility":  "Materia",
+                               "Description":  "最終クライアントのブラックリスト行きが指示された際に発生。",
+                               "References":  {
+                                                  "Reference0":  "最終クライアントのIPアドレス。"
+                                              }
+                           },
+    "OnSchedulepostComplete":  {
+                                   "Compatibility":  "SSP",
+                                   "Description":  "スケジュールセンサが投稿処理を完了した際に発生。",
+                                   "References":  {
+                                                      "Reference0":  "スケジュールセンサの名前"
+                                                  }
+                               },
+    "OnURLDragDropping":  {
+                              "Compatibility":  "",
+                              "Description":  "URLがドロップされようとして、マウスカーソルが重なった際に発生。\nこのイベントは受け入れ可能なすべてのURLで発生する。",
+                              "References":  {
+                                                 "Reference0":  "ドロップされたURL。",
+                                                 "Reference1":  "ドロップされたキャラクターのスコープ番号。本体側0、相方1、3人目以降は2以降。\nSSP 2.6.37"
+                                             }
+                          },
+    "headline":  {
+                     "Compatibility":  "",
+                     "Description":  "baseware　※CROWのみ\nネットワーク更新理由",
+                     "References":  {
+
+                                    }
+                 },
+    "OnUpdateOther.OnMD5CompareBegin":  {
+                                            "Compatibility":  "SSP",
+                                            "Description":  "ゴースト以外のMD5の照合開始の際に発生。",
+                                            "References":  {
+                                                               "Reference2":  "落としたファイルのMD5値。",
+                                                               "Reference1":  "正しいMD5値。",
+                                                               "Reference4":  "SSP 2.3：※更新実行理由。",
+                                                               "Reference0":  "比較するファイル名。",
+                                                               "Reference3":  "※更新対象種別"
+                                                           }
+                                        },
+    "OnHourTimeSignal":  {
+                             "Compatibility":  "SSP",
+                             "Description":  "時報イベント。毎正時(?時0分0秒近く)に発生。\nトーク再生不能な時はトークできるようになるまで待つ。そのため少しずれた時間に通知されることがある。",
+                             "References":  {
+                                                "Reference2":  "重なり時に1、それ以外は0。",
+                                                "Reference1":  "見切れ時に1、それ以外は0。",
+                                                "Reference4":  "※SSPのみ　(OSレベルで)何も操作せず放置されている時間。秒単位。",
+                                                "Reference0":  "OSの連続起動時間（hour）",
+                                                "Reference3":  "常に1。(トーク再生可能になるまで待つため)"
+                                            }
+                         },
+    "OnBatteryChargingStop":  {
+                                  "Compatibility":  "SSP",
+                                  "Description":  "バッテリーの充電を停止した場合に発生する。満充電になった時とは限らない。\n「Androidの伺か」互換イベント。",
+                                  "References":  {
+                                                     "Reference0～":  "OnBatteryNotifyと同じ。"
+                                                 }
+                              },
+    "enable_debug":  {
+                         "Compatibility":  "SSP",
+                         "Description":  "開発用パレットの「SHIORIデバッグモード有効」のON/OFF。[NOTIFY]",
+                         "References":  {
+                                            "Reference0":  "ONなら1、OFFなら0"
+                                        }
+                     },
+    "OnRecycleBinEmpty":  {
+                              "Compatibility":  "",
+                              "Description":  "\\![execute,emptyrecyclebin]でゴミ箱を空にした時に発生する。\nスクリプトを実行したゴーストだけでなく、起動中の全ゴーストにもOnRecycleBinEmptyFromOtherが通知される。",
+                              "References":  {
+                                                 "Reference2":  "現在ゴミ箱に入っているファイルの数の直前との差(空にした直後なのでふつうは負の値)",
+                                                 "Reference1":  "現在ゴミ箱に入っているファイルのサイズ(空にした直後なのでふつうは0) 単位バイト",
+                                                 "Reference4":  "正常に空にできたら1、何かエラーが起きたら0(もとから空っぽでも0)",
+                                                 "Reference5":  "タグを実行したゴーストの本体側の名前(sakuraname)。\nSSP 2.6.04/Ref4は2.6.35",
+                                                 "Reference0":  "現在ゴミ箱に入っているファイルの数(空にした直後なのでふつうは0)",
+                                                 "Reference3":  "現在ゴミ箱に入っているファイルのサイズの直前との差(空にした直後なのでふつうは負の値) 単位バイト"
+                                             }
+                          },
+    "DPadLeft":  {
+                     "Compatibility":  "",
+                     "Description":  "十字キー左",
+                     "References":  {
+
+                                    }
+                 },
+    "OnAnchorSelect":  {
+                           "Compatibility":  "MateriaSSPCROWNinix",
+                           "Description":  "\\_aジャンパがクリックされた瞬間に発生。",
+                           "References":  {
+                                              "Reference0":  "選択されたジャンパのID。"
+                                          }
+                       },
+    "OnChoiceSelect":  {
+                           "Compatibility":  "MateriaSSPCROWNinix",
+                           "Description":  "選択肢が選択された際に発生。",
+                           "References":  {
+                                              "Reference0":  "選択された選択肢のID。",
+                                              "Reference*":  "※CROWのみ　選択肢の２番目以降のID。"
+                                          }
+                       },
+    "OnUpdateOther.OnDownloadBegin":  {
+                                          "Compatibility":  "SSP",
+                                          "Description":  "ゴースト以外のファイルダウンロード開始の際に発生。",
+                                          "References":  {
+                                                             "Reference2":  "更新を行うファイルの総数から1引かれたもの（0から始まる連番）。",
+                                                             "Reference1":  "ダウンロード中の更新ファイルの番号（0から始まる連番）。",
+                                                             "Reference4":  "SSP 2.3：※更新実行理由。",
+                                                             "Reference0":  "ダウンロードするファイル名。",
+                                                             "Reference3":  "※更新対象種別"
+                                                         }
+                                      },
+    "OnCompressArchiveComplete":  {
+                                      "Compatibility":  "",
+                                      "Description":  "アーカイブの圧縮が正常に完了した際に発生する。\n\\![execute,compressarchive]にて--eventオプションで指定した識別子がOnではじまる場合、その識別子のイベントが発生する。それ以外の場合は本イベントが発生する。",
+                                      "References":  {
+                                                         "Reference0":  "Sakura Scriptの--eventオプションで指定されたイベント識別子。",
+                                                         "Reference2":  "圧縮サイズ（バイト）。",
+                                                         "Reference3":  "非圧縮サイズ（バイト）。\nSSP 2.7.23",
+                                                         "Reference1":  "圧縮されたファイル数。"
+                                                     }
+                                  },
+    "OnNotifyOtherFailure":  {
+                                 "Compatibility":  "SSP",
+                                 "Description":  "\\![notifyother]が失敗した際に発生。",
+                                 "References":  {
+                                                    "Reference0":  "見つからなかった場合、notfound。\n\\t中だった場合、timecritical。\nパッシブモードだった場合、passivemode。\nインダクションモードだった場合、inductionmode。\n最小化中だった場合、minimized。\n他、204など実行結果。\n__SYSTEM_ALL_GHOST__などの場合バイト値1区切りのリスト。",
+                                                    "Reference3～":  "実行しようとしたイベントのReference。",
+                                                    "Reference2":  "実行しようとしたイベントID。",
+                                                    "Reference1":  "ゴースト名または\\0名。\n__SYSTEM_ALL_GHOST__などの場合バイト値1区切りのリスト。"
+                                                }
+                             },
+    "OnURLDropped":  {
+                         "Compatibility":  "",
+                         "Description":  "ドロップされたURLを受領し終わった際に発生。\nこのイベントはNARインストールの直前、ダウンロード処理完了直後に発生する。他(homeurlインストールやfeed(RSS)インストール)では発生しない。",
+                         "References":  {
+                                            "Reference0":  "ダウンロードし終わったファイルのローカルパス。",
+                                            "Reference2":  "ドロップされたキャラクターのスコープ番号。本体側0、相方1、3人目以降は2以降。\nMateriaSSP Ref1,2は2.6.36CROW",
+                                            "Reference1":  "ドロップされたURL。"
+                                        }
+                     },
+    "OnWallpaperChange":  {
+                              "Compatibility":  "MateriaSSPCROW",
+                              "Description":  "画像ファイルのDnDによって壁紙が変更された際に発生。",
+                              "References":  {
+                                                 "Reference0":  "ドロップされたファイルパス。"
+                                             }
+                          },
+    "OnNotifyPluginFailure":  {
+                                  "Compatibility":  "SSP",
+                                  "Description":  "\\![notifyplugin]が失敗した際に発生。",
+                                  "References":  {
+                                                     "Reference0":  "見つからなかった場合、notfound。\n無効設定だった場合、disabled。\n他、204など実行結果。",
+                                                     "Reference3～":  "実行しようとしたイベントのReference。",
+                                                     "Reference2":  "実行しようとしたイベントID。",
+                                                     "Reference1":  "プラグインの名前またはID。"
+                                                 }
+                              },
+    "OnTeachStart":  {
+                         "Compatibility":  "MateriaSSPNinix",
+                         "Description":  "TeachBoxがオープンした際に発生。",
+                         "References":  {
+
+                                        }
+                     },
+    "OnSecondChange":  {
+                           "Compatibility":  "MateriaSSPCROWNinix",
+                           "Description":  "1秒ごとに発生。\nトーク再生不能な時は、Reference3が0になった上でNOTIFYでイベント通知される。返されたスクリプトは無視される。",
+                           "References":  {
+                                              "Reference2":  "重なり時に1、それ以外は0。",
+                                              "Reference1":  "見切れ時に1、それ以外は0。",
+                                              "Reference4":  "※SSPのみ　(OSレベルで)何も操作せず放置されている時間。秒単位。",
+                                              "Reference0":  "OSの連続起動時間（hour）",
+                                              "Reference3":  "トーク再生可能なときに1、それ以外は0。"
+                                          }
+                       },
+    "OnGhostChanging":  {
+                            "Compatibility":  "MateriaSSPCROWNinix",
+                            "Description":  "他のゴーストへの切り替え指示があった際に発生。\nSSPでは、このイベントにスクリプトが返されなかった（204）場合、続けてOnCloseが発生する。",
+                            "References":  {
+                                               "Reference0":  "切り替わるゴーストの本体側の名前。",
+                                               "Reference2":  "切り替わるゴーストの名前。[SSPのみ]",
+                                               "Reference3":  "切り替わるゴーストのパス。[SSPのみ]",
+                                               "Reference1":  "手動で切り替えた場合、manual\nシステムにより切り替えられた場合、automatic\nが返される。"
+                                           }
+                        },
+    "OnExecuteRSS_SSLInfo":  {
+                                 "Compatibility":  "SSP",
+                                 "Description":  "取得失敗(HTTPレスポンスが200以外)でも、SSL/TLSレベルでは接続に成功しているので通知される。",
+                                 "References":  {
+                                                    "Reference0～":  "OnExecuteHTTPSSLInfoと同じ"
+                                                }
+                             },
+    "OnResetWindowPos":  {
+                             "Compatibility":  "",
+                             "Description":  "シェル位置初期化メニューが選ばれた際に通知される。\n反応しない場合はデフォルトのシェル位置初期化処理 ( \\![execute,resetwindowpos] ) が行われる。\nSSP 2.7 RC1",
+                             "References":  {
+
+                                            }
+                         },
+    "playcount":  {
+                      "Compatibility":  "",
+                      "Description":  "再生回数 iSing4U",
+                      "References":  {
+
+                                     }
+                  },
+    "OnVanishButtonHold":  {
+                               "Compatibility":  "MateriaSSPCROWNinix",
+                               "Description":  "消滅イベント中ダブルクリックでキャンセルされた際に発生。",
+                               "References":  {
+                                                  "Reference0":  "中断の操作が起きたスクリプト。",
+                                                  "Reference2":  "中断位置。スクリプト先頭からの文字数で表現。文字数はさくらスクリプトのタグも含めたもの。\n例）\\s[2]あいうえお　の「あ」までで中断された場合、6",
+                                                  "Reference1":  "中断の操作が起きたバルーンのスコープ番号。本体側0、相方側1、それ以降も。"
+                                              }
+                           },
+    "OnURLDropFailure":  {
+                             "Compatibility":  "",
+                             "Description":  "ドロップされたURLの受領に失敗したかキャンセルされた際に発生。\nこのイベントはNARインストールを試行しようとして失敗した際に発生する。他(homeurlインストールやfeed(RSS)インストール)では発生しない。",
+                             "References":  {
+                                                "Reference0":  "ダウンロードし終わった分のファイルのローカルパス。",
+                                                "Reference2":  "ドロップされたURL。",
+                                                "Reference3":  "ドロップされたキャラクターのスコープ番号。本体側0、相方1、3人目以降は2以降。\nMateriaSSP Ref2,3は2.6.36CROW",
+                                                "Reference1":  "※失敗理由"
+                                            }
+                         },
+    "duration":  {
+                     "Compatibility":  "",
+                     "Description":  "曲の長さ(秒) iSing4U/SSP2.5.75",
+                     "References":  {
+
+                                    }
+                 },
+    "OnSNTPCompareEx":  {
+                            "Compatibility":  "",
+                            "Description":  "サーバに接続が確立された際に発生。修正を実行したい場合は\\6タグを含むスクリプトを返すこと。",
+                            "References":  {
+                                               "Reference2":  "カンマでセパレートされたローカル側の現時刻 : 年,月,日,時,分,秒,ミリ秒",
+                                               "Reference1":  "カンマでセパレートされたサーバ側の現時刻 : 年,月,日,時,分,秒,ミリ秒",
+                                               "Reference4":  "サーバとローカルの時刻のずれ。ミリ秒単位の整数。\nSSP 2.5.66",
+                                               "Reference0":  "接続先サーバ名。",
+                                               "Reference3":  "サーバとローカルの時刻のずれ。秒単位かつ小数点以下あり。正の値がローカル時刻遅れ、負の値がローカル時刻進み状態。"
+                                           }
+                        },
+    "OnUpdatedataCreated":  {
+                                "Compatibility":  "MateriaSSPCROW",
+                                "Description":  "updates2.dauが作成された際に発生。",
+                                "References":  {
+
+                                               }
+                            },
+    "OnUpdateProcessExec":  {
+                                "Compatibility":  "",
+                                "Description":  "メニューなどから更新を実行する指示がなされた場合に発生する。\nこのイベントに対して何かスクリプトを返すと、更新処理をカスタマイズできる。\nイベントを無視した場合は標準の更新処理に自動的に移行する。",
+                                "References":  {
+                                                   "Reference0":  "manual : メニューから更新の操作をした。\nauto : あらかじめ設定した定期自動更新処理が動いた。\ntestonly : 開発用パレットのUpdate Full Checkを実行した。\nSSP 2.6.23"
+                                               }
+                            },
+    "OnShellChanging":  {
+                            "Compatibility":  "MateriaSSPCROWNinix",
+                            "Description":  "他のシェルへ切り替えた際に発生。",
+                            "References":  {
+                                               "Reference0":  "切り替わるシェル名。",
+                                               "Reference2":  "（SSPのみ）切り替わるシェルのパス。",
+                                               "Reference1":  "（SSPのみ）切り替わる前（現在）のシェル名。"
+                                           }
+                        },
+    "appointment":  {
+                        "Compatibility":  "",
+                        "Description":  "アポイントメント",
+                        "References":  {
+
+                                       }
+                    },
+    "OnGhostChanged":  {
+                           "Compatibility":  "MateriaSSPCROWNinix",
+                           "Description":  "他のゴーストから自ゴーストに切り替えられた際に発生。\nSSPでは、このイベントにスクリプトが返されなかった（204）場合、続けてOnBootが発生する。",
+                           "References":  {
+                                              "Reference2":  "直前のゴーストの名前。 [SSPのみ]",
+                                              "Reference1":  "直前のゴーストの切り替え時のスクリプト。",
+                                              "Reference7":  "切り替わったゴーストのシェル名。 [SSPのみ]",
+                                              "Reference0":  "直前のゴーストの本体側の名前。",
+                                              "Reference3":  "直前のゴーストのパス（ファイルの場所）。 [SSPのみ]"
+                                          }
+                       },
+    "script":  {
+                   "Compatibility":  "",
+                   "Description":  "さくらスクリプトタグ（\\![updatebymyself]など）による更新。\n時計合わせイベント",
+                   "References":  {
+
+                                  }
+               },
+    "OnMouseMove":  {
+                        "Compatibility":  "MateriaSSPCROWNinix",
+                        "Description":  "マウスが移動した際に発生。",
+                        "References":  {
+                                           "Reference2":  "マウスホイールの回転量および回転方向。",
+                                           "Reference1":  "マウスカーソルの y 座標（ローカル座標）",
+                                           "Reference4":  "当たり判定の識別子。",
+                                           "Reference6":  "※SSPのみ　windows7以降、マルチタッチ対応環境のタッチパネル（※タッチパッド不可）からの入力でtouch、マウスなどからの入力でmouse",
+                                           "Reference5":  "※SSPのみ　常に0。",
+                                           "Reference0":  "マウスカーソルの x 座標（ローカル座標）",
+                                           "Reference3":  "本体の場合は0、相方の場合は1。SSP/CROWでは2以降もある。"
+                                       }
+                    },
+    "OnSchedulesenseFailure":  {
+                                   "Compatibility":  "SSP",
+                                   "Description":  "スケジュールセンサの処理に失敗した場合に発生。",
+                                   "References":  {
+                                                      "Reference0":  "失敗した理由（ヘッドラインセンサのものと共通）"
+                                                  }
+                               },
+    "OnDeviceRemove":  {
+                           "Compatibility":  "SSP",
+                           "Description":  "デバイスを削除された際に発生。",
+                           "References":  {
+                                              "Reference*":  "タイプ、名前、製造者名、デバイスファイル名がバイト値1区切りで返る。"
+                                          }
+                       },
+    "OnInstallFailure":  {
+                             "Compatibility":  "MateriaSSPCROWNinix",
+                             "Description":  "インストールに失敗した際に発生。",
+                             "References":  {
+                                                "Reference0":  "※失敗理由。"
+                                            }
+                         },
+    "OnCommunicate":  {
+                          "Compatibility":  "MateriaSSPNinix",
+                          "Description":  "CommunicateBox、または他ゴーストからスクリプトを渡された際に発生。",
+                          "References":  {
+                                             "Reference0":  "Boxからはuser、ゴーストからはゴーストの本体側名。",
+                                             "Reference*":  "拡張情報。",
+                                             "Reference1":  "スクリプトの内容。"
+                                         }
+                      },
+    "OnOtherObjectDropped":  {
+                                 "Compatibility":  "",
+                                 "Description":  "「ファイル」として扱えないものをゴースト上にドロップした際に発生。例：Windowsの「マイコンピュータ」など。",
+                                 "References":  {
+                                                    "Referenceは OnOtherObjectDropping とまったく同じ。":  "SSP 2.6.41"
+                                                }
+                             },
+    "OnPingComplete":  {
+                           "Compatibility":  "SSP",
+                           "Description":  "\\![execute,ping]で指定回数のping実行完了時に発生。",
+                           "References":  {
+                                              "Reference0":  "--eventで指定した文字列そのもの",
+                                              "Reference2":  "「OK」またはエラー情報 [\\1] 返答元アドレス [\\1] RTT(往復にかかった時間ms) [\\1]はバイト値1",
+                                              "Reference2以降、送信済みのPingの1回ごとの情報が記録される。Progressの場合は不完全。":  "エラー情報はICMP_ECHO_REPLY Structure の Statusヘッダを参照。",
+                                              "Reference1":  "送信元アドレス [\\1] 全送信回数 [\\1] 成功回数 [\\1] 失敗回数 [\\1]はバイト値1"
+                                          }
+                       },
+    "OnEmbryoExist":  {
+                          "Compatibility":  "SSP",
+                          "Description":  "SSP起動時、先にmateria.exeが起動されていた際に発生。",
+                          "References":  {
+
+                                         }
+                      },
+    "pluginpathlist":  {
+                           "Compatibility":  "SSP",
+                           "Description":  "プラグイン格納フォルダ（SSPの本体設定-\u003eフォルダ　のプラグインの設定）のパスを通知。[NOTIFY]",
+                           "References":  {
+                                              "Reference*":  "プラグイン格納フォルダの絶対パス"
+                                          }
+                       },
+    "OnScreenSaverEnd":  {
+                             "Compatibility":  "SSP",
+                             "Description":  "スクリーンセーバーが終了した際に発生。",
+                             "References":  {
+                                                "Reference0":  "スクリーンセーバ名",
+                                                "Reference2":  "スクリーンセーバ実行までの待ち時間(秒)",
+                                                "Reference1":  "スクリーンセーバ実行ファイルのパス"
+                                            }
+                         },
+    "OnExecuteRSSFailure":  {
+                                "Compatibility":  "SSP",
+                                "Description":  "\\![execute,rss-get/post]で取得エラーした際に発生。",
+                                "References":  {
+                                                   "Reference0～":  "解析失敗時はReference4=parse。他はOnExecuteHTTPFailureと同じ"
+                                               }
+                            },
+    "language":  {
+                     "Compatibility":  "",
+                     "Description":  "インストールの失敗理由",
+                     "References":  {
+
+                                    }
+                 },
+    "OnGhostTermsDecline":  {
+                                "Compatibility":  "",
+                                "Description":  "利用条件ダイアログで拒否が押された際に発生。\n右上の閉じるボタンでは何もイベントは発生しない。\nSSP 2.5.33\n時間イベント",
+                                "References":  {
+
+                                               }
+                            },
+    "OnSurfaceChange":  {
+                            "Compatibility":  "SSPCROWNinix",
+                            "Description":  "サーフェスが変わった際に発生。\n[NOTIFY]",
+                            "References":  {
+                                               "Reference0":  "本体側の現在サーフェス。",
+                                               "Reference2":  "※SSPのみ　キャラID,サーフェス番号,幅,高さ",
+                                               "Reference1":  "相方側の現在サーフェス。"
+                                           }
+                        },
+    "OnUpdateComplete":  {
+                             "Compatibility":  "MateriaSSPCROWNinix",
+                             "Description":  "ネットワーク更新が成功し完了した際に発生。",
+                             "References":  {
+                                                "Reference0":  "※成功理由",
+                                                "Reference3":  "CROW：ゴースト更新の際はghost本体更新の際はbaseware。\nSSP：※更新対象種別",
+                                                "Reference4":  "SSP 2.3：※更新実行理由。",
+                                                "Reference1":  "カンマでセパレートされた更新されたファイル名のリスト。"
+                                            }
+                         },
+    "OnVanishCancel":  {
+                           "Compatibility":  "MateriaSSPCROWNinix",
+                           "Description":  "確認ダイアログでNOが選択された際に発生。",
+                           "References":  {
+
+                                          }
+                       },
+    "RightTrigger":  {
+                         "Compatibility":  "",
+                         "Description":  "右トリガー（引くほど大きい）。正規化値の範囲は0.0～1.0。\nパッドインデックスについて\n全イベントのReference0にはパッドインデックスが渡される。\nゲームパッド1台のみを想定する場合、Reference0は無視して構わない（通常は0である）。\nWindows上のSSPにおけるXInput固有の仕様\nWindows上のSSPではXInput APIを使用してゲームパッド入力を取得している。そのため以下の制約がある。\n対応コントローラ\nXInput対応ゲームパッド（Xbox系コントローラ等）のみ。DirectInput専用のコントローラは認識されない。\n同時接続数\n最大4台。パッドインデックスは0～3の範囲。\nOnGamepadAxisMoveのReference2（生値）の範囲\nスティックは-32768～32767、トリガーは0～255。\nバルーンイベント",
+                         "References":  {
+
+                                        }
+                     },
+    "OnUpdateReady":  {
+                          "Compatibility":  "MateriaSSPCROWNinix",
+                          "Description":  "更新ファイルが確認された際に発生。",
+                          "References":  {
+                                             "Reference0":  "更新を行うファイルの総数から1引かれたもの（0から始まる連番）。",
+                                             "Reference3":  "更新対象種別。\n(shell ghost balloon headline plugin)",
+                                             "Reference4":  "SSP 2.3：※更新実行理由。",
+                                             "Reference1":  "カンマでセパレートされた更新されたファイル名のリスト。"
+                                         }
+                      },
+    "readonly":  {
+                     "Compatibility":  "",
+                     "Description":  "※SSPのみ。読み取り専用フラグによる更新対象への書き込み失敗。ファイルやフォルダに読み取り専用フラグがついていると発生。",
+                     "References":  {
+
+                                    }
+                 },
+    "OnMouseGesture":  {
+                           "Compatibility":  "SSP",
+                           "Description":  "マウスを右ドラッグまたはホイールをドラッグした際に発生。\nなおSSP2.3.53以降、タッチパネル環境でOnMouseGestureのReference5がupまたはdownであるようなものに対してSHIORIが何も返さなかった（204 No Contentが返された）場合、代替イベントとしてOnMouseWheelが発生する。詳細はOnMouseWheelの節を参照。",
+                           "References":  {
+                                              "Reference2":  "当たり判定の識別子。",
+                                              "Reference1":  "マウスカーソルの xy 座標（バイト値1区切り）",
+                                              "Reference4":  "右ドラッグを開始した当たり判定の識別子。",
+                                              "Reference6":  "ジェスチャー移動角度。\n右0度から反時計回りに360度。",
+                                              "Reference5":  "ジェスチャー方向。\nleft_up(左上) up(上) right_up(右上)\nleft(左) right(右)\nleft_down(左下) down(下) right_down(右下)\ncircle.cw(時計回り) circle.ccw(反時計回り)\nend(右ボタンをはなした)",
+                                              "Reference0":  "本体の場合は0、相方の場合は1。SSP/CROWでは2以降もある。",
+                                              "Reference3":  "右ドラッグを開始したマウスカーソルの xy 座標（バイト値1区切り）"
+                                          }
+                       },
+    "auto":  {
+                 "Compatibility":  "",
+                 "Description":  "SSPの設定などによる自動更新。",
+                 "References":  {
+
+                                }
+             },
+    "capability":  {
+                       "Compatibility":  "SSP",
+                       "Description":  "SHIORI拡張実装状態を通知。[NOTIFY]",
+                       "References":  {
+                                          "Reference*":  "実装レベルに応じて下記がReferenceに1つずつ送られる。\nヘッダ名を小文字に直したものが通知される点に注意。例：SecurityLevel→securitylevel\nSHIORI/3.0仕様書も参照。\nrequest.(ヘッダ名小文字)\nSHIORIリクエストの対応状況。例：request.status\nresponse.(ヘッダ名小文字)\nSHIORIレスポンスの対応状況。例：response.marker"
+                                      }
+                   },
+    "OnMouseDown":  {
+                        "Compatibility":  "SSPNinix",
+                        "Description":  "左・右のマウスボタンが押された際に発生。",
+                        "References":  {
+                                           "Reference2":  "常に0。",
+                                           "Reference1":  "マウスカーソルの y 座標（ローカル座標）",
+                                           "Reference4":  "当たり判定の識別子。",
+                                           "Reference6":  "windows7以降、マルチタッチ対応環境のタッチパネル（※タッチパッド不可）からの入力でtouch、マウスなどからの入力でmouse",
+                                           "Reference5":  "左クリックは0、右クリックは1、中クリックは2(互換仕様：OnMouseClickExへの移行を推奨)。",
+                                           "Reference0":  "マウスカーソルの x 座標（ローカル座標）",
+                                           "Reference3":  "本体の場合は0、相方の場合は1。SSP/CROWでは2以降もある。"
+                                       }
+                    },
+    "LSB":  {
+                "Compatibility":  "",
+                "Description":  "左スティック押込み（L3相当）",
+                "References":  {
+
+                               }
+            },
+    "OnNarCreated":  {
+                         "Compatibility":  "MateriaSSPCROW",
+                         "Description":  "narファイルが作成された際に発生。",
+                         "References":  {
+                                            "Reference0":  "narにするオブジェクト名。",
+                                            "Reference2":  "※識別子。インストールの識別子参照。",
+                                            "Reference1":  "作成されたnarのファイル名と絶対パス。"
+                                        }
+                     },
+    "OnDisplayChange":  {
+                            "Compatibility":  "SSPCROWNinix",
+                            "Description":  "デスクトップ（プライマリスクリーン）の解像度／色深度が変更された際に発生。[起動時NOTIFY/他GET]",
+                            "References":  {
+                                               "Reference0":  "変化後の色深度（bpp）",
+                                               "Reference2":  "変化後の解像度（height）",
+                                               "Reference1":  "変化後の解像度（width）"
+                                           }
+                        },
+    "OnRecycleBinStatusUpdate":  {
+                                     "Compatibility":  "",
+                                     "Description":  "ゴミ箱にファイルが投げ込まれた時や、エクスプローラ上でゴミ箱を空にした時に発生し、起動中の全ゴーストに通知される。\nまた、ゴースト起動時に[NOTIFY]で通知される。",
+                                     "References":  {
+                                                        "Reference2":  "現在ゴミ箱に入っているファイルの数の直前との差",
+                                                        "Reference1":  "現在ゴミ箱に入っているファイルのサイズ 単位バイト",
+                                                        "Reference4":  "常に1 (OnRecycleBinEmptyとの互換用のダミー)",
+                                                        "Reference5":  "常に空 (OnRecycleBinEmptyとの互換用のダミー)\nSSP 2.6.04/Ref4は2.6.35\n選択領域モードイベント",
+                                                        "Reference0":  "現在ゴミ箱に入っているファイルの数",
+                                                        "Reference3":  "現在ゴミ箱に入っているファイルのサイズの直前との差 単位バイト"
+                                                    }
+                                 },
+    "OnRaiseOtherFailure":  {
+                                "Compatibility":  "SSP",
+                                "Description":  "\\![raiseother]が失敗した際に発生。",
+                                "References":  {
+                                                   "Reference0":  "見つからなかった場合、notfound。\n\\t中だった場合、timecritical。\nパッシブモードだった場合、passivemode。\nインダクションモードだった場合、inductionmode。\n最小化中だった場合、minimized。\n他、204など実行結果。\n__SYSTEM_ALL_GHOST__などの場合バイト値1区切りのリスト。",
+                                                   "Reference3～":  "実行しようとしたイベントのReference。",
+                                                   "Reference2":  "実行しようとしたイベントID。",
+                                                   "Reference1":  "ゴースト名または\\0名。\n__SYSTEM_ALL_GHOST__などの場合バイト値1区切りのリスト。"
+                                               }
+                            },
+    "OnSessionLock":  {
+                          "Compatibility":  "",
+                          "Description":  "ログイン状態のままロック画面に戻った際に発生。Windowsの場合は簡易ユーザー切り替えでも発生する。\n本イベントはNOTIFYではないが、当然何を実行してもユーザーには見えないので注意。\nSSP 2.5.50",
+                          "References":  {
+
+                                         }
+                      },
+    "date":  {
+                 "Compatibility":  "",
+                 "Description":  "デート",
+                 "References":  {
+
+                                }
+             },
+    "OnNarCreating":  {
+                          "Compatibility":  "MateriaSSPCROW",
+                          "Description":  "install.txtの入ったゴーストフォルダがDnDされた際に発生。",
+                          "References":  {
+                                             "Reference0":  "narにするオブジェクト名。",
+                                             "Reference2":  "※識別子。インストールの識別子参照。",
+                                             "Reference1":  "作成されるnarのファイル名と絶対パス。"
+                                         }
+                      },
+    "OnOtherGhostChanged":  {
+                                "Compatibility":  "SSPNinix",
+                                "Description":  "他のゴースト間で切り替わった際に発生。",
+                                "References":  {
+                                                   "Reference15":  "切り替わったゴーストのシェル名。",
+                                                   "Reference2":  "直前のゴーストの切り替え時のスクリプト。",
+                                                   "Reference1":  "切り替わったゴーストの本体側の名前。",
+                                                   "Reference4":  "直前のゴースト名。",
+                                                   "Reference5":  "切り替わったゴースト名。",
+                                                   "Reference0":  "直前のゴーストの本体側の名前。",
+                                                   "Reference14":  "直前のゴーストのシェル名。",
+                                                   "Reference3":  "切り替わったゴーストの切り替わり時のスクリプト。"
+                                               }
+                            },
+    "DPadDown":  {
+                     "Compatibility":  "",
+                     "Description":  "十字キー下",
+                     "References":  {
+
+                                    }
+                 },
+    "OnSchedulesenseComplete":  {
+                                    "Compatibility":  "SSP",
+                                    "Description":  "スケジュールセンサの処理が完了した際に発生。",
+                                    "References":  {
+                                                       "Reference0":  "スケジュールセンサの名前",
+                                                       "Reference1":  "スケジュールセンサの返したスケジュールデータの数"
+                                                   }
+                                },
+    "OnNSLookupComplete":  {
+                               "Compatibility":  "SSP",
+                               "Description":  "\\![execute,nslookup]で成功時に発生。",
+                               "References":  {
+                                                  "Reference0":  "--eventで指定した文字列そのもの",
+                                                  "Reference2":  "正引きでlookup、逆引きでreverse",
+                                                  "Reference3":  "実行結果。正引きでIP、逆引きでホスト名。",
+                                                  "Reference1":  "--hostで指定した文字列そのもの"
+                                              }
+                           },
+    "OnGhostCalled":  {
+                          "Compatibility":  "SSP",
+                          "Description":  "他のゴーストから呼び出された際に発生。\nSSPでは、このイベントにスクリプトが返されなかった（204）場合、続けてOnBootが発生する。",
+                          "References":  {
+                                             "Reference2":  "呼び出したゴーストの名前。",
+                                             "Reference1":  "呼び出したゴーストの呼び出し時のスクリプト。",
+                                             "Reference7":  "呼び出されたゴーストのシェル名。",
+                                             "Reference0":  "呼び出したゴーストの本体側の名前。",
+                                             "Reference3":  "呼び出したゴーストのパス。"
+                                         }
+                      },
+    "paramerror":  {
+                       "Compatibility":  "",
+                       "Description":  "※SSPのみ。更新実行タグの設定ミスにより更新を実行できなかった。 [2.5.26]\nネットワーク更新対象の種別",
+                       "References":  {
+
+                                      }
+                   },
+    "OnExecuteHTTPComplete":  {
+                                  "Compatibility":  "SSPNinix",
+                                  "Description":  "execute-httpで正常に取得完了した際に発生。",
+                                  "References":  {
+                                                     "Reference2":  "対象のURL。",
+                                                     "Reference1":  "--sync・--asyncオプションで指定した文字列。",
+                                                     "Reference4":  "取得結果コード。(timeout|fileio|200|204|403|404)等。[失敗理由]も参照。",
+                                                     "Reference6":  "受け取ったすべてのレスポンスヘッダ。改行の代わりにバイト値1で区切られている。 [2.6.40]",
+                                                     "Reference5":  "Cookieの文字列。",
+                                                     "Reference0":  "post/get/head/put/delete のいずれか",
+                                                     "Reference3":  "--nofileオプションがある場合、取得したデータの中身。ただし改行コードはバイト値1に置き換えられている。\nそうでない場合は取得したファイルのフルパス。"
+                                                 }
+                              },
+    "OnFirstBoot":  {
+                        "Compatibility":  "MateriaSSPCROWNinix",
+                        "Description":  "初回起動した際に発生。\nSSPでは、このイベントにスクリプトが返されなかった（204）場合、続けてOnBootが発生する。",
+                        "References":  {
+                                           "Reference0":  "vanishされた回数。"
+                                       }
+                    },
+    "supplement":  {
+                       "Compatibility":  "",
+                       "Description":  "以下はOnInstallComplete / OnNarCreatedのみ\nghost with balloon\nshell with balloon\n以下はSSP専用\ncalendar skin\ncalendar plugin",
+                       "References":  {
+
+                                      }
+                   },
+    "OnSNTPBegin":  {
+                        "Compatibility":  "MateriaSSPCROW",
+                        "Description":  "時計合わせが開始が指示された際に発生。",
+                        "References":  {
+                                           "Reference0":  "接続先サーバ名。"
+                                       }
+                    },
+    "OnBatteryNotify":  {
+                            "Compatibility":  "SSP",
+                            "Description":  "残りバッテリー量を通知。起動時のみ[NOTIFY]で通知され、他はGET。",
+                            "References":  {
+                                               "Reference0":  "残りバッテリー％。",
+                                               "Reference2":  "offline(バッテリー駆動)・online(電源供給中)・backup(UPSなど補助電源)　のいずれか。",
+                                               "Reference3":  "以下の状態を示す文字列をカンマ区切りで通知。例： low,charging\nhigh：バッテリー残量が2/3以上\nlow：バッテリー残量が1/3以下 (OnBatteryLowも発生)\ncritical：バッテリー残量が5％以下 (OnBatteryCriticalも発生)\ncharging：バッテリーが充電中（OnBatteryChargingStart/Stopも発生）\nno_battery：バッテリーが取り外されている\npower_saving：バッテリー節約機能がON (SSP 2.3.94以降/Windows 10以降)\nWindows 7より前のOSでは、high/lowの基準が異なることがある。",
+                                               "Reference1":  "残り時間。不明の場合は-1。"
+                                           }
+                        },
+    "OnRSSBegin":  {
+                       "Compatibility":  "SSP",
+                       "Description":  "RSSセンス開始が指示された際に発生。本イベントに反応しない場合は、OnHeadlineSenseBeginが呼び出される。",
+                       "References":  {
+                                          "Reference0":  "RSSセンスするサイト名。",
+                                          "Reference1":  "RSSセンスするURL。"
+                                      }
+                   },
+    "B":  {
+              "Compatibility":  "",
+              "Description":  "フェイスボタン右",
+              "References":  {
+
+                             }
+          },
+    "OnRecommendsiteChoice":  {
+                                  "Compatibility":  "MateriaSSPCROWNinix",
+                                  "Description":  "メニューからサイトのリンクが選択された際に発生。",
+                                  "References":  {
+                                                     "Reference2":  "※SSPのみ　重ねた時に表示されるサムネイル画像のURL/パス",
+                                                     "Reference1":  "選択されたサイトのURL。",
+                                                     "Reference4":  "※SSPのみ　0か1 (0=sakuraか1=keroか)",
+                                                     "Reference5":  "※SSPのみ　数値 メニューの上から何番目か (0からはじまる点に注意)",
+                                                     "Reference0":  "選択されたサイト名。",
+                                                     "Reference3":  "※SSPのみ　recommendかportal"
+                                                 }
+                              },
+    "LB":  {
+               "Compatibility":  "",
+               "Description":  "左バンパー（L1相当）",
+               "References":  {
+
+                              }
+           },
+    "OnSysResume":  {
+                        "Compatibility":  "SSP",
+                        "Description":  "サスペンド（スリープ・休止状態（ハイバネーション）両方）解除の際に発生。",
+                        "References":  {
+                                           "Reference0":  "解除理由。通常normal、システムのスケジュールによる自動解除時auto、バッテリー切れで非常停止した場合critical（Windows Vista以降廃止）"
+                                       }
+                    },
+    "OnCPULoadLow":  {
+                         "Compatibility":  "",
+                         "Description":  "CPU負荷が高い状態から低く戻った時に発動する。(今のところHigh発動後60％を下回った時)",
+                         "References":  {
+                                            "Reference0":  "現在の負荷率％\nSSP 2.5.56"
+                                        }
+                     },
+    "event":  {
+                  "Compatibility":  "",
+                  "Description":  "汎用",
+                  "References":  {
+
+                                 }
+              },
+    "default":  {
+                    "Compatibility":  "",
+                    "Description":  "認識できないタイプ",
+                    "References":  {
+
+                                   }
+                },
+    "OnMouseDoubleClick":  {
+                               "Compatibility":  "MateriaSSPCROWNinix",
+                               "Description":  "左・右ボタンでダブルクリックされた際に発生。",
+                               "References":  {
+                                                  "Reference2":  "常に0。",
+                                                  "Reference1":  "マウスカーソルの y 座標（ローカル座標）",
+                                                  "Reference4":  "当たり判定の識別子。",
+                                                  "Reference6":  "※SSPのみ　windows7以降、マルチタッチ対応環境のタッチパネル（※タッチパッド不可）からの入力でtouch、マウスなどからの入力でmouse",
+                                                  "Reference5":  "左クリックは0、右クリックは1。",
+                                                  "Reference0":  "マウスカーソルの x 座標（ローカル座標）",
+                                                  "Reference3":  "本体の場合は0、相方の場合は1。SSP/CROWでは2以降もある。"
+                                              }
+                           },
+    "duedate":  {
+                    "Compatibility":  "",
+                    "Description":  "しめきり",
+                    "References":  {
+
+                                   }
+                },
+    "RightStickY":  {
+                        "Compatibility":  "",
+                        "Description":  "右スティック垂直（上が正、下が負）。正規化値の範囲は-1.0～1.0。",
+                        "References":  {
+
+                                       }
+                    },
+    "OnVoiceRecognitionWord":  {
+                                   "Compatibility":  "",
+                                   "Description":  "音声認識で単語が認識された際に発生。",
+                                   "References":  {
+                                                      "Reference0":  "本体の場合は0、相方の場合は1。SSP/CROWでは2以降もある。",
+                                                      "Reference1":  "認識した単語。最初の名前呼びかけの時はキャラ名そのものになり、その際はメニューを表示するのが望ましい。\nSSP 2.4\n音声認識・合成機能について\n音声認識・合成機能については、 \\__vタグ などSakuraScriptの仕様も参照すること。\nその他イベント"
+                                                  }
+                               },
+    "enable_log":  {
+                       "Compatibility":  "SSP",
+                       "Description":  "開発用パレットの「SHIORI内部ログ機能有効」のON/OFF。[NOTIFY]\nSHIORI Resource : log_path も参照。",
+                       "References":  {
+                                          "Reference0":  "ONなら1、OFFなら0"
+                                      }
+                   },
+    "OnDisplayHandover":  {
+                              "Compatibility":  "",
+                              "Description":  "スクリーン間を跨いでウインドウを移動させた際に発生。[NOTIFY/他GET]",
+                              "References":  {
+                                                 "Reference0":  "init (位置初期化完了時) か update (初期化後の更新) 。\ninitは起動後ウインドウの位置が決定した際に通知され、OnBootより前とは限らない。",
+                                                 "Reference2":  "移動前　左,上,右,下,ビット深度,プライマリモニタかどうか(0/1)　init時は空欄\n例： 0,0,1600,900,32,1",
+                                                 "Reference3":  "移動後　左,上,右,下,ビット深度,プライマリモニタかどうか(0/1)\nSSP 2.4.09",
+                                                 "Reference1":  "本体の場合は0、相方の場合は1。SSP/CROWでは2以降もある。"
+                                             }
+                          },
+    "corrupted":  {
+                      "Compatibility":  "",
+                      "Description":  "アーカイブが破損している",
+                      "References":  {
+
+                                     }
+                  },
+    "OnSurfaceRestore":  {
+                             "Compatibility":  "MateriaSSPCROWNinix",
+                             "Description":  "トーク後一定時間経過後に一度発生。\nSSPの場合は本体設定の喋りタイムアウトで設定された秒数+１５秒後に発生（つまりバルーンが閉じてから１５秒後）。\n※喋りタイムアウト設定が０のときだけOnSurfaceRestoreが発生するまでバルーンが表示され続ける。",
+                             "References":  {
+                                                "Reference0":  "本体側の現在サーフェス。",
+                                                "Reference1":  "相方側の現在サーフェス。"
+                                            }
+                         },
+    "OnUpdatedataCreating":  {
+                                 "Compatibility":  "MateriaSSPCROW",
+                                 "Description":  "ゴーストフォルダがDnDされた際に発生。",
+                                 "References":  {
+
+                                                }
+                             },
+    "OnScheduleRead":  {
+                           "Compatibility":  "SSP",
+                           "Description":  "カレンダーアイコン上でマウスが静止し、そのスケジュールが読まれるタイミングで発生。",
+                           "References":  {
+                                              "Reference0":  "イベントのタイプ。",
+                                              "Reference2":  "追加データ(subtitle)",
+                                              "Reference3":  "スクリプト(script)",
+                                              "Reference1":  "イベントの内容(caption)"
+                                          }
+                       },
+    "boot":  {
+                 "Compatibility":  "",
+                 "Description":  "起動中の時。",
+                 "References":  {
+
+                                }
+             },
+    "OnBIFFComplete":  {
+                           "Compatibility":  "MateriaSSPCROW",
+                           "Description":  "メールチェックが成功した際に発生。",
+                           "References":  {
+                                              "Reference2":  "チェックするメールサーバ名。",
+                                              "Reference1":  "スプールされているメールのバイト数。",
+                                              "Reference4":  "全メールのTopResult。POP通信全ヘッダリスト。メールごとバイト値2区切りの、ヘッダごとバイト値1区切り（通常はReference7の情報を利用すればよい）。",
+                                              "Reference6":  "UidlResult。メールを区別するためのID。POPコマンドの「UIDL」の結果に相当する内容。",
+                                              "Reference5":  "ListResult。メールサーバ上のID。POPコマンドの「LIST」の結果に相当する内容。",
+                                              "Reference7":  "バイト値1区切りの送信者とタイトル。",
+                                              "Reference0":  "スプールされているメールの通数、１オリジン表記。",
+                                              "Reference3":  "メールの新着差分。"
+                                          }
+                       },
+    "OnSSTPBreak":  {
+                        "Compatibility":  "MateriaSSP",
+                        "Description":  "SSTPがブレイクされた際に発生。",
+                        "References":  {
+                                           "Reference0":  "中断の操作が起きたスクリプト。",
+                                           "Reference2":  "中断位置。スクリプト先頭からの文字数で表現。文字数はさくらスクリプトのタグも含めたもの。\n例）\\s[2]あいうえお　の「あ」までで中断された場合、6",
+                                           "Reference1":  "中断の操作が起きたバルーンのスコープ番号。本体側0、相方側1、それ以降も。"
+                                       }
+                    },
+    "Back":  {
+                 "Compatibility":  "",
+                 "Description":  "バック / セレクトボタン",
+                 "References":  {
+
+                                }
+             },
+    "OnNotifyUserInfo":  {
+                             "Compatibility":  "SSP",
+                             "Description":  "ユーザーの入力情報を通知。起動時＋情報が更新された際に通知。[NOTIFY]",
+                             "References":  {
+                                                "Reference0":  "呼び方。",
+                                                "Reference2":  "誕生日。(2003,5,5のようにカンマ区切りで)",
+                                                "Reference3":  "性別。male(男),female(女),undef(未定義)のいずれか。",
+                                                "Reference1":  "フルネーム。"
+                                            }
+                         },
+    "OnOtherSurfaceChange":  {
+                                 "Compatibility":  "SSPNinix",
+                                 "Description":  "（自分以外の）他のゴーストのサーフェス（表情）が変わった際に通知されます。\n負荷対策のため、標準では無効のイベントです。このイベントを使用するためには、事前に \\![set,othersurfacechange,true] で有効化する必要があります。",
+                                 "References":  {
+                                                    "Reference2":  "サーフェスが切り替わったウインドウID(Sakura=0)",
+                                                    "Reference1":  "ゴーストSakura名",
+                                                    "Reference4":  "旧サーフェスID",
+                                                    "Reference5":  "新しいサーフェスの大きさ(座標：左,上,右,下)",
+                                                    "Reference0":  "ゴースト名",
+                                                    "Reference3":  "新サーフェスID"
+                                                }
+                             },
+    "tv":  {
+               "Compatibility":  "",
+               "Description":  "テレビ番組",
+               "References":  {
+
+                              }
+           },
+    "OnInstallBegin":  {
+                           "Compatibility":  "MateriaSSPCROW",
+                           "Description":  "アーカイブのインストール開始の際に発生。",
+                           "References":  {
+
+                                          }
+                       },
+    "OnOtherGhostClosed":  {
+                               "Compatibility":  "SSPNinix",
+                               "Description":  "複数起動中、他のゴーストが終了された際に発生。",
+                               "References":  {
+                                                  "Reference0":  "終了したゴーストの本体側の名前。",
+                                                  "Reference2":  "終了したゴースト名。",
+                                                  "Reference7":  "終了したゴーストのシェル名。",
+                                                  "Reference1":  "終了したゴーストの最後のスクリプト。"
+                                              }
+                           },
+    "OnSNTPCorrectEx":  {
+                            "Compatibility":  "",
+                            "Description":  "\\6タグでローカル時刻をサーバ時刻に修正した際に発生。",
+                            "References":  {
+                                               "Reference2":  "カンマでセパレートされたローカル側の現時刻 : 年,月,日,時,分,秒,ミリ秒",
+                                               "Reference1":  "カンマでセパレートされたサーバ側の現時刻 : 年,月,日,時,分,秒,ミリ秒",
+                                               "Reference4":  "サーバとローカルの時刻のずれ。ミリ秒単位の整数。正負はReference3と同様。\nSSP 2.5.66",
+                                               "Reference0":  "接続先サーバ名。",
+                                               "Reference3":  "サーバとローカルの時刻のずれ。秒単位かつ小数点以下あり。正の値がローカル時刻がサーバ時刻より遅れ、負の値がローカル時刻がサーバより進んだ状態。"
+                                           }
+                        },
+    "OnSessionUnlock":  {
+                            "Compatibility":  "",
+                            "Description":  "ロック画面から通常の操作に戻った際に発生。Windowsの場合は簡易ユーザー切り替えでも発生する。\nSSP 2.5.50",
+                            "References":  {
+
+                                           }
+                        },
+    "OnFileDropping":  {
+                           "Compatibility":  "SSPCROW",
+                           "Description":  "ファイルをドラッグしたままのカーソルがゴースト上に乗った際に発生。",
+                           "References":  {
+                                              "Reference0":  "ドラッグしているファイルパス。",
+                                              "Reference1":  "ドロップされたキャラクターのスコープ番号。本体側0、相方1、3人目以降は2以降。"
+                                          }
+                       },
+    "genre":  {
+                  "Compatibility":  "",
+                  "Description":  "ジャンル iSing4U/SSP2.5.75",
+                  "References":  {
+
+                                 }
+              },
+    "OnMouseMultipleClickEx":  {
+                                   "Compatibility":  "SSP",
+                                   "Description":  "左・右ボタン以外で3回以上連続でクリックされた際に発生。\n※SHIORIから同イベントに応答が無い場合、通常通りOnMouseClickExとOnMouseDoubleClickExの流れに戻る。",
+                                   "References":  {
+                                                      "Reference2":  "常に0。",
+                                                      "Reference1":  "マウスカーソルの y 座標（ローカル座標）",
+                                                      "Reference4":  "当たり判定の識別子。",
+                                                      "Reference6":  "windows7以降、マルチタッチ対応環境のタッチパネル（※タッチパッド不可）からの入力でtouch、マウスなどからの入力でmouse",
+                                                      "Reference5":  "ホイールクリック(または3ボタンマウスの中ボタン)はmiddle、拡張ボタン1(通常「戻る」に割当)はxbutton1、拡張ボタン2(通常「進む」に割当)はxbutton2。",
+                                                      "Reference7":  "連続クリック回数",
+                                                      "Reference0":  "マウスカーソルの x 座標（ローカル座標）",
+                                                      "Reference3":  "本体の場合は0、相方の場合は1。それ以降2～"
+                                                  }
+                               },
+    "OnSelectModeCancel":  {
+                               "Compatibility":  "SSP",
+                               "Description":  "\\![leave,selectrect]を実行後に、選択していなかった場合や、空の選択領域になっていた場合に発生します。",
+                               "References":  {
+                                                  "Reference0":  "本体の場合は0、相方の場合は1。SSP/CROWでは2以降もある。",
+                                                  "Reference1":  "選択モード。今のところ \"rect\" のみ。"
+                                              }
+                           },
+    "OnUpdateBegin":  {
+                          "Compatibility":  "MateriaSSPCROWNinix",
+                          "Description":  "ネットワーク更新開始が指示された際に発生。",
+                          "References":  {
+                                             "Reference0":  "ゴースト名。",
+                                             "Reference3":  "CROW：ゴースト更新の際はghost・本体更新の際はbaseware\nSSP：※更新対象種別",
+                                             "Reference4":  "SSP 2.3：※更新実行理由。",
+                                             "Reference1":  "フルパス。"
+                                         }
+                      },
+    "OnMemoryLoadHigh":  {
+                             "Compatibility":  "",
+                             "Description":  "メモリ使用量が高い時に発生する。(今のところおおよそ80％ぐらいが少し続いたら発動)",
+                             "References":  {
+                                                "Reference0":  "現在の使用量％\nSSP 2.5.56"
+                                            }
+                         },
+    "OnSystemDialogCancel":  {
+                                 "Compatibility":  "SSP",
+                                 "Description":  "ファイル関連のダイアログでキャンセルが押された際に発生。",
+                                 "References":  {
+                                                    "Reference0":  "open・save・folder・colorのいずれか。",
+                                                    "Reference1":  "イベントID。"
+                                                }
+                             },
+    "OnNSLookupFailure":  {
+                              "Compatibility":  "SSP",
+                              "Description":  "\\![execute,nslookup]で失敗時に発生。",
+                              "References":  {
+                                                 "Reference0":  "--eventで指定した文字列そのもの",
+                                                 "Reference2":  "正引きでlookup、逆引きでreverse",
+                                                 "Reference1":  "--hostで指定した文字列そのもの"
+                                             }
+                          },
+    "subtitle":  {
+                     "Compatibility":  "",
+                     "Description":  "サブタイトル SSP2.5.75",
+                     "References":  {
+
+                                    }
+                 },
+    "OnGhostTermsAccept":  {
+                               "Compatibility":  "",
+                               "Description":  "利用条件ダイアログで受諾が押された際に発生。\n右上の閉じるボタンでは何もイベントは発生しない。\nSSP 2.5.33",
+                               "References":  {
+
+                                              }
+                           },
+    "package":  {
+                    "Compatibility":  "",
+                    "Description":  "",
+                    "References":  {
+
+                                   }
+                },
+    "OnHeadlinesenseFailure":  {
+                                   "Compatibility":  "MateriaSSP",
+                                   "Description":  "ヘッドラインセンスに失敗した際に発生。",
+                                   "References":  {
+                                                      "Reference0":  "※終了理由"
+                                                  }
+                               },
+    "OnBalloonChange":  {
+                            "Compatibility":  "SSPNinix",
+                            "Description":  "他のバルーンから切り替わった際に発生。",
+                            "References":  {
+                                               "Reference0":  "切り替わったバルーン名。",
+                                               "Reference1":  "切り替わったバルーンのパス。"
+                                           }
+                        },
+    "artwork":  {
+                    "Compatibility":  "",
+                    "Description":  "アルバムアートワークの画像ファイルパス SSP 2.5.75",
+                    "References":  {
+
+                                   }
+                },
+    "OnBIFFBegin":  {
+                        "Compatibility":  "MateriaSSPCROW",
+                        "Description":  "メールチェック開始が指示された際に発生。",
+                        "References":  {
+                                           "Reference2":  "チェックするメールサーバ名、SSP、CROWはアカウント名。"
+                                       }
+                    },
+    "OnUpdateOtherFailure":  {
+                                 "Compatibility":  "SSP",
+                                 "Description":  "ゴースト以外のネットワーク更新に失敗した際に発生。",
+                                 "References":  {
+                                                    "Reference0":  "※失敗理由",
+                                                    "Reference3":  "※更新対象種別",
+                                                    "Reference4":  "SSP 2.3：※更新実行理由。",
+                                                    "Reference1":  "カンマでセパレートされた更新されたファイル名のリスト。"
+                                                }
+                             },
+    "OnAnchorHover":  {
+                          "Compatibility":  "SSP",
+                          "Description":  "\\_aジャンパ上で静止された際に発生。",
+                          "References":  {
+                                             "Reference0":  "ジャンパのテキスト。",
+                                             "Reference*":  "拡張情報(\\_aタグ内の2番目以降の引数)。",
+                                             "Reference1":  "ジャンパのID。"
+                                         }
+                      },
+    "OnVanishSelected":  {
+                             "Compatibility":  "MateriaSSPCROWNinix",
+                             "Description":  "確認ダイアログでYESが選択された際に発生。",
+                             "References":  {
+
+                                            }
+                         },
+    "OnMouseDragEnd":  {
+                           "Compatibility":  "SSPNinix",
+                           "Description":  "マウスをドラッグし終えた際に発生。ただしパッシブモードでは抑制される。",
+                           "References":  {
+                                              "Reference2":  "マウスホイールの回転量および回転方向。",
+                                              "Reference1":  "マウスカーソルの y 座標（ローカル座標）",
+                                              "Reference4":  "当たり判定の識別子。",
+                                              "Reference6":  "windows7以降、マルチタッチ対応環境のタッチパネル（※タッチパッド不可）からの入力でtouch、マウスなどからの入力でmouse",
+                                              "Reference5":  "左クリックは0、右クリックは1。",
+                                              "Reference0":  "マウスカーソルの x 座標（ローカル座標）",
+                                              "Reference3":  "本体の場合は0、相方の場合は1。SSP/CROWでは2以降もある。"
+                                          }
+                       },
+    "playlist":  {
+                     "Compatibility":  "",
+                     "Description":  "プレイリスト情報 iSing4U",
+                     "References":  {
+
+                                    }
+                 },
+    "OnBalloonScaling":  {
+                             "Compatibility":  "",
+                             "Description":  "バルーン倍率が変更された際に発生。",
+                             "References":  {
+                                                "Reference0":  "横方向の変更された後の倍率。（パーセント）",
+                                                "Reference2":  "縦方向の変更された後の倍率。（パーセント）",
+                                                "Reference3":  "縦方向の変更される前の倍率。（パーセント）\nSSP 2.5",
+                                                "Reference1":  "横方向の変更される前の倍率。（パーセント）"
+                                            }
+                         },
+    "timeout":  {
+                    "Compatibility":  "",
+                    "Description":  "タイムアウトした。\ntoo slow\nSSPではtimeoutになるため不出。回線が非常に重い。\nmd5 miss\nMD5が一致しなかった。",
+                    "References":  {
+
+                                   }
+                },
+    "album":  {
+                  "Compatibility":  "",
+                  "Description":  "アルバム名 iSing4U/SSP2.5.75",
+                  "References":  {
+
+                                 }
+              },
+    "OnDeviceArrival":  {
+                            "Compatibility":  "SSP",
+                            "Description":  "デバイスを検出された際に発生。",
+                            "References":  {
+                                               "Reference*":  "タイプ、名前、製造者名、デバイスファイル名がバイト値1区切りで返る。"
+                                           }
+                        },
+    "OnCacheRestore":  {
+                           "Compatibility":  "SSP",
+                           "Description":  "ゴーストキャッシュから出た際に発生。",
+                           "References":  {
+
+                                          }
+                       },
+    "OnUpdate.OnMD5CompareFailure":  {
+                                         "Compatibility":  "MateriaSSPCROWNinix",
+                                         "Description":  "MD5が一致しなかった際に発生。",
+                                         "References":  {
+                                                            "Reference2":  "落としたファイルのMD5値。",
+                                                            "Reference1":  "正しいMD5値。",
+                                                            "Reference4":  "SSP 2.3：※更新実行理由。",
+                                                            "Reference0":  "落としたファイル名。",
+                                                            "Reference3":  "SSP　※更新対象種別"
+                                                        }
+                                     },
+    "OnMouseClick":  {
+                         "Compatibility":  "MateriaSSPCROWNinix",
+                         "Description":  "左・右ボタン（＋中ボタン）でマウスクリックされた時(マウスボタンを1回押して放された瞬間)に、OnMouseUpに反応しない場合に発生。",
+                         "References":  {
+                                            "Reference2":  "常に0。",
+                                            "Reference1":  "マウスカーソルの y 座標（ローカル座標）",
+                                            "Reference4":  "当たり判定の識別子。",
+                                            "Reference6":  "※SSPのみ　windows7以降、マルチタッチ対応環境のタッチパネル（※タッチパッド不可）からの入力でtouch、マウスなどからの入力でmouse",
+                                            "Reference5":  "左クリックは0、右クリックは1、中クリックは2(互換仕様：OnMouseClickExへの移行を推奨)。",
+                                            "Reference0":  "マウスカーソルの x 座標（ローカル座標）",
+                                            "Reference3":  "本体の場合は0、相方の場合は1。SSP/CROWでは2以降もある。"
+                                        }
+                     },
+    "OnSchedule5MinutesToGo":  {
+                                   "Compatibility":  "SSP",
+                                   "Description":  "本体カレンダー機能に登録されているスケジュールの時間の5分前に発生。",
+                                   "References":  {
+                                                      "Reference0":  "イベントのタイプ",
+                                                      "Reference2":  "追加データ(subtitle)",
+                                                      "Reference3":  "スクリプト(script)",
+                                                      "Reference1":  "イベントの内容(caption)"
+                                                  }
+                               },
+    "albumartist":  {
+                        "Compatibility":  "",
+                        "Description":  "アルバム制作者名 SSP2.5.75",
+                        "References":  {
+
+                                       }
+                    },
+    "OnChoiceHover":  {
+                          "Compatibility":  "SSP",
+                          "Description":  "選択肢上で静止された際に発生。",
+                          "References":  {
+                                             "Reference0":  "選択肢のテキスト（ラベル）。",
+                                             "Reference*":  "拡張情報(\\qタグ内の3番目以降の引数)。",
+                                             "Reference1":  "選択肢のID。"
+                                         }
+                      },
+    "OnRecycleBinEmptyFromOther":  {
+                                       "Compatibility":  "",
+                                       "Description":  "\\![execute,emptyrecyclebin]でゴミ箱を空にする指示を出したゴースト以外に送られる。",
+                                       "References":  {
+                                                          "ReferenceはOnRecycleBinEmptyと同じ。":  "SSP 2.6.35"
+                                                      }
+                                   },
+    "installedsakuraname":  {
+                                "Compatibility":  "",
+                                "Description":  "インストールされているゴーストのsakura.nameを通知。[NOTIFY]\n必ずinstalledghostnameの前に通知される。\nまた、同じゴーストを示す、installedsakuraname/installedkeroname/installedghostnameのReferenceの番号は一致することが保証される。",
+                                "References":  {
+                                                   "Reference*":  "インストールされているゴーストのsakura.name。\nSSP 2.6.47"
+                                               }
+                            },
+    "OnInstallRefuse":  {
+                            "Compatibility":  "",
+                            "Description":  "インストールするファイルが他のゴーストを指名していた際に発生。",
+                            "References":  {
+                                               "Reference0":  "指定されたゴーストの本体側名（install.txtのaccept指定、つまり本来渡すべき相手）。",
+                                               "Reference2":  "インストールしようとした物の名前。\nMateriaSSP Ref1以降は2.4.85CROWNinix",
+                                               "Reference1":  "インストールしようとした物の※識別子。"
+                                           }
+                        },
+    "OnUpdateOtherBegin":  {
+                               "Compatibility":  "SSP",
+                               "Description":  "ゴースト以外のネットワーク更新開始が指示された際に発生。",
+                               "References":  {
+                                                  "Reference0":  "ゴースト名。",
+                                                  "Reference3":  "※更新対象種別",
+                                                  "Reference4":  "SSP 2.3：※更新実行理由。",
+                                                  "Reference1":  "フルパス。"
+                                              }
+                           },
+    "OnSNTPCompare":  {
+                          "Compatibility":  "MateriaSSPCROW",
+                          "Description":  "サーバに接続が確立された際に発生。修正を実行したい場合は\\6タグを含むスクリプトを返すこと。",
+                          "References":  {
+                                             "Reference2":  "カンマでセパレートされたローカル側の現時刻 : 年,月,日,時,分,秒",
+                                             "Reference1":  "カンマでセパレートされたサーバ側の現時刻 : 年,月,日,時,分,秒 (差が1秒未満はローカル時刻と同じ)",
+                                             "Reference4":  "※SSPのみ　サーバとローカルの時刻のずれ。ミリ秒単位の常に正の整数。",
+                                             "Reference0":  "接続先サーバ名。",
+                                             "Reference3":  "サーバとローカルの時刻のずれ。秒単位の常に正の整数。"
+                                         }
+                      },
+    "OnUserInput":  {
+                        "Compatibility":  "MateriaSSPCROWNinix",
+                        "Description":  "InputBoxに入力され決定された際に発生。\nInputBoxのIDも参照のこと。",
+                        "References":  {
+                                           "Reference0":  "InputBoxのID。",
+                                           "Reference3～":  "--reference=で指定した追加情報",
+                                           "Reference2":  "入力内容補足(sliderinputのみ、最小,最大。ほかは空欄)",
+                                           "Reference1":  "入力された内容。"
+                                       }
+                    },
+    "vanish":  {
+                   "Compatibility":  "SSP",
+                   "Description":  "アンインストールした情報が残ってる時。",
+                   "References":  {
+
+                                  }
+               },
+    "OnChoiceTimeout":  {
+                            "Compatibility":  "MateriaSSPCROWNinix",
+                            "Description":  "選択肢待ち時間がタイムアウトした際に発生。",
+                            "References":  {
+                                               "Reference0":  "タイムアウトしたスクリプト。"
+                                           }
+                        },
+    "OnMouseWheel":  {
+                         "Compatibility":  "MateriaSSPCROWNinix",
+                         "Description":  "マウスホイールが回転した際に発生。\nSSP2.3.53以降、タッチパネル環境であった場合に、OnMouseGestureのReference5がupまたはdownであるようなものに対してSHIORIが何も返さなかった（204 No Contentが返された）時にも代替イベントとしてOnMouseWheelが発生する。その場合Reference2の数値は元々のOnMouseGestureの移動量とup・downの方向から変換される（upなら正数、downなら負数）。",
+                         "References":  {
+                                            "Reference2":  "マウスホイールの回転量および回転方向。",
+                                            "Reference1":  "マウスカーソルの y 座標（ローカル座標）",
+                                            "Reference4":  "当たり判定の識別子。",
+                                            "Reference6":  "※SSPのみ　windows7以降、マルチタッチ対応環境のタッチパネル（※タッチパッド不可）からの入力でtouch、マウスなどからの入力でmouse",
+                                            "Reference5":  "※SSPのみ　常に0。",
+                                            "Reference0":  "マウスカーソルの x 座標（ローカル座標）",
+                                            "Reference3":  "本体の場合は0、相方の場合は1。SSP/CROWでは2以降もある。"
+                                        }
+                     },
+    "OnOtherGhostVanished":  {
+                                 "Compatibility":  "SSP",
+                                 "Description":  "複数起動中、他のゴーストが消滅した際に発生。",
+                                 "References":  {
+                                                    "Reference0":  "消滅したゴーストの本体側の名前。",
+                                                    "Reference2":  "消滅したゴースト名。",
+                                                    "Reference7":  "切り替わったゴーストのシェル名。",
+                                                    "Reference1":  "消滅したゴーストのOnVanishSelectedイベントのスクリプト。"
+                                                }
+                             },
+    "OnConfigurationDialogHelp":  {
+                                      "Compatibility":  "SSP",
+                                      "Description":  "設定ダイアログのヘルプボタンで項目をクリックした際に発生。",
+                                      "References":  {
+                                                         "Reference0":  "ダイアログID。種類とページとの対応は以下。\nsetup …… 一般\nghost …… ゴースト(1)\nghost2 …… ゴースト(2)\nfolder …… フォルダ\ndisplay …… 表示\ndictation …… 音声合成/認識\ntalk …… 喋り/バルーン\nnetwork …… 接続(1)\nnetwork2 …… 接続(2)\nbiff …… メール\napplication …… 外部アプリ\nmessenger …… IM\nipmessenger …… IPMessenger\ninternational …… 国際化\ndeveloper …… 開発/その他",
+                                                         "Reference2":  "項目タイプ:項目名。",
+                                                         "Reference3":  "項目内容テキスト。",
+                                                         "Reference1":  "ダイアログタイトル。"
+                                                     }
+                                  },
+    "cd":  {
+               "Compatibility":  "",
+               "Description":  "CD発売日",
+               "References":  {
+
+                              }
+           },
+    "OnMouseMultipleClick":  {
+                                 "Compatibility":  "SSP",
+                                 "Description":  "3回以上連続でクリックされた際に発生。\n※SHIORIから同イベントに応答が無い場合、通常通りOnMouseClickとOnMouseDoubleClickの流れに戻る。",
+                                 "References":  {
+                                                    "Reference2":  "常に0。",
+                                                    "Reference1":  "マウスカーソルの y 座標（ローカル座標）",
+                                                    "Reference4":  "当たり判定の識別子。",
+                                                    "Reference6":  "windows7以降、マルチタッチ対応環境のタッチパネル（※タッチパッド不可）からの入力でtouch、マウスなどからの入力でmouse",
+                                                    "Reference5":  "左クリックは0、右クリックは1",
+                                                    "Reference7":  "連続クリック回数",
+                                                    "Reference0":  "マウスカーソルの x 座標（ローカル座標）",
+                                                    "Reference3":  "本体の場合は0、相方の場合は1。それ以降2～"
+                                                }
+                             },
+    "unsupported":  {
+                        "Compatibility":  "",
+                        "Description":  "その他サポートしていないアーカイブ",
+                        "References":  {
+
+                                       }
+                    },
+    "A":  {
+              "Compatibility":  "",
+              "Description":  "フェイスボタン下",
+              "References":  {
+
+                             }
+          },
+    "OnCloseAll":  {
+                       "Compatibility":  "SSPNinix",
+                       "Description":  "SSP自体が終了する際に発生。\nオーナードローメニューの「すべて終了」が指示された場合の他、唯一起動中のゴーストにおいて「終了」が指示された場合、およびOSのシャットダウンに伴いSSPが終了する場合にも発生する。",
+                       "References":  {
+                                          "Reference0":  "※SSPのみ　終了理由。\nユーザーが終了した場合、user\nシャットダウンした場合、systemが返される。",
+                                          "Reference2":  "※SSPのみ　終了操作したウインドウのキャラクターのスコープ番号。popupmenu.typeに影響されない。(本体側0,相方1...)",
+                                          "Reference1":  "※SSPのみ　終了操作したメニューが属するキャラクターのスコープ番号。popupmenu.typeに影響される。(本体側0,相方1...)"
+                                      }
+                   },
+    "OnBalloonBreak":  {
+                           "Compatibility":  "SSPNinix",
+                           "Description":  "SSTP以外でブレイクされた際に発生。",
+                           "References":  {
+                                              "Reference0":  "中断の操作が起きたスクリプト。",
+                                              "Reference2":  "中断位置。スクリプト先頭からの文字数で表現。文字数はさくらスクリプトのタグも含めたもの。\n例）\\s[2]あいうえお　の「あ」までで中断された場合、6",
+                                              "Reference1":  "中断の操作が起きたバルーンのスコープ番号。本体側0、相方側1、それ以降も。"
+                                          }
+                       },
+    "OnWindowStateRestore":  {
+                                 "Compatibility":  "MateriaSSPCROWNinix",
+                                 "Description":  "最小化が解除された際に発生。",
+                                 "References":  {
+                                                    "Reference0":  "（SSPのみ）最小化された理由。\nsystem : OSからの強制的な最小化操作（タスクバーから最小化された場合を含む）\nscript : SakuraScriptから\nsakuraapi : Sakura APIから\nuser : メニュー操作"
+                                                }
+                             },
+    "OnBatteryCritical":  {
+                              "Compatibility":  "SSP",
+                              "Description":  "バッテリー残量が極端に少なく(OnBatteryNotify Reference3がcritical以下)になった際に発生する。\n外部アプリ「きのこ」が通知するイベントに同名の物があるので注意。\n「きのこ」との互換用イベントとして実装されている。",
+                              "References":  {
+                                                 "Reference0～":  "OnBatteryNotifyと同じ。Reference3がcriticalになった場合、OnBatteryNotifyが発生後に本イベントも発生するので、OnBatteryNotifyに適切な処理を実装している場合こちらの対応は不要。"
+                                             }
+                          },
+    "OnGamepadDisconnected":  {
+                                  "Compatibility":  "",
+                                  "Description":  "ゲームパッドが切断された際に発生。\nイベントは起動中の全ゴーストに同時にブロードキャストされる。",
+                                  "References":  {
+                                                     "Reference0":  "パッドインデックス。\nSSP 2.7.54\nボタン名一覧"
+                                                 }
+                              },
+    "OnNetworkStatusChange":  {
+                                  "Compatibility":  "SSP",
+                                  "Description":  "ネットワーク接続状態が変わった際に発生。\n起動直後のみNOTIFYで通知。",
+                                  "References":  {
+                                                     "Reference2":  "接続の種類。 [SSP 2.4.22]\ncellular : 携帯回線もしくは通常のPPP(PPPoE等除く)\nethernet : Ethernet (有線LAN)\nnone : 接続なし\nwifi : 無線LAN\nwimax : WiMAX\nother : その他不明\nunknown : 検出に失敗",
+                                                     "Reference1":  "現在居るマシンに割り当てられているIPアドレスのバイト値1区切りリスト。",
+                                                     "Reference4":  "接続回線のダウンロード側の推定有効通信速度を示す数値。単位はMBps。 [SSP 2.5.26]\n通信統計が取得できない環境や、統計値が不正確な状態ではReference3と同じ値となる。",
+                                                     "Reference5":  "接続回線が従量課金回線かどうかを通知する。 [SSP 2.6.15]\nunknown : 未設定/不明\nunrestricted : 完全使い放題\nfixed : データ量の上限がある定額制\nvariable : 従量課金\nWindwos 10/11で「従量制課金接続」を設定するとfixedになる。",
+                                                     "Reference0":  "onlineまたはoffline。",
+                                                     "Reference3":  "接続回線のダウンロード側の最大通信速度を示す数値。単位はMBps。 [SSP 2.4.22]"
+                                                 }
+                              },
+    "Next":  {
+                 "Compatibility":  "",
+                 "Description":  "いずれでもないページ\nヘッドラインセンス終了理由\nno update\n（現状OnHeadlinesenseCompleteのみ）更新がなかった\ncan\u0027t download\nファイルが取れなかった\ncan\u0027t analyze\nファイルは取れたが、有効なヘッドラインを取得できなかった\nカレンダーイベント",
+                 "References":  {
+
+                                }
+             },
+    "ghostpathlist":  {
+                          "Compatibility":  "SSP",
+                          "Description":  "ゴースト格納フォルダ（SSPの本体設定-\u003eフォルダ　のゴーストの設定）のパスを通知。[NOTIFY]",
+                          "References":  {
+                                             "Reference*":  "ゴースト格納フォルダの絶対パス"
+                                         }
+                      },
+    "OnHeadlinesenseBegin":  {
+                                 "Compatibility":  "MateriaSSP",
+                                 "Description":  "ヘッドラインセンス開始が指示された際に発生。",
+                                 "References":  {
+                                                    "Reference0":  "ヘッドラインセンスするサイト名。",
+                                                    "Reference1":  "ヘッドラインセンスするURL。"
+                                                }
+                             },
+    "meeting":  {
+                    "Compatibility":  "",
+                    "Description":  "会議",
+                    "References":  {
+
+                                   }
+                },
+    "toomanyredirect":  {
+                            "Compatibility":  "",
+                            "Description":  "※SSPのみ。リダイレクトが発生しすぎたので処理を中止した。 [2.5.15]",
+                            "References":  {
+
+                                           }
+                        },
+    "OnUpdate.OnMD5CompareComplete":  {
+                                          "Compatibility":  "MateriaSSPCROWNinix",
+                                          "Description":  "MD5が一致した際に発生。",
+                                          "References":  {
+                                                             "Reference2":  "落としたファイルのMD5値。",
+                                                             "Reference1":  "正しいMD5値。",
+                                                             "Reference4":  "SSP 2.3：※更新実行理由。",
+                                                             "Reference0":  "落としたファイル名。",
+                                                             "Reference3":  "SSP　※更新対象種別"
+                                                         }
+                                      },
+    "headlinepathlist":  {
+                             "Compatibility":  "SSP",
+                             "Description":  "ヘッドライン格納フォルダ（SSPの本体設定-\u003eフォルダ　のヘッドラインの設定）のパスを通知。[NOTIFY]",
+                             "References":  {
+                                                "Reference*":  "ヘッドライン格納フォルダの絶対パス"
+                                            }
+                         },
+    "OnMouseDragStart":  {
+                             "Compatibility":  "SSPNinix",
+                             "Description":  "マウスをドラッグし始めた際に発生。ただしパッシブモードでは抑制される。",
+                             "References":  {
+                                                "Reference2":  "マウスホイールの回転量および回転方向。",
+                                                "Reference1":  "マウスカーソルの y 座標（ローカル座標）",
+                                                "Reference4":  "当たり判定の識別子。",
+                                                "Reference6":  "windows7以降、マルチタッチ対応環境のタッチパネル（※タッチパッド不可）からの入力でtouch、マウスなどからの入力でmouse",
+                                                "Reference5":  "左クリックは0、右クリックは1。",
+                                                "Reference0":  "マウスカーソルの x 座標（ローカル座標）",
+                                                "Reference3":  "本体の場合は0、相方の場合は1。SSP/CROWでは2以降もある。"
+                                            }
+                         },
+    "OnCompressArchiveFailure":  {
+                                     "Compatibility":  "",
+                                     "Description":  "アーカイブの圧縮が失敗した際に発生する。\n\\![execute,compressarchive]にて--eventオプションで指定した識別子がOnではじまる場合、その識別子に「Failure」を付加したイベントが発生する。それ以外の場合は本イベントが発生する。",
+                                     "References":  {
+                                                        "Reference0":  "Sakura Scriptの--eventオプションで指定されたイベント識別子。",
+                                                        "Reference1":  "エラー内容。※エラーコード一覧を参照。\nSSP 2.7.23\nアーカイブ操作エラーコード"
+                                                    }
+                                 },
+    "otherghostname":  {
+                           "Compatibility":  "MateriaSSPCROW",
+                           "Description":  "他に起動しているゴーストの本体側名を通知。[NOTIFY]",
+                           "References":  {
+                                              "Reference*":  "バイト値1区切りにされた、他に起動しているゴーストの本体側名、本体側サーフェス番号、相方側サーフェス番号。"
+                                          }
+                       },
+    "OnDarkTheme":  {
+                        "Compatibility":  "",
+                        "Description":  "OSがダークテーマ(暗めの表示)に切り替えられた際に発生。\n起動直後にNOTIFY(喋れない)で通知され、切り替わった時にGET(喋れる)で通知される。",
+                        "References":  {
+                                           "Reference0":  "0/1：アプリ設定 1がダークテーマ、0が通常（明るい）テーマ",
+                                           "Reference1":  "0/1：システム設定 1がダークテーマ、0が通常（明るい）テーマ (2.6.29)\nSSP 2.5.02"
+                                       }
+                    },
+    "OnTeach":  {
+                    "Compatibility":  "SSPNinix",
+                    "Description":  "TeachBoxからの入力があった際に発生。",
+                    "References":  {
+                                       "Reference*":  "入力された言葉の履歴。Reference0が1回目～最新の入力が末尾(n回目の入力がReference[n-1])"
+                                   }
+                },
+    "OnClose":  {
+                    "Compatibility":  "MateriaSSPCROWNinix",
+                    "Description":  "終了が指示された際に発生。\nSSPでは、OnGhostChanging、OnCloseAllに対してスクリプトが返されなかった（204）場合、続けてこのイベントが発生する。",
+                    "References":  {
+                                       "Reference0":  "※SSPのみ　終了理由。\nユーザーが終了した場合、user\nシャットダウンした場合、systemが返される。",
+                                       "Reference2":  "※SSPのみ　終了操作したウインドウのキャラクターのスコープ番号。popupmenu.typeに影響されない。(本体側0,相方1...)",
+                                       "Reference1":  "※SSPのみ　終了操作したメニューが属するキャラクターのスコープ番号。popupmenu.typeに影響される。(本体側0,相方1...)"
+                                   }
+                },
+    "OnGhostCalling":  {
+                           "Compatibility":  "SSPNinix",
+                           "Description":  "他のゴーストの呼び出しが指示された際に発生。",
+                           "References":  {
+                                              "Reference0":  "呼び出すゴーストの本体側の名前。",
+                                              "Reference2":  "呼び出すゴーストの名前。",
+                                              "Reference3":  "呼び出すゴーストのパス。",
+                                              "Reference1":  "手動で切り替えた場合、manual\nシステムにより切り替えられた場合、automatic\nが返される。"
+                                          }
+                       },
+    "OnExtractArchiveFailure":  {
+                                    "Compatibility":  "",
+                                    "Description":  "アーカイブの解凍が失敗した際に発生する。\n\\![execute,extractarchive]にて--eventオプションで指定した識別子がOnではじまる場合、その識別子に「Failure」を付加したイベントが発生する。それ以外の場合は本イベントが発生する。",
+                                    "References":  {
+                                                       "Reference0":  "Sakura Scriptの--eventオプションで指定されたイベント識別子。",
+                                                       "Reference1":  "エラー内容。※エラーコード一覧を参照。\nSSP 2.7.23"
+                                                   }
+                                },
+    "OnUpdateCheckFailure":  {
+                                 "Compatibility":  "SSP",
+                                 "Description":  "ネットワーク更新のチェックに失敗した際に発生。",
+                                 "References":  {
+                                                    "Reference0":  "※失敗理由",
+                                                    "Reference4":  "SSP 2.3：更新実行理由。scriptのみ。"
+                                                }
+                             },
+    "shell":  {
+                  "Compatibility":  "",
+                  "Description":  "",
+                  "References":  {
+
+                                 }
+              },
+    "OnFileDropped":  {
+                          "Compatibility":  "SSPCROW",
+                          "Description":  "[旧仕様]ファイルがDnDされた際に発生。",
+                          "References":  {
+                                             "Reference0":  "ドロップされたファイルパス。",
+                                             "Reference1":  "ドロップされたキャラクターのスコープ番号。本体側0、相方1、3人目以降は2以降。"
+                                         }
+                      },
+    "OnExecuteRSSComplete":  {
+                                 "Compatibility":  "",
+                                 "Description":  "\\![execute,rss-get/post]で正常に取得完了した際に発生。",
+                                 "References":  {
+                                                    "Reference0～":  "タイトル [\\1] URL [\\1] 更新日時（フォーマットはカンマ区切り：年,月,日,時,分,秒）[\\1] 作者名 [\\1] 内容または要約\n更新がある時はRSSの要素数分Reference0,1,2～と続く\n[\\1]はバイト値1\nSSP 作者名・内容 2.4.10～"
+                                                }
+                             },
+    "OnExtractArchiveComplete":  {
+                                     "Compatibility":  "",
+                                     "Description":  "アーカイブの解凍が正常に完了した際に発生する。\n\\![execute,extractarchive]にて--eventオプションで指定した識別子がOnではじまる場合、その識別子のイベントが発生する。それ以外の場合は本イベントが発生する。",
+                                     "References":  {
+                                                        "Reference0":  "Sakura Scriptの--eventオプションで指定されたイベント識別子。",
+                                                        "Reference2":  "圧縮サイズ（バイト）。",
+                                                        "Reference3":  "非圧縮サイズ（バイト）。\nSSP 2.7.23",
+                                                        "Reference1":  "解凍されたファイル数。"
+                                                    }
+                                 },
+    "OnMouseLeaveAll":  {
+                            "Compatibility":  "SSPNinix",
+                            "Description":  "マウスがキャラクターウインドウから出た際に発生。",
+                            "References":  {
+                                               "Reference2":  "常に0。",
+                                               "Reference1":  "マウスカーソルの y 座標（ローカル座標）",
+                                               "Reference4":  "当たり判定の識別子。",
+                                               "Reference6":  "windows7以降、マルチタッチ対応環境のタッチパネル（※タッチパッド不可）からの入力でtouch、マウスなどからの入力でmouse",
+                                               "Reference5":  "常に0。",
+                                               "Reference0":  "マウスカーソルの x 座標（ローカル座標）",
+                                               "Reference3":  "本体の場合は0、相方の場合は1。SSP/CROWでは2以降もある。"
+                                           }
+                        },
+    "OnUpdateFailure":  {
+                            "Compatibility":  "MateriaSSPCROWNinix",
+                            "Description":  "ネットワーク更新に失敗した際に発生。",
+                            "References":  {
+                                               "Reference0":  "※失敗理由",
+                                               "Reference3":  "CROW：ゴースト更新の際はghost本体更新の際はbaseware。\nSSP：※更新対象種別",
+                                               "Reference4":  "SSP 2.3：※更新実行理由。",
+                                               "Reference1":  "カンマでセパレートされた更新されたファイル名のリスト。\n※SSPのみ　失敗したファイル名。"
+                                           }
+                        },
+    "OnExecuteHTTPSSLInfo":  {
+                                 "Compatibility":  "SSP",
+                                 "Description":  "取得失敗(HTTPレスポンスが200以外)でも、SSL/TLSレベルでは接続に成功しているので通知される。",
+                                 "References":  {
+                                                    "Reference9 (2.4.51～)":  "証明書チェーン CommonName(CN)をカンマ区切りで順番に列挙",
+                                                    "Reference2":  "httpレスポンスコード (エラーでも通知される)",
+                                                    "Reference1":  "取得URL",
+                                                    "Reference4":  "暗号化方法\n例：AES256-SHA",
+                                                    "Reference6":  "有効期限開始日時 年,月,日,時,分,秒\n例：2011,7,7,9,0,0",
+                                                    "Reference5":  "発行先 名前を確認したい場合は、/O=の後に続く文字列を抜き出すと良い\nプログラマさん向け：OpenSSLのX509_NAME_onelineに通した結果が入る\n例：/1.3.6.1.4.1.311.60.2.1.3=US/1.3.6.1.4.1.311.60.2.1.2=Delaware/businessCategory=Private Organization/serialNumber=4337446/C=US/postalCode=94107/ST=California/L=San Francisco/street=795 Folsom St, Suite 600/O=Twitter, Inc./OU=Twitter Operations/CN=twitter.com",
+                                                    "Reference8":  "発行者 名前を確認したい場合は、/O=の後に続く文字列を抜き出すと良い\nプログラマさん向け：OpenSSLのX509_NAME_onelineに通した結果が入る\n例：/C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=Terms of use at https://www.verisign.com/rpa (c)06/CN=VeriSign Class 3 Extended Validation SSL CA",
+                                                    "Reference7":  "有効期限終了日時 年,月,日,時,分,秒\n例：2012,7,28,8,59,59",
+                                                    "Reference0":  "async ID (無ければからっぽ)",
+                                                    "Reference3":  "通信バージョン 今時はだいたい \"TLSv1/SSLv3\" (SSP内部でSSLv2は蹴るので実はこれだけしか来ない)"
+                                                }
+                             },
+    "OnFullScreenAppMinimize":  {
+                                    "Compatibility":  "SSP",
+                                    "Description":  "全画面表示のアプリ起動に対するSSP最小化の際に発生。\n通常の最小化時に発生するOnWindowStateMinimizeに上書きされる。",
+                                    "References":  {
+                                                       "Reference0":  "（SSPのみ）最小化された理由。常に fullscreen になる。"
+                                                   }
+                                },
+    "OnInstallCompleteEx":  {
+                                "Compatibility":  "SSPNinix",
+                                "Description":  "インストールが正常終了した際に発生。\nこのイベントが無かった場合OnInstallCompleteが発生。",
+                                "References":  {
+                                                   "Reference0":  "インストールした物の※識別子。複数の場合はバイト値1区切り。",
+                                                   "Reference2":  "インストールした場所。複数の場合はバイト値1区切り。",
+                                                   "Reference1":  "インストールした物の名前。複数の場合はバイト値1区切り。"
+                                               }
+                            },
+    "OnExecuteHTTPProgress":  {
+                                  "Compatibility":  "",
+                                  "Description":  "execute-httpで--progress-notifyを指定した際に発生。ReferenceはCompleteと同じ。\nSSP [2.6.44]",
+                                  "References":  {
+
+                                                 }
+                              },
+    "OnUpdate.OnMD5CompareBegin":  {
+                                       "Compatibility":  "MateriaSSPCROWNinix",
+                                       "Description":  "MD5の照合開始の際に発生。",
+                                       "References":  {
+                                                          "Reference2":  "落としたファイルのMD5値。",
+                                                          "Reference1":  "正しいMD5値。",
+                                                          "Reference4":  "SSP 2.3：※更新実行理由。",
+                                                          "Reference0":  "比較するファイル名。",
+                                                          "Reference3":  "SSP　※更新対象種別"
+                                                      }
+                                   },
+    "OnGamepadButtonUp":  {
+                              "Compatibility":  "",
+                              "Description":  "ゲームパッドのボタンが離された瞬間に発生。\n複数のボタンが同時に変化した場合、ボタンごとに個別のイベントが発生する。\nイベントは起動中の全ゴーストに同時にブロードキャストされる。",
+                              "References":  {
+                                                 "Reference0":  "パッドインデックス。",
+                                                 "Reference1":  "ボタン名。\nSSP 2.7.54"
+                                             }
+                          }
+}
