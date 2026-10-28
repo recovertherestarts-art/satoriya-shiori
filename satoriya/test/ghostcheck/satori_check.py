@@ -195,7 +195,12 @@ def read_events_json(path, ref_value):
 
     平らな形（名前 → {Compatibility, Description, References}）も、カテゴリ → 平らな形 の入れ子も読める。
     On で始まらない項目は、イベントではなく仕様書の項目名（installedballoonname など）なので無視する。
-    Reference は ReferenceN（N は数字）だけを数え、Reference* や Reference3～ のような書き方は無視する。
+
+    Reference の個数の決め方（ukadoc の「Reference一覧について」に合わせる。番号は 0 からの通し番号）:
+      - ReferenceN は、最大の番号まで 0 から連続して付ける（途中が抜けていると里々側で番号がずれるため）。
+      - Reference* / ReferenceN～ は不定数なので、その番号から 1 つ分だけ付ける
+        （Reference* だけのイベントなら Reference0 を付ける）。
+      - 「ReferenceはOnXXXと同じ」のように別のイベントを指しているものは、そのイベントの Reference を使う。
     """
     import json
 
@@ -209,15 +214,29 @@ def read_events_json(path, ref_value):
             for k2, v2 in v.items():
                 if isinstance(v2, dict) and "References" in v2:
                     flat.setdefault(k2, v2)
+
+    def ref_count(name, depth=0):
+        info = flat.get(name, {})
+        keys = list(info.get("References", {}))
+        nums = [int(m.group(1)) for m in (re.fullmatch(r"Reference(\d+)", k) for k in keys) if m]
+        count = max(nums) + 1 if nums else 0
+        for k in keys:
+            m = re.fullmatch(r"Reference(\d*)[*～]", k)
+            if m:
+                count = max(count, int(m.group(1)) + 1 if m.group(1) else count + 1)
+        if not keys or (not nums and count == 0):
+            # 別のイベントと同じ、と書かれているもの
+            for k in keys:
+                m = re.search(r"(On[A-Za-z0-9_.]+)", k)
+                if m and m.group(1) != name and m.group(1) in flat and depth < 3:
+                    return ref_count(m.group(1), depth + 1)
+        return count
+
     events = []
     for name, info in flat.items():
         if not name.startswith("On"):
             continue
-        nums = sorted(
-            int(m.group(1)) for m in (re.fullmatch(r"Reference(\d+)", r) for r in info.get("References", {})) if m
-        )
-        # 0 から最大の番号まで連続して付ける（途中が抜けていると里々側で番号がずれるため）
-        refs = tuple((n, ref_value) for n in range(nums[-1] + 1)) if nums else ()
+        refs = tuple((n, ref_value) for n in range(ref_count(name)))
         events.append((name, info.get("Description", ""), refs))
     return events
 
