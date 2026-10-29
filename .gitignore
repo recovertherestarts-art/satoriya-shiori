@@ -29,3 +29,11 @@ satorite.dat
 /.claude
 .mcp.json
 temp-doc-*.md
+*.o
+*.so
+*.bundle
+utf8src/
+**/utf8src/
+posix_smoke
+posix_savedata
+ghost/

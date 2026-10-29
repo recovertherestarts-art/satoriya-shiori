@@ -1,0 +1,11 @@
+＊OnSetVar
+＄username	テストユーザー
+＄score	12345
+：OK
+
+＊OnGetVar
+：user=（username）,score=（score）
+
+＊OnUpdateVar
+＄score	99999
+：OK

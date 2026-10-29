@@ -45,6 +45,11 @@ jobs:
           cp satoriya/test/posix/ghost/*.txt ghost/
           ./posix_smoke "$PWD/satoriya/satori/libsatori.so" "$PWD/ghost"
 
+      - name: Save data test
+        run: |
+          cc -o posix_savedata satoriya/test/posix/posix_savedata.c -ldl
+          ./posix_savedata "$PWD/satoriya/satori/libsatori.so" "$PWD/satoriya/test/posix/ghost_savedata"
+
   macos:
     name: macOS (makefile.posix)
     runs-on: macos-latest
