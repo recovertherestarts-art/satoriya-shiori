@@ -37,6 +37,8 @@ void	Satori::InitMembers() {
 	words.clear();
 	anchors.clear();
 	variables.clear();
+	m_dic_files.clear();
+	mLintMessages.clear();
 
 	mAppendedWords.clear();
 	mResponseHistory.clear();

@@ -271,6 +271,22 @@ int	Satori::request(
 			}
 		}
 	}
+	else if ( mRequestID==L"ShioriLint" ) {
+		// 辞書の静的検査。何も実行しないので、デバッグモードでなくても SecurityLevel: local ならよい。
+		// 結果は応答の ErrorLevel / ErrorDescription ヘッダ（1件が1要素）。
+		if ( secure_flag ) {
+			mLintMessages.clear();
+			Lint(mLintMessages);
+			for ( strpairvec::const_iterator m = mLintMessages.begin() ; m != mLintMessages.end() ; ++m ) {
+				GetSender().sender() << L"lint: " << m->second << std::endl;
+			}
+			status_code = 200;
+		}
+		else {
+			GetSender().sender() << L"local/Localでないので蹴りました: ShioriLint" <<std::endl;
+			status_code = 403;
+		}
+	}
 	else if (mRequestID == L"SatolistEcho"){
 #ifndef POSIX
 		// さとりすとデバッガ実装
@@ -393,11 +409,29 @@ int	Satori::request(
 		o_data.push_back( strpair(key, value) );
 	}
 
+	// ErrorLevel / ErrorDescription は、要素をバイト値1で区切って並べる（2つの要素数は同じ）。
+	std::wstring errmsg;
+	std::wstring errlevel;
+
+	// ShioriLint の結果。ホストが response.errorlevel に対応していなくても常に返す。
+	if ( mRequestID==L"ShioriLint" && status_code==200 ) {
+		for ( strpairvec::const_iterator m = mLintMessages.begin() ; m != mLintMessages.end() ; ++m ) {
+			wstring text = m->second;
+			for ( wstring::iterator c = text.begin() ; c != text.end() ; ++c ) {
+				if ( *c == L'\1' || *c == L'\r' || *c == L'\n' ) {
+					*c = L' ';	// 区切りと衝突するので、辞書の引用に混ざっていたら空白にする
+				}
+			}
+			errmsg += text;
+			errmsg += L"\1";
+			errlevel += m->first;
+			errlevel += L"\1";
+		}
+		mLintMessages.clear();
+	}
+
 	if ( GetSender().errsender().get_log_mode() ) {
 		const std::vector<wstring> &errlog = GetSender().errsender().get_log();
-
-		std::wstring errmsg;
-		std::wstring errlevel;
 
 		for ( std::vector<wstring>::const_iterator itr = errlog.begin() ; itr != errlog.end(); ++itr ) {
 			errmsg += L"SATORI : ";
@@ -405,15 +439,15 @@ int	Satori::request(
 			errmsg += L"\1";
 			errlevel += L"critical\1";
 		}
-
-		if ( errmsg.length() ) {
-			errmsg.erase(errmsg.end()-1,errmsg.end());
-			errlevel.erase(errlevel.end()-1,errlevel.end());
-
-			o_data.push_back( strpair(L"ErrorLevel",errlevel) );
-			o_data.push_back( strpair(L"ErrorDescription",errmsg) );
-		}
 		GetSender().errsender().clear_log();
+	}
+
+	if ( errmsg.length() ) {
+		errmsg.erase(errmsg.end()-1,errmsg.end());
+		errlevel.erase(errlevel.end()-1,errlevel.end());
+
+		o_data.push_back( strpair(L"ErrorLevel",errlevel) );
+		o_data.push_back( strpair(L"ErrorDescription",errmsg) );
 	}
 
 	GetSender().validate();
